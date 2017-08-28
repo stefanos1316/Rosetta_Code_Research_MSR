@@ -1,0 +1,223 @@
+#!/bin/bash
+
+#This script is responsible of creating text files from the collect results in order to plot them
+
+#Command line arguments
+
+if [ "$#" -eq 0 ]; then
+	echo "Invaled number of command line arguments."
+	echo "Using --help option for more information."
+	exit
+fi
+
+if [ "$1" == "--help" ]; then
+	echo ""
+	echo "Usage of script.createPlottableData"
+	echo "==================================="
+	echo ""
+	echo "--absoluteDataPath	Provide the absolute path where all the Experimental Data are located."
+	echo "--languageType		Choose between 'compiled' and 'interpreted' options."
+	echo "--optimization		Select if 'ON' or 'OFF'."
+	echo ""
+	exit
+fi
+
+#Initiallize variables 
+remove=0
+languageType=0
+optimization=0
+
+#Break the array of command line arguments and set the program variables accordingly.
+args=("$@")
+
+#Get number of elements
+ELEMENTS=${#args[@]}
+
+for ((i=0;i<$ELEMENTS;++i)); 
+do  
+	case "${args[${i}]}" in 
+	("--absoluteDataPath") remove=${args[i+1]} ;;
+	("--languageType") languageType="$(echo ${args[i+1]} | tr '[A-Z]' '[a-z]')" ;;
+	("--optimization") optimization="$(echo ${args[i+1]} | tr '[A-Z]' '[a-z]')" ;;
+	esac
+done
+
+if [ "$languageType" != "compiled" ] && [ "$languageType" != "interpreted" ]; then
+	echo "Illegal value for --languageType option."
+	echo "Please try again."
+	exit
+fi
+
+if [ "$optimization" != "on" ] && [ "$optimization" != "off" ]; then
+	echo "Illegal value for --optimization option."
+	echo "Please try again."
+	exit
+fi
+
+fullPath=0
+
+	if [[ "$remove" == */ ]]; then
+		remove2=$(echo ${remove::-1})		
+		fullPath=$remove2
+	else
+		fullPath=$remove
+	fi
+
+	if [[ $remove == *"Energy_Results"* ]]; then
+		if [[ "$remove" == */ ]]; then
+			remove=$(echo ${remove::-1})
+			fullPath=$(echo $remove | awk -F "/" '{$NF=""}1' | tr " " "/")	
+		fi	
+	fi
+
+
+###############################################################################################################################
+###############################################################################################################################
+
+					#THIS CODE PORTION CREATES DATA FROM ENERGY RESULTS#
+
+###############################################################################################################################
+###############################################################################################################################
+#Now dive in the directories and create the necessary files
+experimentName=$(echo $fullPath | awk -F "/" '{print $NF}')
+pathWithoutEnergyResults=$fullPath
+fullPath=$fullPath"/Energy_Results/"
+
+#array where all the results are stored
+echo ""
+echo "Calculating energy consumption measurements..."
+echo ""
+array=()
+horseLine=0
+for i in `ls $fullPath`
+do
+	horseLine=$i
+	for j in `ls $fullPath/$i`
+	do
+
+		#Before getting the file modify it
+		#Watts Up Pro stores 2 lines of meta-data before writing its results in the file
+		#Therefore the line below ensures that our files are cleard from those lines.
+		#However, this process is done only the first time
+		graphDataDir=$pathWithoutEnergyResults"/GraphData"
+		if [ ! -d "$graphDataDir" ]; then
+			tail -n+3 $fullPath/$i/$j > $fullPath/$i/temp_$j
+			mv $fullPath/$i/temp_$j $fullPath/$i/$j
+		fi
+
+		counter=0
+		toDivideWith=0
+		sum=0
+		while IFS= read -r var
+		do
+			counter=$((counter+1))
+			#if [ $counter -gt 2 ]; then
+				toDivideWith=$((toDivideWith+1))
+				#echo "$j -> $var"
+				sum=$(echo $sum + $var | bc)
+			#fi
+		done < "$fullPath/$i/$j"
+		
+		average=0
+		if [ $toDivideWith -ne 0 ]; then
+			#average=$(echo "scale=2; $sum/$toDivideWith" | bc)
+			average=$sum
+		else
+			average=0
+		fi
+		horseLine=$horseLine"--"$average	
+	done
+	echo $horseLine
+	array+=($horseLine)
+	
+done
+
+
+for each in "${array[@]}"
+do
+ 	echo "$each" >> temp.txt
+done
+
+#When done replace the instances of -- in file 
+sed -i 's/--/\t/g' temp.txt
+graphDataDir=$pathWithoutEnergyResults"/GraphData/"
+
+#If directory no exist then
+if [ ! -d "$graphDatDir"]; then
+	mkdir -p $graphDataDir
+fi
+
+#The lines below were both modified (Total) 
+mv temp.txt Energy_Data_$experimentName.txt
+mv Energy_Data_$experimentName.txt $graphDataDir
+
+#When data is created move them run script to plot graphs
+graphDataLocationEnergy=$graphDataDir"/Energy_Data_"$experimentName.txt
+
+###############################################################################################################################
+###############################################################################################################################
+
+					#THIS CODE PORTION CREATES DATA FROM PERFORMANCE RESULTS#
+
+###############################################################################################################################
+###############################################################################################################################
+echo ""
+echo "Calculating run-time performance measurements..."
+echo ""
+performanceResults=$pathWithoutEnergyResults"/Performance_Results"
+arrayPerf=()
+for i in `ls $performanceResults`
+do 
+	horseLine=$i
+	totalTime=0
+	#Now we see all the tasks
+	for j in `ls $performanceResults/$i`
+	do
+		#echo "Task $i and file $j"
+		getMinutes=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $1}')
+		getSeconds=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $2}' | awk -F "." '{print $1}')
+		getMinutes=$((getMinutes*60))
+		totalTime=$((getMinutes+getSeconds))
+		horseLine=$horseLine"--"$totalTime
+	done	
+	echo $horseLine
+	arrayPerf+=($horseLine)
+done
+
+#Add collected results in Performance_Data.txt
+for each in "${arrayPerf[@]}"
+do
+	echo $each >> Performance_Data_$experimentName.txt
+done
+
+#When done replace the instances of -- in file 
+sed -i 's/--/\t/g' Performance_Data_$experimentName.txt
+
+#Moving Performance_Data.txt
+mv Performance_Data_$experimentName.txt $graphDataDir
+
+#When data is created move them run script to plot graphs
+graphDataLocationPerformance=$graphDataDir"/Performance_Data_"$experimentName.txt
+
+echo""
+echo "Energy and Performance data files created and transferred to $graphDataDir"
+
+###############################################################################################################################
+###############################################################################################################################
+
+						#Call script to plot graphs#
+
+###############################################################################################################################
+###############################################################################################################################
+
+#The line below was added 
+echo "Plotting Graphs..."
+sleep 5
+
+#Here we must plot 4 graphs in general, 2 for energy (compiled + interpeted) and 2 for performance (compiled + interpreted)
+experimentName=$experimentName
+
+./script.plotGraphs --resultsFile $graphDataLocationEnergy --experimetName $experimentName --storeGraph $graphDataDir --dataType Energy --languageType $languageType --optimization $optimization --graphPointsSize 1.5
+./script.plotGraphs --resultsFile $graphDataLocationPerformance --experimetName $experimentName --storeGraph $graphDataDir --dataType Performance --languageType $languageType --optimization $optimization --graphPointsSize 1.5
+
+exit

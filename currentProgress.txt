@@ -1,0 +1,7 @@
+Progress
+========
+
+	+Done with 17/30 tasks.
+	+Removed prints since they take too much energy and time.
+	+/usr/bin/time can show other facts that may affect energy dissipation such as non and volutary context switching
+	+Change the memory page size or reduce non-voluntary context switching?
