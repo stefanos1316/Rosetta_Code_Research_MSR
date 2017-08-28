@@ -7,9 +7,9 @@ unsigned int ackermann(unsigned int m, unsigned int n) {
 }
 
 int main() {
-  for (int i = 0; i < 50; ++i) {
-  for (unsigned int m = 0; m <= 4; ++m) {
-    for (unsigned int n = 0; n < 6 - m; ++n) {
+  for (int i = 0; i < 1000000; ++i) {
+  for (unsigned int m = 0; m <= 3; ++m) {
+    for (unsigned int n = 0; n <= 3; ++n) {
       //std::cout << "A(" << m << ", " << n << ") = " << ackermann(m, n) << "\n";
       ackermann(m, n);
     }

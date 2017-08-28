@@ -48,17 +48,15 @@ Fully done with 13 out of 31.
 	* pattern-matching
 	* array-concatentation (14/14)
 	* json (13/14) -> Have some difficulties with C's implementation (Stefanos)
-* Encryption
-	* rsa-code (4/14)
 * File Handling
 	* File input/output (14/14)
 * Mathematic Operations
 	* polynomial-regression (7/14)
 * Recursion
 	* factorial (14/14)
-	* ackermann-function (13/14)
+	* ackermann-function (14/14)
 	* palidrome-detection (14/14)
-* Regular-expressions (12/14) -> Stefanos currently working on this
+* Regular-expressions (14/14)
 * Sorting
 	* sorting-algorithms-merge-sort (14/14)
 	* sorting-algorithms-insertion-sort (14/14)
@@ -70,7 +68,7 @@ Fully done with 13 out of 31.
 	* url-encoding (14/14)
 * Object Oriented
 	* inheritance-multiple (7/14)
-	* inheritance-single (11/14)
+	* inheritance-single (11/14) -> Stefanos Currently working on
 	* call-an-object-method (14/14)
 	* classes (14/14)
 

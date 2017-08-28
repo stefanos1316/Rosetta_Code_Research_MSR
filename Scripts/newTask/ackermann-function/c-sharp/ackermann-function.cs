@@ -21,10 +21,10 @@ class Program
 
     static void Main()
     {
-        for (int i = 0; i < 50; ++i) {
-            for (long m = 0; m <= 4; ++m)
+        for (int i = 0; i < 1000000; ++i) {
+            for (long m = 0; m <= 3; ++m)
             {
-                for (long n = 0; n < 6 - m; ++n)
+                for (long n = 0; n <= 3; ++n)
                 {
                   Ackermann(m, n);
                 }

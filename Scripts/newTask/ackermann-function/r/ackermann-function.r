@@ -8,8 +8,10 @@ ackermann <- function(m, n) {
   }
 }
 
-for ( m in 0:4 ) {
+for ( i in 0:1000000 ) {
+  for ( m in 0:3 ) {
     for ( n in 0:3 ) {
-    print(ackermann(m, n))
+      ackermann(m, n)
     }
+  }
 }

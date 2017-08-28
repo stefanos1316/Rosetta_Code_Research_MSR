@@ -11,9 +11,9 @@ sub ack2 {
            : ack2($m-1, ack2($m, $n-1));
 }
 
-for( $a=0; $a < 50; $a = $a + 1) {
-        for( $m=0; $m <= 4; $m = $m + 1) {
-                for( $n=0; $n < 6 - $m; $n = $n + 1) {
+for( $a=0; $a < 1000000; $a = $a + 1) {
+        for( $m=0; $m <= 3; $m = $m + 1) {
+                for( $n=0; $n <= 3; $n = $n + 1) {
                         ack2($m,$n);
                         #print("Value is ",$m, " and ", $n, " res ", ack2($m,$n),"\n");
                 }

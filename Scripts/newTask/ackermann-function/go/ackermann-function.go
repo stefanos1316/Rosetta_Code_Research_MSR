@@ -12,9 +12,9 @@ func Ackermann(m, n int) int {
 }
 
 func main() {
-    for i := 0; i <= 50; i++ {
-        for m := 0; m <= 4; m++ {
-            for n := 0; n < 6 - m; n++ {
+    for i := 0; i < 1000000; i++ {
+        for m := 0; m <= 3; m++ {
+            for n := 0; n <= 3; n++ {
                 Ackermann(m, n)
             }
         }

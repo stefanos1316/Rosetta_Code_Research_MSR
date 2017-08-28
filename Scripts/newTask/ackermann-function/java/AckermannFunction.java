@@ -5,11 +5,13 @@ public class AckermannFunction {
 
 public static void main(String[] args) {
 
-    for (long m = 0; m <= 4; ++m)
-    {
-        for (long n = 0; n < 6 - m; ++n)
+    for (int i = 0; i < 1000000; ++i) {
+        for (long m = 0; m <= 3; ++m)
         {
-            Ackermann(m,n);
+            for (long n = 0; n <= 3; ++n)
+            {
+                Ackermann(m,n);
+            }
         }
     }
 }

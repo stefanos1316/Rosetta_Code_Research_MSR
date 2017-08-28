@@ -11,10 +11,10 @@ int main()
 {
         int m, n;
 
-        for (int i = 0; i < 50; ++i) {
+        for (int i = 0; i < 1000000; ++i) {
 
-        for (m = 0; m <= 4; m++)
-                for (n = 0; n < 6 - m; n++)
+        for (m = 0; m <= 3; m++)
+                for (n = 0; n <= 3; n++)
                      ackermann(m, n);
         }
         return 0;
