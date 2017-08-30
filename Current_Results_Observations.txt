@@ -1,0 +1,10 @@
+Tasks Observations
+==================
+
+Concurrent-Computing:  	Python offerend around 7 different implementations, however, the impementation 
+			that uses a thread pool provides the highest degree of run-time performance.
+			
+			JS's web workers uses large amount of main memory while interating the current 
+			task for a million of times. 
+			As a result, after a certain period of time, the system runs out of memory which 
+			lead to system crash.
