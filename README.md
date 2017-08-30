@@ -1,9 +1,18 @@
 # Authors information
-Name: [Stefanos Georgiou](https://istlab.dmst.aueb.gr/content/members/sgeorgiou.html), Maria Kechagia, and Diomidis Spinellis
+Name: [Stefanos Georgiou](https://istlab.dmst.aueb.gr/content/members/sgeorgiou.html)
 
 Affiliation: Athens University of Business and Economics
 
 Contact details: sgeorgiou@aueb.gr, sgeorgiou@singularlogic.eu, and stefanos1316@gmai.com
+
+Name: Maria Kechagia
+
+Affiliation: Delft University of Technology
+
+Name: Diomidis Spinellis
+
+Affiliation: Athens University of Business and Economics
+
 
 # Description
 This reposotory was build for research purpose. 
