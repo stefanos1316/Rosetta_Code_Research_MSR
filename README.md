@@ -1,4 +1,7 @@
 # Authors information
+
+-----------------------------------------------------------------------------------------
+
 Name: [Stefanos Georgiou](https://istlab.dmst.aueb.gr/content/members/sgeorgiou.html)
 
 Affiliation: Athens University of Business and Economics
@@ -16,6 +19,8 @@ Affiliation: Delft University of Technology
 Name: Diomidis Spinellis
 
 Affiliation: Athens University of Business and Economics
+
+-----------------------------------------------------------------------------------------
 
 
 # Description
