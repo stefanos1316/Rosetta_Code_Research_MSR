@@ -10,3 +10,5 @@ In other words, your program will demonstrate:
 *  how to write a variable's contents into a file
 
 Oneliners that skip the intermediate variable are of secondary interest — operating systems have copy commands for that. 
+
+As our test case we used a part of the book "The Republic By Plato"
