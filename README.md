@@ -1,5 +1,5 @@
 # Authors information
-Name: [Stefanos Georgiou](https://istlab.dmst.aueb.gr/content/members/sgeorgiou.html)
+Name: [Stefanos Georgiou](https://istlab.dmst.aueb.gr/content/members/sgeorgiou.html), Maria Kechagia, and Diomidis Spinellis
 
 Affiliation: Athens University of Business and Economics
 
