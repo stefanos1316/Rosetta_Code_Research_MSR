@@ -1,5 +1,5 @@
 # Tasks Progress
-Fully done with 13 out of 31.
+Fully done with 17 out of 30.
 
 # Used Programming Languages
 * C
@@ -45,7 +45,6 @@ Fully done with 13 out of 31.
 	* events (4/14)
 	* synchronous-concurrency (11/14)
 * Data Strucutres
-	* pattern-matching
 	* array-concatentation (14/14)
 	* json (13/14) -> Have some difficulties with C's implementation (Stefanos)
 * File Handling
