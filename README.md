@@ -5,9 +5,13 @@ Affiliation: Athens University of Business and Economics
 
 Contact details: sgeorgiou@aueb.gr, sgeorgiou@singularlogic.eu, and stefanos1316@gmai.com
 
+-----------------------------------------------------------------------------------------
+
 Name: Maria Kechagia
 
 Affiliation: Delft University of Technology
+
+-----------------------------------------------------------------------------------------
 
 Name: Diomidis Spinellis
 
