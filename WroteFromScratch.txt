@@ -12,4 +12,5 @@ json: vb.net
 palindrome-detection: swift to 3, vb.net
 exponentiation-operator: php, swift, vb.net
 regular-expressions: rust, vb.net
-ackermann-function: 
+ackermann-function: vb.net
+concurrent-computing: php,

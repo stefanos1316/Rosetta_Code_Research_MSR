@@ -11,18 +11,19 @@ class AsyncOperation extends Thread
 
     public function run()
     {
-        printf("T %s: Sleeping 3sec\n", $this->threadId);
-        sleep(3);
-        printf("T %s: Hello World\n", $this->threadId);
+        $words = array("Enjoy", "Rosetta", "Code");
+        for ($i = 0; $i < 3; $i++) {
+        echo "$words[$i]\n";
+        sleep(0.001);
+        }
     }
 }
 
 $start = microtime(true);
-for ($i = 1; $i <= 5; $i++) {
+for ($i = 0; $i < 1000000; $i++) {
     $t[$i] = new AsyncOperation($i);
     $t[$i]->start();
+    $t[$i]->join();
 }
-echo microtime(true) - $start . "\n";
-echo "end\n";
 
 ?>
