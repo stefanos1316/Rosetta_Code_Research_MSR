@@ -3,7 +3,7 @@
 1) Energy Efficiency of Languages for tasks 
 2) Energy Efficiency against Performance (execution time)
 3) Energy Efficiency against Performance (memory)
-4) Energy Efficiency of Language features (garbage collectior, 
+4) Energy Efficiency of Language features (garbage collector, 
    dynamic binding, lazy evaluation, pattern matching, 
    dynamic/static/strong/weak typing, reflaction, etc.)
 5) Energy Efficiency of Task's type (recursive, computational-intensive, and so on)
