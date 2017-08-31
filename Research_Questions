@@ -1,15 +1,15 @@
 # Research Questions
 
-RQ1: Which programming langauges offers the highest energy efficiency for the selected tasks?
+RQ1: Which programming languages offer the highest energy efficiency for the selected tasks?
 
-RQ2: How does the energy efficiency of the tasks affected by the run-time performance?
+RQ2: What is the relationship between tasks’ energy efficiency and run-time performance?
 
-RQ3: How does the energy efficiency of the tasks affected by the memory usage?
+RQ3: What is the relationship between tasks’ energy efficiency and memory usage?
 
-RQ4: Which of the programming langauges features (e.g., garbage collector, dynamic binding, 
+RQ4: Which of the programming languages features (e.g., garbage collector, dynamic binding, 
 lazy evaluation, reflaction, and so on) contribute in extensive energy usage?
 
-RQ5: For which tasks' category the selected programming languages offers the most gains in 
+RQ5: For which tasks' category the selected programming languages offer the most gains in 
 terms of energy efficiency?
 
 Categories: Arithmetic
