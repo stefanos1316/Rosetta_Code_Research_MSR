@@ -6,7 +6,7 @@ Namespace Rextester
     Public Module Program
         Public Sub Main(args() As string)
 
-            For value As Integer = 0 To 10000000
+            For value As Integer = 0 To 1000000
                 For m As Integer = 0 To 3                 
                     For n As Integer = 0 To 3
                          ackermann(m,n)
