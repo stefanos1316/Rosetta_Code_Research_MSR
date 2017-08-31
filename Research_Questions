@@ -2,12 +2,12 @@
 
 * **RQ1:** Which programming langauges offers the highest energy efficiency for the selected tasks?
 
-* **RQ2:** What are the energy conusmption implications against the tasks' run-time performance?
+* **RQ2:** Does the energy efficiency of a programming language affects the task's run-time performance?
 
-* **RQ3:** What are the energy conusmption implications against the tasks' memory usage?
+* **RQ3:** Does the energy efficiency of a programming language affects the task's memory usage?
 
 * **RQ4:** Which of the programming langauges features (e.g., garbage collector, dynamic binding, 
-lazy evaluation, reflaction, and so on) contributes to extensive energy usage?
+lazy evaluation, reflaction, and so on) contribute in extensive energy usage?
 
 * **RQ5:** For which tasks' category (e.g., arithmetic, concurrency, compression, file-handling) 
 the selected programming languages offers the most gains in terms of energy efficiency?
