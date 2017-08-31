@@ -1,0 +1,8 @@
+new("big.matrix.descriptor"
+    , description = structure(list(sharedType = "SharedMemory", sharedName = "ameBBGMBmHrEJTVDYdWrqZrJ", 
+    totalRows = 1L, totalCols = 1L, rowOffset = c(0, 1), colOffset = c(0, 
+    1), nrow = 1, ncol = 1, rowNames = NULL, colNames = NULL, 
+    type = "integer", separated = FALSE), .Names = c("sharedType", 
+"sharedName", "totalRows", "totalCols", "rowOffset", "colOffset", 
+"nrow", "ncol", "rowNames", "colNames", "type", "separated"))
+)
