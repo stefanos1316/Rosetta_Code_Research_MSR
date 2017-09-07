@@ -1,1 +1,0 @@
-cmd_Release/obj.target/WebWorkerThreads.node := g++ -shared -pthread -rdynamic -m64  -Wl,-soname=WebWorkerThreads.node -o Release/obj.target/WebWorkerThreads.node -Wl,--start-group Release/obj.target/WebWorkerThreads/src/WebWorkerThreads.o -Wl,--end-group 

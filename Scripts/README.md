@@ -41,9 +41,9 @@ Fully done with 17 out of 30.
 	* huffman-coding (11/14)
 	* lzw-compression (11/14)
 * Cocurrency
-	* concurrent-computing (11/14)
+	* concurrent-computing (12/14) -> R and JS are ignore from this task
 	* events (4/14)
-	* synchronous-concurrency (11/14)
+	* synchronous-concurrency (11/14) -> Stefanos started working on this
 * Data Strucutres
 	* array-concatentation (14/14)
 	* json (13/14) -> Have some difficulties with C's implementation (Stefanos)
@@ -67,7 +67,7 @@ Fully done with 17 out of 30.
 	* url-encoding (14/14)
 * Object Oriented
 	* inheritance-multiple (7/14)
-	* inheritance-single (11/14) -> Stefanos Currently working on
+	* inheritance-single (11/14) 
 	* call-an-object-method (14/14)
 	* classes (14/14)
 
@@ -75,4 +75,6 @@ Fully done with 17 out of 30.
 	* Function application
 	* List Processing 	
 
-* Execptions (suggested from Maria but not found in Rosetta Code)
+* Execptions 
+	* Exceptions (?/14) -> Maria works on this task
+	* Nested-Exceptions (?/14) -> Maria works on this task
