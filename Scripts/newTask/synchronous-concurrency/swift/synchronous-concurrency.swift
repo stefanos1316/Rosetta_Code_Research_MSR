@@ -5,30 +5,30 @@
 import Foundation
 
 
-class Printer: NSObject {
+class Printer: Object {
     var numberOfLines = 0
     var gotRequestLineNumber = false
 
     override init() {
         super.init()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "gotLine:",
+        NotificationCenter.defaultCenter().addObserver(self, selector: "gotLine:",
             name: "Line", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "lineNumberRequest:",
+        NotificationCenter.defaultCenter().addObserver(self, selector: "lineNumberRequest:",
             name: "LineNumberRequest", object: nil)
     }
 
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.defaultCenter().removeObserver(self)
     }
 
-    func gotLine(not:NSNotification) {
-        println(not.object!)
+    func gotLine(not:Notification) {
+        print(not.object!)
         self.numberOfLines++
     }
 
-    func lineNumberRequest(not:NSNotification) {
+    func lineNumberRequest(not:Notification) {
         self.gotRequestLineNumber = true
-        NSNotificationCenter.defaultCenter().postNotificationName("LinesPrinted", object: self.numberOfLines)
+        NNotificationCenter.defaultCenter().postNotificationName("LinesPrinted", object: self.numberOfLines)
     }
 
     func waitForLines() {
@@ -39,7 +39,7 @@ class Printer: NSObject {
 }
 
 class Reader: NSObject {
-    let inputPath = "~/Desktop/input.txt".stringByExpandingTildeInPath
+    let inputPath = "input.txt"
     var gotNumberOfLines = false
 
     override init() {
@@ -54,7 +54,7 @@ class Reader: NSObject {
 
     // Selector for the number of lines printed
     func linesPrinted(not:NSNotification) {
-        println(not.object!)
+        print(not.object!)
         self.gotNumberOfLines = true
         exit(0)
     }

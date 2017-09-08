@@ -40,3 +40,34 @@ Show a tree of types which inherit from each other. The top of the tree should b
             /    \
           Lab    Collie
 
+
+In most languages inheritance doesn't have any runtime cost.  
+What does have cost and we can measure is the dynamic dispatch of a method based on the type of the object.
+Therefore, we are using the following portion of code for our test.
+
+
+class Animal {
+        speak() {...}
+        final walk() {...}
+}
+class Dog extends Animal {
+        @override speak() {...}
+}
+class Lab extends Dog {
+	@override speak() {...}
+}
+class Collie extends Dog {
+	@override speak() {...}
+}
+class Cat extends Cat {
+	@override speak() {...}
+}
+
+main()
+{
+        Animal a = new Lab();
+        // Dynamic dispatch (requires vtable lookup)
+        a.speak();
+        // Static dispatch (for comparison; in C++ this is a single machine instruction)
+        a.walk();
+}       
