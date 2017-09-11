@@ -20,11 +20,14 @@ function Cat() {
 
 Animal.prototype.speak = function() {console.log("Animal speaking")};
 Animal.prototype.walk = function() {console.log("Animal walking")};
-Dog.prototype.speak = function() {console.log("Dog barking")};
 Lab.prototype.speak = function() {console.log("Lab barking")};
 Collie.prototype.speak = function() {console.log("Collie barking")};
 Cat.prototype.speak = function() {console.log("Cat Meawing")};
 
-var lab = new Dog();
-lab.speak();  // shows "an animal makes a sound"
-//lab.walk();
+for ( var i = 0; i < 1000000; i++) {
+	Dog.prototype = new Animal();
+	Dog.prototype.speak = function() {console.log("Dog barking")}
+	var doggy = new Dog();
+	doggy.speak();
+	doggy.walk();
+}

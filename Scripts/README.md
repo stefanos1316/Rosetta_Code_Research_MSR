@@ -1,5 +1,5 @@
 # Tasks Progress
-Fully done with 17 out of 30.
+Fully done with 18 out of 30.
 
 # Used Programming Languages
 * C
@@ -35,7 +35,7 @@ Fully done with 17 out of 30.
 # Selected Tasks
 
 * Arithmetic
-	* exponentiation-operator (14/14) 
+	* exponentiation-operator (Done *check the ones running over a million iteretations) 
 	* numerical-integration (8/14) -> Stefanos currently working on this
 * Compression
 	* huffman-coding (11/14)
@@ -45,31 +45,31 @@ Fully done with 17 out of 30.
 	* events (4/14)
 	* synchronous-concurrency (11/14) -> Stefanos started working on this
 * Data Strucutres
-	* array-concatentation (14/14)
+	* array-concatentation (Done)
 	* json (13/14) -> Have some difficulties with C's implementation (Stefanos)
 * File Handling
-	* File input/output (14/14)
+	* File input/output (Done)
 * Mathematic Operations
 	* polynomial-regression (7/14)
 * Recursion
-	* factorial (14/14)
-	* ackermann-function (14/14)
-	* palidrome-detection (14/14)
-* Regular-expressions (14/14)
+	* factorial (Done)
+	* ackermann-function (Done)
+	* palidrome-detection (Done)
+* Regular-expressions (Done)
 * Sorting
-	* sorting-algorithms-merge-sort (14/14)
-	* sorting-algorithms-insertion-sort (14/14)
-	* sorting-algorithms-quicksort (14/14)
-	* sorting-algorithms-selection-sort (14/14)
-	* sorting-algorithms-bubble-sort (14/14)
+	* sorting-algorithms-merge-sort (Done)
+	* sorting-algorithms-insertion-sort (Done)
+	* sorting-algorithms-quicksort (Done)
+	* sorting-algorithms-selection-sort (Done)
+	* sorting-algorithms-bubble-sort (Doe)
 * String Manipulation
-	* url-decoding (14/14)
-	* url-encoding (14/14)
+	* url-decoding (Done)
+	* url-encoding (Done)
 * Object Oriented
 	* inheritance-multiple (7/14)
-	* inheritance-single (11/14) 
-	* call-an-object-method (14/14)
-	* classes (14/14)
+	* inheritance-single (Done, ignored C, Go, and Rust implementations) 
+	* call-an-object-method (Done)
+	* classes (Done)
 
 * Functional Programming (Still not found in Rosetta Code)
 	* Function application

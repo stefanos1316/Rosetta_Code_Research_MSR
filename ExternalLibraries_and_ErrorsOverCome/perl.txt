@@ -3,4 +3,10 @@ JSON
 -> brew install cpanm
 -> sudo cpan JSON
 
+Inheritance-Single
+-> use this [link](http://www.cpan.org/modules/INSTALL.html) to instal cpan
+-> sudo cpan install install YAML
+-> sudo cpan install MooseX::Declare
+Note: Watch the stdout, some of the required modules might missing, therefore, you 
+have to install them manually using cpan.
 
