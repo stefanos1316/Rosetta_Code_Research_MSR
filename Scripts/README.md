@@ -1,5 +1,5 @@
 # Tasks Progress
-Fully done with 18 out of 30.
+Fully done with 19 out of 30.
 
 # Used Programming Languages
 * C
@@ -66,7 +66,7 @@ Fully done with 18 out of 30.
 	* url-decoding (Done)
 	* url-encoding (Done)
 * Object Oriented
-	* inheritance-multiple (7/14)
+	* inheritance-multiple (Done, ignored C, C#, PHP, R, Rust, and VB.NET)
 	* inheritance-single (Done, ignored C, Go, and Rust implementations) 
 	* call-an-object-method (Done)
 	* classes (Done)
