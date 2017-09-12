@@ -13,7 +13,7 @@ RQ3: What is the relationship between tasks' implementations energy usage and me
      or 
      Which programming languages make better energy and memory usage?
 
-     Note: How to related CPU and MEM usage with a coarse-grained result on energy consumption?
+     Note: How to related CPU and MEM usage with a coarse-grained results of energy consumption?
 	Make a small test to identify at each % of CPU usage what is the total energy usage and 
 	we can asume the remaining is for the memory usage?
 
