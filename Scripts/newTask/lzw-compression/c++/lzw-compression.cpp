@@ -70,12 +70,14 @@ std::string decompress(Iterator begin, Iterator end) {
 #include <vector>
 
 int main() {
+
+  for (int i=0; i<100000; ++i) {
   std::vector<int> compressed;
   compress("TOBEORNOTTOBEORTOBEORNOT", std::back_inserter(compressed));
-  copy(compressed.begin(), compressed.end(), std::ostream_iterator<int>(std::cout, ", "));
-  std::cout << std::endl;
+  //copy(compressed.begin(), compressed.end(), std::ostream_iterator<int>(std::cout, ", "));
+  //std::cout << std::endl;
   std::string decompressed = decompress(compressed.begin(), compressed.end());
-  std::cout << decompressed << std::endl;
-
+  //std::cout << decompressed << std::endl;
+  }
   return 0;
 }

@@ -1,3 +1,4 @@
+<?php 
 class LZW
 {
     function compress($unc) {
@@ -57,8 +58,12 @@ class LZW
 }
 
 //How to use
-$str = 'TOBEORNOTTOBEORTOBEORNOT';
-$lzw = new LZW();
-$com = $lzw->compress($str);
-$dec = $lzw->decompress($com);
-echo $com . "<br>" . $dec;
+for ( $i = 0; $i < 100000; $i++) {
+    $str = 'TOBEORNOTTOBEORTOBEORNOT';
+    $lzw = new LZW();
+    $com = $lzw->compress($str);
+    $dec = $lzw->decompress($com);
+#echo $com . "<br>" . $dec;
+}
+
+?>

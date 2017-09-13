@@ -1,5 +1,5 @@
 package main
-import "fmt"
+//import "fmt"
 
 // Compress a string to a list of output symbols.
 func compress(uncompressed string) []int {
@@ -50,7 +50,7 @@ func decompress(compressed []int) string {
         } else if k == dictSize {
             entry = w + w[:1]
         } else {
-            panic(fmt.Sprintf("Bad compressed k: %d", k))
+           // panic(fmt.Sprintf("Bad compressed k: %d", k))
         }
 
         result += entry
@@ -65,8 +65,12 @@ func decompress(compressed []int) string {
 }
 
 func main() {
+
+    for i := 0; i < 100000; i++ {
     compressed := compress("TOBEORNOTTOBEORTOBEORNOT")
-    fmt.Println(compressed)
+   // fmt.Println(compressed)
     decompressed := decompress(compressed)
-    fmt.Println(decompressed)
+    _ = decompressed
+    }
+    //fmt.Println(decompressed)
 }

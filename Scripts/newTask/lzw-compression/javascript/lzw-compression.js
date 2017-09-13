@@ -76,6 +76,10 @@ var LZW = {
         return result;
     }
 }, // For Test Purposes
-    comp = LZW.compress("TOBEORNOTTOBEORTOBEORNOT"),
-    decomp = LZW.decompress(comp);
-document.write(comp + '<br>' + decomp);
+
+    comp = LZW.compress("TOBEORNOTTOBEORTOBEORNOT");
+        
+for( var i = 0; i < 100000; i++) {
+    decomp = LZW.decompress(comp);  
+}
+    //console.log(comp + '<br>' + decomp);

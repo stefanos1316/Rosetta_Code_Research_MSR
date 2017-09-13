@@ -3,8 +3,8 @@ def compress(uncompressed):
 
     # Build the dictionary.
     dict_size = 256
-    dictionary = dict((chr(i), i) for i in xrange(dict_size))
-    # in Python 3: dictionary = {chr(i): i for i in range(dict_size)}
+    dictionary = dict((chr(i), chr(i)) for i in xrange(dict_size))
+    # in Python 3: dictionary = {chr(i): chr(i) for i in range(dict_size)}
 
     w = ""
     result = []
@@ -25,20 +25,16 @@ def compress(uncompressed):
     return result
 
 
+
 def decompress(compressed):
     """Decompress a list of output ks to a string."""
-    from cStringIO import StringIO
 
     # Build the dictionary.
     dict_size = 256
     dictionary = dict((chr(i), chr(i)) for i in xrange(dict_size))
     # in Python 3: dictionary = {chr(i): chr(i) for i in range(dict_size)}
 
-    # use StringIO, otherwise this becomes O(N^2)
-    # due to string concatenation in a loop
-    result = StringIO()
-    w = compressed.pop(0)
-    result.write(w)
+    w = result = compressed.pop(0)
     for k in compressed:
         if k in dictionary:
             entry = dictionary[k]
@@ -46,18 +42,20 @@ def decompress(compressed):
             entry = w + w[0]
         else:
             raise ValueError('Bad compressed k: %s' % k)
-        result.write(entry)
+        result += entry
 
         # Add w+entry[0] to the dictionary.
         dictionary[dict_size] = w + entry[0]
         dict_size += 1
 
         w = entry
-    return result.getvalue()
+    return result
 
 
-# How to use:
-compressed = compress('TOBEORNOTTOBEORTOBEORNOT')
-print (compressed)
-decompressed = decompress(compressed)
-print (decompressed)
+
+# How to use:   
+for i in range(100000):
+    compressed = compress('TOBEORNOTTOBEORTOBEORNOT')
+#print (compressed)
+    decompressed = decompress(compressed)
+#print (decompressed)

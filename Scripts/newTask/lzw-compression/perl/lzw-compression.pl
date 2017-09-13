@@ -59,7 +59,9 @@ sub decompress {
 }
 
 # How to use:
-my @compressed = compress('TOBEORNOTTOBEORTOBEORNOT');
-print "@compressed\n";
-my $decompressed = decompress(@compressed);
-print "$decompressed\n";
+for( $a=0; $a < 100000; $a = $a + 1) {
+    my @compressed = compress('TOBEORNOTTOBEORTOBEORNOT');
+    #print "@compressed\n";
+    my $decompressed = decompress(@compressed);
+    #print "$decompressed\n";
+}

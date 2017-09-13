@@ -8,10 +8,12 @@ namespace LZW
     {
         public static void Main(string[] args)
         {
+            for (int i=0; i<100000; ++i) {
             List<int> compressed = Compress("TOBEORNOTTOBEORTOBEORNOT");
-            Console.WriteLine(string.Join(", ", compressed));
+            //Console.WriteLine(string.Join(", ", compressed));
             string decompressed = Decompress(compressed);
-            Console.WriteLine(decompressed);
+            //Console.WriteLine(decompressed);
+            }
         }
 
         public static List<int> Compress(string uncompressed)
