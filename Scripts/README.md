@@ -1,5 +1,5 @@
 # Tasks Progress
-Fully done with 19 out of 30.
+Fully done with 20 out of 30.
 
 # Used Programming Languages
 * C
@@ -38,8 +38,8 @@ Fully done with 19 out of 30.
 	* exponentiation-operator (Done *check the ones running over a million iteretations) 
 	* numerical-integration (8/14) -> Stefanos currently working on this
 * Compression
-	* huffman-coding (11/14)
-	* lzw-compression (11/14)
+	* huffman-coding (Done)
+	* lzw-compression (11/14) -> Stefanos currently working on this
 * Cocurrency
 	* concurrent-computing (12/14) -> R and JS are ignore from this task
 	* events (4/14)
