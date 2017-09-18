@@ -35,17 +35,17 @@ Fully done with 20 out of 30.
 # Selected Tasks
 
 * Arithmetic
-	* exponentiation-operator (Done *check the ones running over a million iteretations) 
+	* exponentiation-operator (Done) 
 	* numerical-integration (8/14) -> Stefanos currently working on this
 * Compression
 	* huffman-coding (Done)
-	* lzw-compression (11/14) -> Stefanos currently working on this
+	* lzw-compression (11/14) -> R, VB.NET, and JS remains
 * Cocurrency
 	* concurrent-computing (12/14) -> R and JS are ignore from this task
 	* synchronous-concurrency (11/14) -> Stefanos started working on this
 * Data Strucutres
 	* array-concatentation (Done)
-	* json (13/14) -> Have some difficulties with C's implementation (Stefanos)
+	* json (Done)
 * File Handling
 	* File input/output (Done)
 * Mathematic Operations
