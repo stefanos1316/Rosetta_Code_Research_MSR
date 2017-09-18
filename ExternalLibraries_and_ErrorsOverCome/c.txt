@@ -1,0 +1,2 @@
+Polynomial regression -> download gsl-devel if not exist in /usr/include/gsl
+

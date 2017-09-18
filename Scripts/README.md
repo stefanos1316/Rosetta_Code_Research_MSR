@@ -42,7 +42,6 @@ Fully done with 20 out of 30.
 	* lzw-compression (11/14) -> Stefanos currently working on this
 * Cocurrency
 	* concurrent-computing (12/14) -> R and JS are ignore from this task
-	* events (4/14)
 	* synchronous-concurrency (11/14) -> Stefanos started working on this
 * Data Strucutres
 	* array-concatentation (Done)
@@ -71,7 +70,7 @@ Fully done with 20 out of 30.
 	* call-an-object-method (Done)
 	* classes (Done)
 
-* Functional Programming (Still not found in Rosetta Code)
+* Functional Programming (We are not using any functional language)
 	* Function application
 	* List Processing 	
 
