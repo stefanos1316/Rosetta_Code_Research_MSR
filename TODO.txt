@@ -1,0 +1,48 @@
+Tasks TODO
+==========
+
++Test the Laptops and RPi's Wilcox significance in order to decide where to test.
++Create EDP graphs for programming languages and tasks.
++Add functional programming languages such as: F# and Haskell.
++Start writing some parts of the paper 
+
+Rosetta Code Data-Set
+=====================
+Here we will describe how we extracted the data, filter them and changes we did 
+on the data-set.
+Plus contribution.
+
+Tasks selection
+===============
+Based on the collected programming languages, we developed a script 
+that is used to idetify which of the 866 tasks have more implementations for the 
+PL of our selection.
+We make the assumption that these tasks as the most used and easy to find online 
+since they are implemented in the most programming languages.
+Therefore, from the extracted data-set, we selected the tasks that are develoepd in 
+at least half of the selected programming languages.
+
+
+Programming Languages selection
+===============================
+The selection was made based on Tiobe, moreover, since no pure functional 
+programming langauges are found in top 20, we decided to add F# and Haskell 
+in our data-set.
+
+
+Energy Delay Product
+====================
+Give discussion based on the current formual and what we are going to use to 
+in our results.
+For our experiment we are going to use the function as follows:
+
+	EDP = Energy * Time^w 		where w=1,2, and 3
+
+Graphs
+======
+We expect to have 2 graphs with normalized results. 
+The programming language with the lowest EDP is going to be the 
+normalized results while all the others are going to resutls in 
+much higher results.
+Also, do the same for the tasks to identify which task has less 
+energy consumption.

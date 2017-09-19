@@ -45,7 +45,7 @@ Fully done with 20 out of 30.
 	* synchronous-concurrency (11/14) -> Stefanos started working on this
 * Data Strucutres
 	* array-concatentation (Done)
-	* json (13/14) -> Have some difficulties with C's implementation (Stefanos)
+	* json (Done)
 * File Handling
 	* File input/output (Done)
 * Mathematic Operations

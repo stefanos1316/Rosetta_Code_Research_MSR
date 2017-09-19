@@ -1,25 +1,28 @@
 # Research Questions
 
-RQ1: Which programming languages offer the highest energy efficiency among the selected tasks?
+RQ1: 	Which programming languages offer the highest energy efficiency among the selected tasks?
+      	Changed  to:
+	What is the energy efficiency of programming languages in relation to specific task? (We can use EDP--Energy Delay Product)	
 
 RQ2: What is the relationship between tasks' implementations energy usage and run-time performance?
-     or 
-     Which programming languages are more energy and run-time performance efficient?
+     Change to:
+     Which programming languages are more energy and run-time performance efficient? (We can use the EDP)
 
 RQ3: What is the relationship between tasks' implementations energy usage and memory usage?
 	(We should make use of the maximum resident set size since it includes the memory 
 	 footprint of the runtime environment and has the real RAM usage, not swapped 
          memory)
-     or 
-     Which programming languages make better energy and memory usage?
-
-     Note: How to related CPU and MEM usage with a coarse-grained results of energy consumption?
-	Make a small test to identify at each % of CPU usage what is the total energy usage and 
-	we can asume the remaining is for the memory usage?
+     Changed to:
+     Which programming languages make better energy and memory usage? (We may consider using the EMP--Energy Memory Product)
 
 
 RQ4: Which of the programming languages features (e.g., garbage collector, dynamic binding, 
 lazy evaluation, reflaction, and so on) contribute in extensive energy usage?
+
+	In regard to this, we expect the outcome from the research questions above.
+
+
+We might see this thought the results
 
 RQ5: For which tasks' category the selected programming languages offer the most gains in 
 terms of energy efficiency?
