@@ -8,7 +8,7 @@
 #The specific script uses ssh to connect with a remote host (Raspberry Pi 3b in our case) that retrieves energy-related measurements via Watts Up Pro.
 #Watts Up pro makes use of USB interfaces and retrieves energy measurements and stores them on the remote host
 
-if [ "$#" -eq 0 ] || [ "$#" -lt 4 ];
+if [ "$#" -eq 0 ] ;
 then
 	echo ""
 	echo "Illegal number of command line arguments!"
@@ -17,24 +17,59 @@ then
 	exit
 fi
 
-if [ "$1" == "--help" ];
+if [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--help" ] || [ "$1" == "--h" ]; 
 then
 	echo ""
-	echo "\$1 -> Full path of the file where all the tasks are located."
-	echo "\$2 -> The sleep time between tasks execution in different programming languages,"
-	echo "      e.g., 1s for one second 2m for two minutes 3h for three hours."
-	echo "      This parameter acts as a safe guard to reduce noise among the executions."
-	echo "\$3 -> Provide username for remote host (this parameter can be used if a wattsup power"
-	echo "      analyzer is attached to the remote host  to retrieve energy measurements)"
-	echo "\$4 -> Provide IP address for remote host."
-	echo "\$5 -> Type keyword 'optimize' in order to add optimization flags, if not set the script will"
-	echo "	    remove any optimization flag."
+	echo "Script for Executing Tasks"
+	echo "=========================="
+	echo ""
+	echo "--tasksPath	 Full path of the file where all the tasks are located."
+	echo "--sleepTime	 The sleep time between tasks execution in different programming languages,"
+	echo "  	   	 e.g., 1s for one second 2m for two minutes 3h for three hours."
+	echo "      		 This parameter acts as a safe guard to reduce noise among the executions."
+	echo "--username	 Provide username for remote host (this parameter can be used if a wattsup power"
+	echo "      		 analyzer is attached to the remote host  to retrieve energy measurements)"
+	echo "--ipAddress	 Provide IP address for remote host."
+	echo "--optimization	 Type keyword 'optimize' in order to add optimization flags, if not set the script will"
+	echo "	         remove any optimization flag."
 	echo " "
 	echo "Note: user are suggested to set up a passwordless ssh between the local and the remote"
 	echo "host"
 	echo " "
 	exit
 fi
+
+
+f [ "$#" -lt 8 ]; then
+	echo "Illegal number of command line arguments"
+	exit
+fi
+
+#Get all arguments
+args=("$@") 
+
+#Get number of elements 
+ELEMENTS=${#args[@]} 
+
+#Initiallize parameters
+tasksPath="0"
+sleepTime="0"
+username="0"
+ipAddress="0"
+optimization="0"
+
+# echo each element in array  
+# for lQsds
+for (( i=0;i<$ELEMENTS;++i)); do  
+
+	case "${args[${i}]}" in 
+	("--tasksPath") tasksPath=${args[i+1]} ;;
+	("--sleepTime") sleepTime="${args[i+1]}" ;;
+	("--username") username="${args[i+1]}" ;;
+	("--ipAddress") ipAddress="${args[i+1]}" ;;
+	("--optimization") optimization="${args[i+1]}" ;;
+	esac
+done
 
 #################################################################################################################################################################################################################### 													FUNCTIONS												#################################################################################################################################################################################################################
 #Function that checks if the executable is still running, if not it terminates the wattsup process.
@@ -97,12 +132,12 @@ EnergyPerformanceLogDataDate=$(date -u | sed -e 's/ /_/g')
 EnergyPerformanceLogDirName="Experiment_Data_"$EnergyPerformanceLogDataDate
 
 #Before creating directories check if the remote host is acticvated and SSH is running
-	checkRemoteHostSSH $3 $4
+	checkRemoteHostSSH $username $ipAddress
 
 	#if the script is still running it means ssh connection is fine.
 	mkdir -p ../Reports/$EnergyPerformanceLogDirName
 	mkdir -p ../Reports/$EnergyPerformanceLogDirName/Energy_Results
-	remoteHost=$3"@"$4
+	remoteHost=$username"@"$ipAddress
 	ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName
 	ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results
 	if [ $? -eq 0 ];
@@ -118,7 +153,7 @@ EnergyPerformanceLogDirName="Experiment_Data_"$EnergyPerformanceLogDataDate
 mkdir -p ../Reports/$EnergyPerformanceLogDirName/Performance_Results
 
 #At this point we have a file that includes all the Tasks we successfully compiled
-for containesTasks in `ls $1`;
+for containesTasks in `ls $tasksPath`;
 do
 	#At this point we create a directory to store the energy and performance results
 	#If a remove host is given, then create the energy results there
@@ -126,10 +161,10 @@ do
 	mkdir -p ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks
 
 	#For all the programming languages enter and compile the content
-        for containesLanguages in `ls $1/$containesTasks`;
+        for containesLanguages in `ls $tasksPath/$containesTasks`;
         do
                 #For all the tasks compile them based on the language
-		for tasksImplementation in `ls $1/$containesTasks/$containesLanguages`;
+		for tasksImplementation in `ls $tasksPath/$containesTasks/$containesLanguages`;
                 do
 			
 			case "$containesLanguages" in
@@ -147,7 +182,7 @@ do
 						#Watts Up utility has 2 seconds of delay before start capturing measurements, thus we delay the execution system too				
 						sleep 2
 
-						executable=$1/$containesTasks/$containesLanguages/$tasksImplementation
+						executable=$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
 						(time ./$executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c.txt &
 						
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
@@ -166,9 +201,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:C" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 						
 					fi
 				
@@ -186,7 +221,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						executable=$1/$containesTasks/$containesLanguages/$tasksImplementation
+						executable=$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
 						(time ./$executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c++.txt &
 						
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
@@ -205,9 +240,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:C++" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C++" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 					fi
 				;;
 				("java")
@@ -223,10 +258,10 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 
-						path=$1/$containesTasks/$containesLanguages/
-						executable=$(echo "$1/$containesTasks/$containesLanguages/$tasksImplementation" | awk -F "/" '{print $NF}' | awk -F "." '{print $1}') 
+						path=$tasksPath/$containesTasks/$containesLanguages/
+						executable=$(echo "$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation" | awk -F "/" '{print $NF}' | awk -F "." '{print $1}') 
 						
-						if [ "$5" == "optmize" ]; then
+						if [ "$optimization" == "optmize" ]; then
 						(time java -classpath $path $executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/java.txt &
 						else			
 						(time java -Xint -classpath $path $executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/java.txt &
@@ -248,9 +283,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:Java" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Java" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 					fi
 				;;
 				("python")
@@ -264,7 +299,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time python $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/python.txt &
+						(time python $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/python.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -282,9 +317,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:Python" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Python" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 				;;
 				("c-sharp")
 					if [[ $tasksImplementation == *".exe" ]]; 
@@ -299,7 +334,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time mono $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c-sharp.txt &
+						(time mono $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c-sharp.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -317,9 +352,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:C-Sharp" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C-Sharp" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 					fi
 				;;
 				("visual-basic-.net")
@@ -335,7 +370,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time mono $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/vb.net.txt &
+						(time mono $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/vb.net.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -353,9 +388,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:Visual-Basic-.Net" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Visual-Basic-.Net" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 					fi
 				;;
 
@@ -370,7 +405,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time node -max_old_space_size=4096 $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/javascript.txt &
+						(time node -max_old_space_size=4096 $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/javascript.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -388,9 +423,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:JavaScript" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:JavaScript" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 				;;
 				("php")
 						echo "Executing Php"
@@ -403,7 +438,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time php $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt &
+						(time php $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -421,9 +456,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:PHP" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:PHP" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 				;;
 				("perl")
 						echo "Executing Perl"
@@ -436,7 +471,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time perl $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/perl.txt &
+						(time perl $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/perl.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -454,9 +489,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution			$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:Perl" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution			$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Perl" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 				;;
 				("ruby")
 						echo "Executing Ruby" 
@@ -469,7 +504,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time ruby $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/ruby.txt &
+						(time ruby $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/ruby.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -487,9 +522,9 @@ do
 						if [ $? -eq 0 ];
 						then
 							timeStamp=$(date -u)
-							echo "Execution		$timeStamp	$1/$containesTasks/$containesLanguages/$tasksImplementation:Ruby" >> ../Reports/Failed_Execution_Report.txt
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Ruby" >> ../Reports/Failed_Execution_Report.txt
 						fi
-						sleep $2
+						sleep $sleepTime
 				;;
 				("r")
 						echo "Executing R"
@@ -502,7 +537,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time Rscript $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/r.txt &
+						(time Rscript $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/r.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -520,9 +555,9 @@ do
                                                 if [ $? -eq 0 ];
                                                 then
                                                         timeStamp=$(date -u)
-                                                        echo "Execution         	$timeStamp      $1/$containesTasks/$containesLanguages/$tasksImplementation:R" >> ../Reports/Failed_Execution_Report.txt
+                                                        echo "Execution         	$timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:R" >> ../Reports/Failed_Execution_Report.txt
                                                 fi
-					sleep $2
+					sleep $sleepTime
 				;;
 				("go")
 						echo "Executing Go"
@@ -535,10 +570,10 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						if [ "$5" == "optimize" ]; then
-						(time go run $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt &
+						if [ "$optimization" == "optimize" ]; then
+						(time go run $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt &
 						else
-						(time go run -gcflags -N $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt &
+						(time go run -gcflags -N $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt &
 						fi
 	
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
@@ -557,9 +592,9 @@ do
 			                        if [ $? -eq 0 ];
                                                 then
                                                         timeStamp=$(date -u)
-                                                        echo "Execution         $timeStamp      $1/$containesTasks/$containesLanguages/$tasksImplementation:Go" >> ../Reports/Failed_Execution_Report.txt
+                                                        echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Go" >> ../Reports/Failed_Execution_Report.txt
                                                 fi
-					sleep $2
+					sleep $sleepTime
 				;;
 				("rust")		
 					if [[ $tasksImplementation != *".rust" ]]; 
@@ -574,7 +609,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time ./$1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/rust.txt &
+						(time ./$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/rust.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -592,9 +627,9 @@ do
 						if [ $? -eq 0 ];
                                                 then
                                                         timeStamp=$(date -u)
-                                                        echo "Execution         $timeStamp      $1/$containesTasks/$containesLanguages/$tasksImplementation:Rust" >> ../Reports/Failed_Execution_Report.txt
+                                                        echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Rust" >> ../Reports/Failed_Execution_Report.txt
                                                 fi
-					sleep $2
+					sleep $sleepTime
 					fi
 				;;
 				("swift")		
@@ -608,7 +643,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time swift $1/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/swift.txt &
+						(time swift $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/swift.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -626,9 +661,9 @@ do
 						if [ $? -eq 0 ];
                                                 then
                                                         timeStamp=$(date -u)
-                                                        echo "Execution         $timeStamp      $1/$containesTasks/$containesLanguages/$tasksImplementation:Swift" >> ../Reports/Failed_Execution_Report.txt
+                                                        echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Swift" >> ../Reports/Failed_Execution_Report.txt
                                                 fi
-					sleep $2
+					sleep $sleepTime
 				;;
 			esac
 		done
@@ -636,7 +671,17 @@ do
 done
 
 #Testing transferring
-getTreeDirectoryFromRemoteHost $3 $4 GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results ../Reports/$EnergyPerformanceLogDirName/
+getTreeDirectoryFromRemoteHost $username $ipAddress GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results ../Reports/$EnergyPerformanceLogDirName/
 
+echo ""
+echo "All tasks are executed, continue with script.createPlottableData? [Y/n]"
+read answer
+
+if [ "$answer" == "Y" ] || [ "$answer" == "y" ]
+then
+	echo "Creating plottable text files..."
+	script.createPlottableData --absoluteDataPath ../Reports/$EnergyPerformanceLogDirName/ --languageType compiled --optimization ON
+	script.createPlottableData --absoluteDataPath ../Reports/$EnergyPerformanceLogDirName/ --languageType interpreted 
+fi
 
 exit
