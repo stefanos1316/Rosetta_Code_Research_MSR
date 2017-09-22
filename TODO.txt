@@ -6,11 +6,13 @@ Tasks TODO
 +Add functional programming languages such as: F# and Haskell.
 +Start writing some parts of the paper 
 
+
 Rosetta Code Data-Set
 =====================
 Here we will describe how we extracted the data, filter them and changes we did 
 on the data-set.
 Plus contribution.
+
 
 Tasks selection
 ===============
@@ -46,3 +48,7 @@ normalized results while all the others are going to resutls in
 much higher results.
 Also, do the same for the tasks to identify which task has less 
 energy consumption.
+
+
+Stereo has a lot of repos.
+ask vasiliki of inderectly get commits.

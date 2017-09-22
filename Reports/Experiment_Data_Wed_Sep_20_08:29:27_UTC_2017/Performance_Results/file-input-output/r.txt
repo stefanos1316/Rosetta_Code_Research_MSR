@@ -1,0 +1,15 @@
+Error in file("../input.txt", "r") : cannot open the connection
+In addition: Warning message:
+In file("../input.txt", "r") :
+  cannot open file '../input.txt': No such file or directory
+Execution halted
+
+real	0m0.118s
+user	0m0.101s
+sys	0m0.015s
+Error: unexpected symbol in "The Republic"
+Execution halted
+
+real	0m0.076s
+user	0m0.059s
+sys	0m0.017s

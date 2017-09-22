@@ -1,0 +1,16 @@
+could not open <input.txt> for reading: No such file or directory at /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/perl/file-input-output.pl line 6.
+
+real	0m0.008s
+user	0m0.002s
+sys	0m0.005s
+syntax error at /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/perl/output.txt line 2, near "===="
+No such class prayers at /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/perl/output.txt line 17, near "up my prayers"
+No such class prayers at /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/perl/output.txt line 21, near "had
+finished our prayers"
+syntax error at /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/perl/output.txt line 21, near "our prayers and"
+No such class way at /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/perl/output.txt line 23, near "starting on our way"
+Unrecognized character \xE2; marked by <-- HERE after s, Glaucon<-- HERE near column 33 at /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/perl/output.txt line 29.
+
+real	0m0.010s
+user	0m0.004s
+sys	0m0.004s

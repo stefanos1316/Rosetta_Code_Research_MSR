@@ -1,2 +1,2 @@
 Polynomial regression -> download gsl-devel if not exist in /usr/include/gsl
-
+JSON -> download https://github.com/lloyd/yajl configure the installation in /usr/include (./configure --prefix /usr/include) and install (make install)

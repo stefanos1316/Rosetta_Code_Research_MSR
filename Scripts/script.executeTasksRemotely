@@ -138,8 +138,8 @@ EnergyPerformanceLogDirName="Experiment_Data_"$EnergyPerformanceLogDataDate
 	mkdir -p ../Reports/$EnergyPerformanceLogDirName
 	mkdir -p ../Reports/$EnergyPerformanceLogDirName/Energy_Results
 	remoteHost=$username"@"$ipAddress
-	ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName
-	ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results
+	SSH_AUTH_SOCK=0 ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName
+	SSH_AUTH_SOCK=0 ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results
 	if [ $? -eq 0 ];
        	then
 		echo "Directories created normally."
@@ -157,7 +157,7 @@ for containesTasks in `ls $tasksPath`;
 do
 	#At this point we create a directory to store the energy and performance results
 	#If a remove host is given, then create the energy results there
-	ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks
+	SSH_AUTH_SOCK=0 ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks
 	mkdir -p ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks
 
 	#For all the programming languages enter and compile the content
@@ -173,11 +173,11 @@ do
 					then
 						echo "Executing C"
 						#A second of delay since the wattsup has it as a startup delay
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c.txt
 
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c.txt' &" &
 						
 						#Watts Up utility has 2 seconds of delay before start capturing measurements, thus we delay the execution system too				
 						sleep 2
@@ -196,7 +196,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 							
 						if [ $? -eq 0 ];
 						then
@@ -212,11 +212,11 @@ do
 					if [[ $tasksImplementation != *".cpp" ]];
 					then
 						echo "Executing C++"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c++.txt
 
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -235,7 +235,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 						
 						if [ $? -eq 0 ];
 						then
@@ -249,11 +249,11 @@ do
 					if [[ $tasksImplementation != *".java" ]];
 					then
 						echo "Executing Java"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/java.txt
 
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -278,7 +278,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 						
 						if [ $? -eq 0 ];
 						then
@@ -290,11 +290,11 @@ do
 				;;
 				("python")
 						echo "Executing Python"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/python.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/python.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/python.txt
 					
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/python.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/python.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -312,7 +312,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 						
 						if [ $? -eq 0 ];
 						then
@@ -325,11 +325,11 @@ do
 					if [[ $tasksImplementation == *".exe" ]]; 
 					then
 						echo "Executing C#"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c-sharp.txt
 					
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -347,7 +347,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 		
 						if [ $? -eq 0 ];
 						then
@@ -361,11 +361,11 @@ do
 					if [[ $tasksImplementation == *".exe" ]];
 					then
 						echo "Executing VB.NET"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/vb.net.txt
 					
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -383,7 +383,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 
 						if [ $? -eq 0 ];
 						then
@@ -396,11 +396,11 @@ do
 
 				("javascript")
 						echo "Executing JavaScript"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/javascript.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/javascript.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/javascript.txt
 				
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/javascript.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/javascript.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -418,7 +418,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 	
 						if [ $? -eq 0 ];
 						then
@@ -429,11 +429,11 @@ do
 				;;
 				("php")
 						echo "Executing Php"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/php.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/php.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt
 				
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/php.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/php.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -451,7 +451,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 
 						if [ $? -eq 0 ];
 						then
@@ -462,11 +462,11 @@ do
 				;;
 				("perl")
 						echo "Executing Perl"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/perl.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/perl.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/perl.txt
 				
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/perl.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/perl.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -484,7 +484,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 	
 						if [ $? -eq 0 ];
 						then
@@ -495,11 +495,11 @@ do
 				;;
 				("ruby")
 						echo "Executing Ruby" 
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/ruby.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/ruby.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/ruby.txt
 				
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/ruby.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/ruby.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -517,7 +517,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
 					
 						if [ $? -eq 0 ];
 						then
@@ -528,11 +528,11 @@ do
 				;;
 				("r")
 						echo "Executing R"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/r.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/r.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/r.txt
 				
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/r.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/r.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -550,7 +550,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
   
                                                 if [ $? -eq 0 ];
                                                 then
@@ -561,11 +561,11 @@ do
 				;;
 				("go")
 						echo "Executing Go"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/go.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/go.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt
 				
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/go.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/go.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -587,7 +587,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
                          
 			                        if [ $? -eq 0 ];
                                                 then
@@ -600,11 +600,11 @@ do
 					if [[ $tasksImplementation != *".rust" ]]; 
 					then
 						echo "Executing Rust"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/rust.txt
 				
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -622,7 +622,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
                                                 
 						if [ $? -eq 0 ];
                                                 then
@@ -634,11 +634,11 @@ do
 				;;
 				("swift")		
 						echo "Executing Swift"
-						ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/swift.txt
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/swift.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/swift.txt
 				
 						#Run the wattsup in the background
-						ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/swift.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/swift.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -656,7 +656,7 @@ do
 	
 						#If it's outside the loop it means the task's execution is finished, then stop remote host 
 						#from retrieving power measurements
-						ssh $remoteHost sudo pkill  wattsup						
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
                                                 
 						if [ $? -eq 0 ];
                                                 then

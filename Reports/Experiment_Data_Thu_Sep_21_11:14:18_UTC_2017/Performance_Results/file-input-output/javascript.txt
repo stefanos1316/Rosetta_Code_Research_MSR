@@ -1,0 +1,28 @@
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp/file-input-output/javascript/file-input-output.js:5
+            if (err) throw err;
+                     ^
+
+Error: ENOENT: no such file or directory, open '../input.txt'
+
+real	0m5.370s
+user	0m5.151s
+sys	0m6.519s
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp/file-input-output/javascript/output.txt:1
+(function (exports, require, module, __filename, __dirname) { The Republic By Plato
+                                                                  ^^^^^^^^
+
+SyntaxError: Unexpected identifier
+    at createScript (vm.js:74:10)
+    at Object.runInThisContext (vm.js:116:10)
+    at Module._compile (module.js:537:28)
+    at Object.Module._extensions..js (module.js:584:10)
+    at Module.load (module.js:507:32)
+    at tryModuleLoad (module.js:470:12)
+    at Function.Module._load (module.js:462:3)
+    at Function.Module.runMain (module.js:609:10)
+    at startup (bootstrap_node.js:158:16)
+    at bootstrap_node.js:598:3
+
+real	0m0.274s
+user	0m0.262s
+sys	0m0.009s

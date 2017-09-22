@@ -1,0 +1,575 @@
+
+real	0m7.484s
+user	0m2.381s
+sys	0m2.484s
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:1:4: error: consecutive statements on a line must be separated by ';'
+The Republic By Plato
+   ^
+   ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:1:13: error: consecutive statements on a line must be separated by ';'
+The Republic By Plato
+            ^
+            ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:1:16: error: consecutive statements on a line must be separated by ';'
+The Republic By Plato
+               ^
+               ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:4:8: error: consecutive statements on a line must be separated by ';'
+PERSONS OF THE DIALOGUE.
+       ^
+       ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:4:11: error: consecutive statements on a line must be separated by ';'
+PERSONS OF THE DIALOGUE.
+          ^
+          ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:4:24: error: expected member name following '.'
+PERSONS OF THE DIALOGUE.
+                       ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:4:15: error: consecutive statements on a line must be separated by ';'
+PERSONS OF THE DIALOGUE.
+              ^
+              ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:1:1: error: use of unresolved identifier 'The'
+The Republic By Plato
+^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:1:5: error: use of unresolved identifier 'Republic'
+The Republic By Plato
+    ^~~~~~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:1:14: error: use of unresolved identifier 'By'
+The Republic By Plato
+             ^~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:1:17: error: use of unresolved identifier 'Plato'
+The Republic By Plato
+                ^~~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:2:1: error: use of unresolved operator '====================='
+=====================
+^~~~~~~~~~~~~~~~~~~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:4:1: error: use of unresolved identifier 'PERSONS'
+PERSONS OF THE DIALOGUE.
+^~~~~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:4:9: error: use of unresolved identifier 'OF'
+PERSONS OF THE DIALOGUE.
+        ^~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:4:12: error: use of unresolved identifier 'THE'
+PERSONS OF THE DIALOGUE.
+           ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:5:9: error: consecutive statements on a line must be separated by ';'
+Socrates, who is the narrator.
+        ^
+        ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:5:9: error: expected expression
+Socrates, who is the narrator.
+        ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:5:30: error: expected member name following '.'
+Socrates, who is the narrator.
+                             ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:6:8: error: expected member name following '.'
+Glaucon.
+       ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:7:11: error: expected member name following '.'
+Adeimantus.
+          ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:8:12: error: expected member name following '.'
+Polemarchus.
+           ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:9:9: error: expected member name following '.'
+Cephalus.
+        ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:10:13: error: expected member name following '.'
+Thrasymachus.
+            ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:11:11: error: expected member name following '.'
+Cleitophon.
+          ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:12:33: error: expected member name following '.'
+And others who are mute auditors.
+                                ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:15:79: error: expected member name following '.'
+Hermocrates, Critias, and a nameless person, who are introduced in the Timaeus.
+                                                                              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:17:71: error: expected member name following '.'
+might offer up my prayers to the goddess (Bendis, the Thracian Artemis.); and
+                                                                      ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:19:22: error: extraneous whitespace after '.' is not permitted
+which was a new thing. I was delighted with the procession of the inhabitants;
+                     ^~
+                      
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:20:47: error: expected '{' after 'if' condition
+but that of the Thracians was equally, if not more, beautiful. When we had
+                                              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:20:62: error: extraneous whitespace after '.' is not permitted
+but that of the Thracians was equally, if not more, beautiful. When we had
+                                                             ^~
+                                                              
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:24:31: error: extraneous whitespace after '.' is not permitted
+to run and bid us wait for him. The servant took hold of me by the cloak behind,
+                              ^~
+                               
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:25:42: error: expected member name following '.'
+and said: Polemarchus desires you to wait.
+                                         ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:26:51: error: expected member name following '.'
+I turned round, and asked him where his master was.
+                                                  ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:27:69: error: expected member name following '.'
+There he is, said the youth, coming after you, if you will only wait.
+                                                                    ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:24:31: error: extraneous whitespace after '.' is not permitted
+to run and bid us wait for him. The servant took hold of me by the cloak behind,
+                              ^~
+                               
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:24:37: error: expected ';' in 'for' statement
+to run and bid us wait for him. The servant took hold of me by the cloak behind,
+                                    ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:24:45: error: expected ';' in 'for' statement
+to run and bid us wait for him. The servant took hold of me by the cloak behind,
+                                            ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:24:50: error: expected '{' in 'for' statement
+to run and bid us wait for him. The servant took hold of me by the cloak behind,
+                                                 ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:25:42: error: expected member name following '.'
+and said: Polemarchus desires you to wait.
+                                         ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:26:51: error: expected member name following '.'
+I turned round, and asked him where his master was.
+                                                  ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:27:55: error: expected '{' after 'if' condition
+There he is, said the youth, coming after you, if you will only wait.
+                                                      ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:27:69: error: expected member name following '.'
+There he is, said the youth, coming after you, if you will only wait.
+                                                                    ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:29:33: error: invalid character in source file
+and with him Adeimantus, Glaucon’s brother, Niceratus the son of Nicias, and
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:30:46: error: expected member name following '.'
+several others who had been at the procession.
+                                             ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:32:32: error: expected member name following '.'
+already on your way to the city.
+                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:33:30: error: expected member name following '.'
+You are not far wrong, I said.
+                             ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:34:8: error: expected '{' after 'do'
+But do you see, he rejoined, how many we are?
+       ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:35:10: error: expected member name following '.'
+Of course.
+         ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:37:8: error: expected member name following '.'
+you are.
+       ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:64: error: expected member name following '.'
+But can you persuade us, if we refuse to listen to you? he said.
+                                                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:40:31: error: expected member name following '.'
+Certainly not, replied Glaucon.
+                              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:36:42: error: expected initialization in a 'for' statement
+And are you stronger than all these? for if not, you will have to remain where
+                                         ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:36:54: error: expected '{' after 'if' condition
+And are you stronger than all these? for if not, you will have to remain where
+                                                     ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:37:8: error: expected member name following '.'
+you are.
+       ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:38:77: error: consecutive statements on a line must be separated by ';'
+May there not be the alternative, I said, that we may persuade you to let us go?
+                                                                            ^
+                                                                            ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:38:75: error: type annotation missing in pattern
+May there not be the alternative, I said, that we may persuade you to let us go?
+                                                                          ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:5:1: error: use of unresolved identifier 'Socrates'
+Socrates, who is the narrator.
+^~~~~~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:20:43: error: use of unresolved identifier 'not'
+but that of the Thracians was equally, if not more, beautiful. When we had
+                                          ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:24:28: error: use of unresolved identifier 'him'
+to run and bid us wait for him. The servant took hold of me by the cloak behind,
+                           ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:24:37: error: use of unresolved identifier 'servant'
+to run and bid us wait for him. The servant took hold of me by the cloak behind,
+                                    ^~~~~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:24:45: error: use of unresolved identifier 'took'
+to run and bid us wait for him. The servant took hold of me by the cloak behind,
+                                            ^~~~
+Swift.Bool:41:15: note: did you mean 'Bool'?
+public struct Bool {
+              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:27:51: error: use of unresolved identifier 'you'
+There he is, said the youth, coming after you, if you will only wait.
+                                                  ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:36:45: error: use of unresolved identifier 'not'
+And are you stronger than all these? for if not, you will have to remain where
+                                            ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:36:50: error: use of unresolved identifier 'you'
+And are you stronger than all these? for if not, you will have to remain where
+                                                 ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:38:78: error: use of unresolved identifier 'go'
+May there not be the alternative, I said, that we may persuade you to let us go?
+                                                                             ^~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:4: error: consecutive statements on a line must be separated by ';'
+But can you persuade us, if we refuse to listen to you? he said.
+   ^
+   ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:8: error: consecutive statements on a line must be separated by ';'
+But can you persuade us, if we refuse to listen to you? he said.
+       ^
+       ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:12: error: consecutive statements on a line must be separated by ';'
+But can you persuade us, if we refuse to listen to you? he said.
+           ^
+           ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:21: error: consecutive statements on a line must be separated by ';'
+But can you persuade us, if we refuse to listen to you? he said.
+                    ^
+                    ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:24: error: consecutive statements on a line must be separated by ';'
+But can you persuade us, if we refuse to listen to you? he said.
+                       ^
+                       ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:24: error: expected expression
+But can you persuade us, if we refuse to listen to you? he said.
+                       ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:32: error: expected '{' after 'if' condition
+But can you persuade us, if we refuse to listen to you? he said.
+                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:64: error: expected member name following '.'
+But can you persuade us, if we refuse to listen to you? he said.
+                                                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:40:31: error: expected member name following '.'
+Certainly not, replied Glaucon.
+                              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:41:60: error: expected member name following '.'
+Then we are not going to listen; of that you may be assured.
+                                                           ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:44:42: error: extraneous whitespace after '.' is not permitted
+With horses! I replied: That is a novelty. Will horsemen carry torches and pass
+                                         ^~
+                                          
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:47:33: error: extraneous whitespace after '.' is not permitted
+which you certainly ought to see. Let us rise soon after supper and see this
+                                ^~
+                                 
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:48:79: error: expected member name following '.'
+festival; there will be a gathering of young men, and we will have a good talk.
+                                                                              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:49:19: error: expected '{' after 'do'
+Stay then, and do not be perverse.
+                  ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:49:34: error: expected member name following '.'
+Stay then, and do not be perverse.
+                                 ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:50:56: error: expected member name following '.'
+Glaucon said: I suppose, since you insist, that we must.
+                                                       ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:51:21: error: expected member name following '.'
+Very good, I replied.
+                    ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:54:65: error: expected member name following '.'
+Charmantides the Paeanian, and Cleitophon the son of Aristonymus.
+                                                                ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:56:44: error: extraneous whitespace after '.' is not permitted
+long time, and I thought him very much aged. He was seated on a cushioned
+                                           ^~
+                                            
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:56:1: error: expected 'in' after for-each pattern
+long time, and I thought him very much aged. He was seated on a cushioned
+^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:56:6: error: expected '{' to start the body of for-each loop
+long time, and I thought him very much aged. He was seated on a cushioned
+     ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:56:44: error: extraneous whitespace after '.' is not permitted
+long time, and I thought him very much aged. He was seated on a cushioned
+                                           ^~
+                                            
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:57:46: error: expected 'in' after for-each pattern
+chair, and had a garland on his head, for he had been sacrificing in the court;
+                                             ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:57:50: error: expected '{' to start the body of for-each loop
+chair, and had a garland on his head, for he had been sacrificing in the court;
+                                                 ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:59:25: error: extraneous whitespace after '.' is not permitted
+which we sat down by him. He saluted me eagerly, and then he said:–
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:59:67: error: invalid character in source file
+which we sat down by him. He saluted me eagerly, and then he said:–
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:59:67: error: invalid character in source file
+which we sat down by him. He saluted me eagerly, and then he said:–
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:60:8: error: invalid character in source file
+You don’t come to see me, Socrates, as often as you ought: If I were still able to
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:61:49: error: extraneous whitespace after '.' is not permitted
+go and see you I would not ask you to come to me. But at my age I can hardly
+                                                ^~
+                                                 
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:62:70: error: extraneous whitespace after '.' is not permitted
+get to the city, and therefore you should come oftener to the Piraeus. For let me
+                                                                     ^~
+                                                                      
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:62:80: error: type annotation missing in pattern
+get to the city, and therefore you should come oftener to the Piraeus. For let me
+                                                                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:1: error: use of unresolved identifier 'But'
+But can you persuade us, if we refuse to listen to you? he said.
+^~~
+Swift.Bit:2:13: note: did you mean 'Bit'?
+public enum Bit {
+            ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:5: error: use of unresolved identifier 'can'
+But can you persuade us, if we refuse to listen to you? he said.
+    ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:9: error: use of unresolved identifier 'you'
+But can you persuade us, if we refuse to listen to you? he said.
+        ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:13: error: use of unresolved identifier 'persuade'
+But can you persuade us, if we refuse to listen to you? he said.
+            ^~~~~~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:39:29: error: use of unresolved identifier 'we'
+But can you persuade us, if we refuse to listen to you? he said.
+                            ^~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:62:80: note: did you mean 'me'?
+get to the city, and therefore you should come oftener to the Piraeus. For let me
+                                                                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:56:1: error: use of unresolved identifier 'long'
+long time, and I thought him very much aged. He was seated on a cushioned
+^~~~
+Swift.CLong:2:18: note: did you mean 'CLong'?
+public typealias CLong = Int
+                 ^
+Swift._log:1:13: note: did you mean '_log'?
+public func _log(_ x: Float) -> Float
+            ^
+Swift._log:1:13: note: did you mean '_log'?
+public func _log(_ x: Double) -> Double
+            ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:57:46: error: use of unresolved identifier 'had'
+chair, and had a garland on his head, for he had been sacrificing in the court;
+                                             ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:63:5: error: consecutive statements on a line must be separated by ';'
+tell you, that the more the pleasures of the body fade away, the greater to me
+    ^
+    ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:63:9: error: consecutive statements on a line must be separated by ';'
+tell you, that the more the pleasures of the body fade away, the greater to me
+        ^
+        ;
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:63:9: error: expected expression
+tell you, that the more the pleasures of the body fade away, the greater to me
+        ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:64:42: error: extraneous whitespace after '.' is not permitted
+is the pleasure and charm of conversation. Do not then deny my request, but
+                                         ^~
+                                          
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:66:51: error: expected member name following '.'
+old friends, and you will be quite at home with us.
+                                                  ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:67:42: error: expected ';' in 'for' statement
+I replied: There is nothing which for my part I like better, Cephalus, than conversing
+                                         ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:67:47: error: expected ';' in 'for' statement
+I replied: There is nothing which for my part I like better, Cephalus, than conversing
+                                              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:67:49: error: expected '{' in 'for' statement
+I replied: There is nothing which for my part I like better, Cephalus, than conversing
+                                                ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:70:41: error: extraneous whitespace after '.' is not permitted
+smooth and easy, or rugged and difficult. And this is a question which I should
+                                        ^~
+                                         
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:71:75: error: invalid character in source file
+like to ask of you who have arrived at that time which the poets call the ’threshold
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:72:11: error: invalid character in source file
+of old age’–Is life harder towards the end, or what report do you give
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:72:14: error: invalid character in source file
+of old age’–Is life harder towards the end, or what report do you give
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:74:59: error: extraneous whitespace after '.' is not permitted
+I will tell you, Socrates, he said, what my own feeling is. Men of my age flock
+                                                          ^~
+                                                           
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:68:22: error: expected ';' in 'for' statement
+with aged men; for I regard them as travellers who have gone a journey
+                     ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:68:29: error: expected ';' in 'for' statement
+with aged men; for I regard them as travellers who have gone a journey
+                            ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:68:48: error: expected '{' in 'for' statement
+with aged men; for I regard them as travellers who have gone a journey
+                                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:70:41: error: extraneous whitespace after '.' is not permitted
+smooth and easy, or rugged and difficult. And this is a question which I should
+                                        ^~
+                                         
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:71:75: error: invalid character in source file
+like to ask of you who have arrived at that time which the poets call the ’threshold
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:72:11: error: invalid character in source file
+of old age’–Is life harder towards the end, or what report do you give
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:72:14: error: invalid character in source file
+of old age’–Is life harder towards the end, or what report do you give
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:72:67: error: expected '{' after 'do'
+of old age’–Is life harder towards the end, or what report do you give
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:74:59: error: extraneous whitespace after '.' is not permitted
+I will tell you, Socrates, he said, what my own feeling is. Men of my age flock
+                                                          ^~
+                                                           
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:76:41: error: invalid character in source file
+the tale of my acquaintance commonly is –I cannot eat, I cannot drink; the pleasures
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:78:41: error: extraneous whitespace after '.' is not permitted
+that is gone, and life is no longer life. Some complain of the slights which are
+                                        ^~
+                                         
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:80:21: error: extraneous whitespace after '.' is not permitted
+old age is the cause. But to me, Socrates, these complainers seem to blame that
+                    ^~
+                     
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:81:29: error: extraneous whitespace after '.' is not permitted
+which is not really in fault. For if old age were the cause, I too being old, and
+                            ^~
+                             
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:81:42: error: expected '{' after 'if' condition
+which is not really in fault. For if old age were the cause, I too being old, and
+                                         ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:82:48: error: extraneous whitespace after '.' is not permitted
+every other old man, would have felt as they do. But this is not my own experience,
+                                               ^~
+                                                
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:82:48: error: expected '{' after 'do'
+every other old man, would have felt as they do. But this is not my own experience,
+                                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:83:37: error: extraneous whitespace after '.' is not permitted
+nor that of others whom I have known. How well I remember the aged
+                                    ^~
+                                     
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:85:11: error: invalid character in source file
+Sophocles,–are you still the man you were? Peace, he replied; most gladly have
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:86:56: error: expected '{' after 'if' condition
+I escaped the thing of which you speak; I feel as if I had escaped from a mad
+                                                       ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:87:19: error: extraneous whitespace after '.' is not permitted
+and furious master. His words have often occurred to my mind since, and they
+                  ^~
+                   
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:88:59: error: extraneous whitespace after '.' is not permitted
+seem as good to me now as at the time when he uttered them. For certainly old
+                                                          ^~
+                                                           
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:91:12: error: extraneous whitespace after '.' is not permitted
+but of many. The truth is, Socrates, that these regrets, and also the complaints
+           ^~
+            
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:93:4: error: invalid character in source file
+men’s characters and tempers; for he who is of a calm and happy nature will
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:95:35: error: expected member name following '.'
+youth and age are equally a burden.
+                                  ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:93:40: error: expected 'in' after for-each pattern
+men’s characters and tempers; for he who is of a calm and happy nature will
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:93:50: error: expected '{' to start the body of for-each loop
+men’s characters and tempers; for he who is of a calm and happy nature will
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:95:35: error: expected member name following '.'
+youth and age are equally a burden.
+                                  ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:96:76: error: invalid character in source file
+I listened in admiration, and wanting to draw him out, that he might go on –Yes,
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:100:30: error: expected member name following '.'
+known to be a great comforter.
+                             ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:102:53: error: extraneous whitespace after '.' is not permitted
+what they say; not, however, so much as they imagine. I might answer them
+                                                    ^~
+                                                     
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:71: error: invalid character in source file
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:106:8: error: invalid character in source file
+famous.’ And to those who are not rich and are impatient of old age, the same
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:28: error: expected ';' in 'for' statement
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:32: error: expected ';' in 'for' statement
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:39: error: expected '{' in 'for' statement
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:71: error: invalid character in source file
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:71: error: invalid character in source file
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:106:8: error: invalid character in source file
+famous.’ And to those who are not rich and are impatient of old age, the same
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:108:52: error: expected member name following '.'
+nor can a bad rich man ever have peace with himself.
+                                                   ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:107:27: error: expected ';' in 'for' statement
+reply may be made; for to the good poor man old age cannot be a light burden,
+                          ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:107:31: error: expected ';' in 'for' statement
+reply may be made; for to the good poor man old age cannot be a light burden,
+                              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:107:36: error: expected '{' in 'for' statement
+reply may be made; for to the good poor man old age cannot be a light burden,
+                                   ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:108:52: error: expected member name following '.'
+nor can a bad rich man ever have peace with himself.
+                                                   ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:63:1: error: use of unresolved identifier 'tell'
+tell you, that the more the pleasures of the body fade away, the greater to me
+^~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:63:6: error: use of unresolved identifier 'you'
+tell you, that the more the pleasures of the body fade away, the greater to me
+     ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:67:39: error: use of unresolved identifier 'my'
+I replied: There is nothing which for my part I like better, Cephalus, than conversing
+                                      ^~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:62:80: note: did you mean 'me'?
+get to the city, and therefore you should come oftener to the Piraeus. For let me
+                                                                               ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:67:42: error: use of unresolved identifier 'part'
+I replied: There is nothing which for my part I like better, Cephalus, than conversing
+                                         ^~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:67:47: error: use of unresolved identifier 'I'
+I replied: There is nothing which for my part I like better, Cephalus, than conversing
+                                              ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:68:20: error: use of unresolved identifier 'I'
+with aged men; for I regard them as travellers who have gone a journey
+                   ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:68:22: error: use of unresolved identifier 'regard'
+with aged men; for I regard them as travellers who have gone a journey
+                     ^~~~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:68:29: error: use of unresolved identifier 'them'
+with aged men; for I regard them as travellers who have gone a journey
+                            ^~~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:81:38: error: use of unresolved identifier 'old'
+which is not really in fault. For if old age were the cause, I too being old, and
+                                     ^~~
+Swift.Void:20:18: note: did you mean 'Void'?
+public typealias Void = ()
+                 ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:86:54: error: use of unresolved identifier 'I'
+I escaped the thing of which you speak; I feel as if I had escaped from a mad
+                                                     ^
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:93:40: error: use of unresolved identifier 'who'
+men’s characters and tempers; for he who is of a calm and happy nature will
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:24: error: use of unresolved identifier 'his'
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:28: error: use of unresolved identifier 'own'
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:104:32: error: use of unresolved identifier 'merits'
+he was famous, not for his own merits but because he was an Athenian: ’If you
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:107:24: error: use of unresolved identifier 'to'
+reply may be made; for to the good poor man old age cannot be a light burden,
+                       ^~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:107:27: error: use of unresolved identifier 'the'
+reply may be made; for to the good poor man old age cannot be a light burden,
+                          ^~~
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/swift/output.txt:107:31: error: use of unresolved identifier 'good'
+reply may be made; for to the good poor man old age cannot be a light burden,
+                              ^~~~
+Swift.Void:20:18: note: did you mean 'Void'?
+public typealias Void = ()
+                 ^
+Swift.Bool:41:15: note: did you mean 'Bool'?
+public struct Bool {
+              ^
+
+real	0m0.093s
+user	0m0.055s
+sys	0m0.029s

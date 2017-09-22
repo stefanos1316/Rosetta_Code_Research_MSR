@@ -1,0 +1,16 @@
+Error: Could not find or load main class com
+
+real	0m0.057s
+user	0m0.046s
+sys	0m0.011s
+
+real	41m19.614s
+user	41m11.386s
+sys	0m0.665s
+Error: Main method not found in class MyJsonObject, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+
+real	0m0.062s
+user	0m0.052s
+sys	0m0.010s

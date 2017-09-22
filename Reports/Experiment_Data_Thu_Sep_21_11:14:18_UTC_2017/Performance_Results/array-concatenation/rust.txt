@@ -1,0 +1,5 @@
+./script.executeTasksRemotely: line 578: .//home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//array-concatenation/rust/array-concatenation: No such file or directory
+
+real	0m0.002s
+user	0m0.001s
+sys	0m0.002s

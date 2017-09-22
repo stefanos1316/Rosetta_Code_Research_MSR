@@ -1,0 +1,16 @@
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/ruby/file-input-output.rb:2:in `initialize': No such file or directory @ rb_sysopen - ../input.txt (Errno::ENOENT)
+	from /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/ruby/file-input-output.rb:2:in `open'
+	from /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/ruby/file-input-output.rb:2:in `block in <main>'
+	from /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/ruby/file-input-output.rb:1:in `each'
+	from /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/ruby/file-input-output.rb:1:in `<main>'
+
+real	0m0.044s
+user	0m0.038s
+sys	0m0.004s
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//file-input-output/ruby/output.txt:2: syntax error, unexpected ===, expecting end-of-input
+=====================
+   ^
+
+real	0m0.041s
+user	0m0.038s
+sys	0m0.001s
