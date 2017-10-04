@@ -1,5 +1,5 @@
-foreach ( 0 .. 1000000 ) {
-   factorial( 1000 );
+foreach ( 0 .. 1000000000 ) {
+   factorial( 10 );
 }
 
 sub factorial

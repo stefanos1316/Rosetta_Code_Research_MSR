@@ -11,13 +11,14 @@ Namespace Rextester
     Public Module Program
         Public Sub Main(args() As string)
             'Your code goes here
-            For value As Integer = 0 To 1000000  
+            For value As Integer = 0 To 1000000000  
             Dim i As Integer  
-            i = factorial(1000)
+	           i = factorial(10)
           
             Next
-        End Sub
-        
+       		Console.WriteLine("Done")
+	 End Sub
+       
         Function factorial(ByVal n As Integer) As Integer
             If n <= 1 Then
                 Return 1

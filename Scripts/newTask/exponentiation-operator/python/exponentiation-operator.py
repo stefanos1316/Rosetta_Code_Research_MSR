@@ -6,6 +6,6 @@ class num(float):
     def __pow__(self, b):
         return reduce(MULTIPLY, [self]*b, 1)
 
-for i in range(10000000000):
+for i in xrange(1000000000):
 	num(2017) ** 12
  	num(19.88) ** 12
