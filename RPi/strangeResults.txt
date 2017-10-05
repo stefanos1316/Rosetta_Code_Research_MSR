@@ -1,0 +1,25 @@
+Array Concatenation
+===================
+
+pi@ComputerNode:~/GitHub/Rosetta_Code_Research_MSR/RPi/array-concatenation/rust $ time ./array-concatenation 
+
+real	21m6.249s
+user	21m5.850s
+sys	0m0.040s
+pi@ComputerNode:~/GitHub/Rosetta_Code_Research_MSR/RPi/array-concatenation/rust $ time go run ../go/array-concatenation-1.go 
+
+real	4m17.817s
+user	4m25.790s
+sys	0m15.390s
+pi@ComputerNode:~/GitHub/Rosetta_Code_Research_MSR/RPi/array-concatenation/rust $ time node ../javascript/array-concatenation.js 
+
+real	1m14.195s
+user	1m14.140s
+sys	0m0.510s
+pi@ComputerNode:~/GitHub/Rosetta_Code_Research_MSR/RPi/array-concatenation/rust $ time nodejs ../javascript/array-concatenation.js 
+
+real	1m13.918s
+user	1m14.260s
+sys	0m0.390s
+pi@ComputerNode:~/GitHub/Rosetta_Code_Research_MSR/RPi/array-concatenation/rust $ 
+
