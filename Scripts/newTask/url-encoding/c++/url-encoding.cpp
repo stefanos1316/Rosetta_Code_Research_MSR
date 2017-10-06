@@ -9,9 +9,10 @@ std::string urlencode(const std::string &c);
 
 int main(int argc, char *argv[])
 {
-   for (int i = 0; i < 1000000; ++i) {
+   for (int i = 0; i < 10000000; ++i) {
     std::string address = "http://foo bar/";
-    cout << "address=" << urlencode(address) <<endl;
+    urlencode(address);
+	//cout << "address=" << urlencode(address) <<endl;
   }
 }
  
