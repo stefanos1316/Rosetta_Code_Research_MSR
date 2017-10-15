@@ -1,5 +1,0 @@
-./script.executeTasksRemotely: line 191: .//home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//call-an-object-method/c++/call-an-object-method: No such file or directory
-
-real	0m0.001s
-user	0m0.001s
-sys	0m0.000s

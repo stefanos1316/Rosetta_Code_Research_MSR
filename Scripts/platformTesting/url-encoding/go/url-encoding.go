@@ -1,12 +1,12 @@
 package main
 
 import (
-    "fmt"
+ //   "fmt"
     "net/url"
 )
 
 func main() {
-  for i := 0; i < 1000000; i++ {
-    fmt.Println(url.QueryEscape("http://foo bar/"))
+  for i := 0; i < 100000000; i++ {
+    url.QueryEscape("http://foo bar/")
   }
 }

@@ -23,10 +23,10 @@ std::string urlDecode(std::string &eString) {
 
 int main( ) {
 
- for (int i = 0; i < 1000000; ++i) {
+ for (int i = 0; i < 10000000; ++i) {
    std::string encoded( "http%3A%2F%2Ffoo%20bar%2F" ) ;
    std::string decoded = urlDecode(encoded); 
-   std::cout << decoded << std::endl ; 
+//  std::cout << decoded << std::endl ; 
  }
    return 0 ;
 }

@@ -40,7 +40,7 @@ then
 fi
 
 
-f [ "$#" -lt 8 ]; then
+if [ "$#" -lt 8 ]; then
 	echo "Illegal number of command line arguments"
 	exit
 fi
@@ -177,7 +177,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c.txt
 
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c.txt' &" &
 						
 						#Watts Up utility has 2 seconds of delay before start capturing measurements, thus we delay the execution system too				
 						sleep 2
@@ -216,7 +216,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c++.txt
 
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -246,14 +246,28 @@ do
 					fi
 				;;
 				("java")
-					if [[ $tasksImplementation != *".java" ]];
+					#Here we have to make sure that our script will execute the bytecode that has the main class
+					getMain="0"
+					getByteCodeWithMainFunciton="0"
+					if [[ $tasksImplementation == *".class" ]];
+					then
+						getMain=$(echo $tasksImplementation | awk -F "." '{print $1}')
+						getMainFromJavaFile=$tasksPath/$containesTasks/$containesLanguages/$getMain".java"
+					
+						if grep "public static void main" "$getMainFromJavaFile" ;
+						then
+							getByteCodeWithMainFunction=$(echo $tasksImplementation | awk -F "." '{print $1}')
+						fi
+					fi
+
+					if [[ $tasksImplementation != *".java" ]] && [[ "$tasksImplementation" == "$getByteCodeWithMainFunction"* ]];
 					then
 						echo "Executing Java"
 						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/java.txt
 
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -294,7 +308,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/python.txt
 					
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/python.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/python.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -329,7 +343,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c-sharp.txt
 					
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -365,7 +379,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/vb.net.txt
 					
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -400,7 +414,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/javascript.txt
 				
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/javascript.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/javascript.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -433,7 +447,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt
 				
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/php.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/php.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -466,7 +480,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/perl.txt
 				
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/perl.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/perl.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -499,7 +513,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/ruby.txt
 				
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/ruby.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/ruby.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -532,7 +546,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/r.txt
 				
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/r.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/r.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -565,7 +579,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt
 				
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/go.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/go.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -604,7 +618,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/rust.txt
 				
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
@@ -638,7 +652,7 @@ do
 						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/swift.txt
 				
 						#Run the wattsup in the background
-						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -r watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/swift.txt' &" &
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/swift.txt' &" &
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2

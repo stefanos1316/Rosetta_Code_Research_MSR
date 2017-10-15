@@ -3,6 +3,6 @@ fact <- function(n) {
   else n * fact(n-1)
 }
 
-for(i in 0:1000000) {
-	fact(1000)
+for(i in 0:1000000000) {
+	fact(10)
 }

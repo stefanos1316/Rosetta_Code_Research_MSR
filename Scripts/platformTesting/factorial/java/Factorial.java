@@ -2,8 +2,8 @@ public class Factorial {
 
 public static void main(String[] args) {
 	
-	for (int i = 0; i < 1000000; ++i)
-		fact(1000);
+	for (int i = 0; i < 1000000000; ++i)
+		fact(10);
 }
 
 public static long fact(final int n) {

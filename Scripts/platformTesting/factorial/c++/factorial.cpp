@@ -3,8 +3,8 @@
 int factorial(int);
 
 int main() {
-for (int i = 0; i < 1000000; ++i) {	
-	int j = factorial(1000);
+for (int i = 0; i < 1000000000; ++i) {	
+	int j = factorial(10);
 }
 	return 0; 	
 }

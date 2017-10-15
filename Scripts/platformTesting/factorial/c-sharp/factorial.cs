@@ -6,8 +6,8 @@ namespace FactorialExample
         static void Main(string[] args)
         {
 		long fact;
-		for (int i = 0; i < 1000000; ++i)
-            		fact = GetFactorial(1000);
+		for (int i = 0; i < 1000000000; ++i)
+            		fact = GetFactorial(10);
         }
  
         private static long GetFactorial(int number)

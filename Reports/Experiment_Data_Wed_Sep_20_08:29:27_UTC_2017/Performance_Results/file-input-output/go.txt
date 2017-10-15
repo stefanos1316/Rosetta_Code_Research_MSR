@@ -1,9 +1,0 @@
-
-real	0m0.190s
-user	0m0.144s
-sys	0m0.039s
-go run: no go files listed
-
-real	0m0.017s
-user	0m0.010s
-sys	0m0.008s

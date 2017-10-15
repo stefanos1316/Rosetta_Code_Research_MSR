@@ -1,4 +1,4 @@
-var num = 100;
+var num = 10;
 
 //recursive
 var factorial = function(n) {
@@ -9,6 +9,6 @@ var factorial = function(n) {
     }
 }
  
-for (var i = 0; i < 1000000; ++i) { 
+for (var i = 0; i < 1000000000; ++i) { 
 factorial(num);
 }

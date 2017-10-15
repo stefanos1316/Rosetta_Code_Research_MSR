@@ -1,5 +1,0 @@
-./script.executeTasksRemotely: line 191: .//home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp//array-concatenation/c++/array-concatenation-1: No such file or directory
-
-real	0m0.002s
-user	0m0.000s
-sys	0m0.002s

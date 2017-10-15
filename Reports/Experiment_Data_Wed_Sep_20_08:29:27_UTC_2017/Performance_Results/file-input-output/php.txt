@@ -1,9 +1,0 @@
-PHP Warning:  fopen(../input.txt): failed to open stream: No such file or directory in /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp/file-input-output/php/file-input-output.php on line 5
-
-real	0m0.017s
-user	0m0.013s
-sys	0m0.003s
-
-real	0m0.023s
-user	0m0.013s
-sys	0m0.008s

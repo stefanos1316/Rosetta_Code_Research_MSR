@@ -5,6 +5,6 @@ sub urldecode {
     return $s;
 }
 
-for( $a=0; $a < 1000000; $a = $a + 1) {
-print urldecode('http%3A%2F%2Ffoo+bar%2F')."\n";
+for( $a=0; $a < 10000000; $a = $a + 1) {
+urldecode('http%3A%2F%2Ffoo+bar%2F');
 }

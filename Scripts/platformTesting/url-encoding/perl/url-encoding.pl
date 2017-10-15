@@ -5,6 +5,6 @@ sub urlencode {
     return $s;
 }
 
-for ( $b=0; $b < 1000000; $b = $b + 1 ) {
-print urlencode('http://foo bar/')."\n";
+for ( $b=0; $b < 10000000; $b = $b + 1 ) {
+	urlencode('http://foo bar/');
 }

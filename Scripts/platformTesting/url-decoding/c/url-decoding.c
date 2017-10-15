@@ -31,12 +31,13 @@ int decode(const char *s, char *dec)
 int main()
 {
 
-  for ( int i = 0; i < 1000000; ++i) {	
+  for ( int i = 0; i < 10000000; ++i) {	
 	const char *url = "http%3A%2F%2ffoo+bar%2fabcd";
 	char out[strlen(url) + 1];
 
-	printf("length: %d\n", decode(url, 0));
-	puts(decode(url, out) < 0 ? "bad string" : out);
+	//printf("length: %d\n", decode(url, 0));
+	//puts(decode(url, out) < 0 ? "bad string" : out);
+	decode(url,0);
 	}
 	return 0;
 }

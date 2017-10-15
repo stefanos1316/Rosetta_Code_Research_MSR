@@ -23,7 +23,7 @@ class MyClass{
   */
   public void someMethod(int value){
    this.variable = value;
-  }
+ }
 
 public static void Main(String[] args){
 

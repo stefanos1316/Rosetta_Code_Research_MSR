@@ -8,3 +8,9 @@ Concurrent-Computing:  	Python offerend around 7 different implementations, howe
 			task for a million of times. 
 			As a result, after a certain period of time, the system runs out of memory which 
 			lead to system crash.
+
+
+RPi results: 		As expected, RPi's run-time performance it is much slower than workstations. 
+			In addition there are some strange resutls.
+			For instance, the Go's array concatenation execution time is 4x times more than 
+			Javascripts'.

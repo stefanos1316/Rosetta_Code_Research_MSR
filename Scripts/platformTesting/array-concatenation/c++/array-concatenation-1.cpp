@@ -26,7 +26,7 @@ int main() {
   int ary[5] = {1, 2, 3, 4, 5};
   int anotherAry[5] = {6, 7, 8, 9, 10};
  
-  for ( int j=0; j < 10000000; ++j) {
+  for ( int j=0; j < 100000000; ++j) {
 
   int *r = concatArrays(ary, anotherAry);
  
