@@ -611,7 +611,7 @@ do
 					sleep $sleepTime
 				;;
 				("rust")		
-					if [[ $tasksImplementation != *".rust" ]]; 
+					if [[ $tasksImplementation != *".rs" ]] && [[ $tasksImplementation != *".rust" ]] && [[ ! -d $tasksImplementation ]]; 
 					then
 						echo "Executing Rust"
 						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt

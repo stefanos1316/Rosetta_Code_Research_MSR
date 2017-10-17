@@ -1,0 +1,9 @@
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp/file-input-output/javascript/file-input-output.js:5
+            if (err) throw err;
+                     ^
+
+Error: EMFILE: too many open files, open '../input.txt'
+
+real	0m5.393s
+user	0m5.350s
+sys	0m5.730s

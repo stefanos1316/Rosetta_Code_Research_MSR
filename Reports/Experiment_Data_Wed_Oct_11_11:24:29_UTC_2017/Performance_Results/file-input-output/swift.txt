@@ -1,0 +1,5 @@
+./script.executeTasksRemotely: line 170: 16788 Killed                  swift $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
+
+real	660m58.858s
+user	6m42.852s
+sys	5m16.146s
