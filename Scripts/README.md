@@ -39,7 +39,7 @@ Fully done with 20 out of 30.
 	* numerical-integration (8/14) -> Stefanos currently working on this
 * Compression
 	* huffman-coding (Done)
-	* lzw-compression (11/14) -> R, VB.NET, and JS remains
+	* lzw-compression (11/14) -> R and VB.NET remains
 * Cocurrency
 	* concurrent-computing (12/14) -> R and JS are ignore from this task
 	* synchronous-concurrency (11/14) -> Stefanos started working on this
