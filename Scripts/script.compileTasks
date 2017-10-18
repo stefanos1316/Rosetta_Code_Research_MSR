@@ -2,6 +2,12 @@
 
 #Necessary command line argument is the path of the Task's directory
 
+#C's compilation flags
+C_FLAGS="-pthread -L/home/yourname/gsl/lib -lgsl -lgslcblas -lm polifitgsl.c -lyajl -std=c99 -fopenmp"
+C_PLUS_PLUS_FLAGS="-std=c++11 -D_GLIBCXX_USE_NANOSLEEP -lpthread"
+C_SHARP_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+VB_DOT_NET_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+
 for containesTasks in `ls $1`;
 do
         #For all the programming languages enter and compile the content
@@ -16,7 +22,7 @@ do
 				then
 					sourceFile=$1"/"$containesTasks"/"$containesLanguages"/"$tasksImplementation
 					objectFile=$(echo $sourceFile | awk -F "." '{print $1}')
-					eval=$(gcc -o $objectFile $sourceFile)
+					eval=$(gcc $C_FLAGS -o $objectFile $sourceFile)
 					if [ $? -eq 0 ];
 					then
                                        			echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
@@ -30,7 +36,7 @@ do
 				then
 					sourceFile=$1"/"$containesTasks"/"$containesLanguages"/"$tasksImplementation
                                 	objectFile=$(echo $sourceFile | awk -F "." '{print $1}')
-                                	eval=$(g++ -o $objectFile $sourceFile)
+                                	eval=$(g++ $C_PLUS_PLUS_FLAGS -o $objectFile $sourceFile)
                                 	if [ $? -eq 0 ];
                                 	then
                                                 echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
@@ -56,7 +62,7 @@ do
 			("c-sharp")
 				if [[ $tasksImplementation == *".cs"  ]];
 				then
-                                	eval=$(mcs $1/$containesTasks/$containesLanguages/$tasksImplementation)
+                                	eval=$(mcs $C_SHARP_FLAGS $1/$containesTasks/$containesLanguages/$tasksImplementation)
                          
 					if [ $? -eq 0 ];
                                 	then
@@ -69,7 +75,7 @@ do
 			("visual-basic-.net")
 				if [[ $tasksImplementation == *".visual" ]];
 				then
-                                	eval=$(vbnc $1/$containesTasks/$containesLanguages/$tasksImplementation)
+                                	eval=$(vbnc $VB_DOT_NET_FLAGS $1/$containesTasks/$containesLanguages/$tasksImplementation)
                               
 					if [ $? -eq 0 ];
                                 	then

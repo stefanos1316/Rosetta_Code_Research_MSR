@@ -1,0 +1,10 @@
+Subject: [Rosetta Code Research] TestCase Done
+
+Dear Researcher,
+
+I am a Bot responsible to inform you on the elasped time of your test. 
+Please find the results attached below.
+
+Kind regards,
+
+Rosetta Code Research Bot
