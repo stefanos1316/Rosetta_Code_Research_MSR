@@ -1,0 +1,5 @@
+PHP Fatal error:  Class 'Thread' not found in /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/temp/concurrent-computing/php/concurrent-computing.php on line 5
+
+real	0m0.051s
+user	0m0.013s
+sys	0m0.011s

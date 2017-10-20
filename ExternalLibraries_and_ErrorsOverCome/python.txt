@@ -1,0 +1,4 @@
+Percentage-Differences-Between-Images: 
+					pip install -U numpy
+					pip install -U pil/pillow
+					pip install -U scipy

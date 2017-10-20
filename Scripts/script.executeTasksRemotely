@@ -169,7 +169,7 @@ do
 			
 			case "$containesLanguages" in
 				("c") 
-					if [[ $tasksImplementation != *".c" ]];
+					if [[ $tasksImplementation != *".c" ]] && [[ ! -d $tasksImplementation ]];
 					then
 						echo "Executing C"
 						#A second of delay since the wattsup has it as a startup delay
@@ -209,7 +209,7 @@ do
 				
 				;;
 				("c++")
-					if [[ $tasksImplementation != *".cpp" ]];
+					if [[ $tasksImplementation != *".cpp" ]] && [[ ! -d $tasksImplementation ]];
 					then
 						echo "Executing C++"
 						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt
@@ -249,7 +249,7 @@ do
 					#Here we have to make sure that our script will execute the bytecode that has the main class
 					getMain="0"
 					getByteCodeWithMainFunciton="0"
-					if [[ $tasksImplementation == *".class" ]];
+					if [[ $tasksImplementation == *".class" ]] && [[ ! -d $tasksImplementation ]];
 					then
 						getMain=$(echo $tasksImplementation | awk -F "." '{print $1}')
 						getMainFromJavaFile=$tasksPath/$containesTasks/$containesLanguages/$getMain".java"
@@ -336,7 +336,7 @@ do
 						sleep $sleepTime
 				;;
 				("c-sharp")
-					if [[ $tasksImplementation == *".exe" ]]; 
+					if [[ $tasksImplementation == *".exe" ]] && [[ ! -d $tasksImplementation ]]; 
 					then
 						echo "Executing C#"
 						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt
@@ -372,7 +372,7 @@ do
 					fi
 				;;
 				("visual-basic-.net")
-					if [[ $tasksImplementation == *".exe" ]];
+					if [[ $tasksImplementation == *".exe" ]] && [[ ! -d $tasksImplementation ]];
 					then
 						echo "Executing VB.NET"
 						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt
@@ -452,7 +452,13 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time php $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt &
+						#In some occusions we like the concurrent programming we have to use the zts-php to interpret the code
+						if grep "Thread" $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
+						then
+							(time zts-php $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt &
+						else
+							(time php $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt &
+						fi
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -688,14 +694,10 @@ done
 getTreeDirectoryFromRemoteHost $username $ipAddress GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results ../Reports/$EnergyPerformanceLogDirName/
 
 echo ""
-echo "All tasks are executed, continue with script.createPlottableData? [Y/n]"
-read answer
 
-if [ "$answer" == "Y" ] || [ "$answer" == "y" ]
-then
-	echo "Creating plottable text files..."
-	script.createPlottableData --absoluteDataPath ../Reports/$EnergyPerformanceLogDirName/ --languageType compiled --optimization ON
-	script.createPlottableData --absoluteDataPath ../Reports/$EnergyPerformanceLogDirName/ --languageType interpreted 
-fi
+echo "Creating plottable text files..."
+./script.createPlottableData --absoluteDataPath ../Reports/$EnergyPerformanceLogDirName/ --languageType compiled --optimization ON
+./script.createPlottableData --absoluteDataPath ../Reports/$EnergyPerformanceLogDirName/ --languageType interpreted 
+
 
 exit
