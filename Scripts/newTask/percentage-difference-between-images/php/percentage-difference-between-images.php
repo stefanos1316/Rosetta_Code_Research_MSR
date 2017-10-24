@@ -122,6 +122,8 @@ class compareImages
 	}
 }
 
-$myObj = new compareImages();
-$myObj->compare('../Lenna50.jpg', '../Lenna100.jpg');
+for ( $i = 0; $i < 10000; $i++) {
+	$myObj = new compareImages();
+	$myObj->compare('../Lenna50.jpg', '../Lenna100.jpg');
+}
 ?>
