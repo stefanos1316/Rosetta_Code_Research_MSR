@@ -30,7 +30,8 @@ then
 	echo "Script for ensuring the Stable Condition"
 	echo "========================================"
 	echo ""
-	echo "--ipAddress <str>	Provide IP address for remote host."
+	echo "--username <str>	Provide user name  for the remote host."
+	echo "--ipAddress <str>	Provide IP address for the remote host."
 	echo "--checkTime <n>	   	Provide time (in seconds) that will send ping messages"
 	echo "			to check the availability of the node."
 	echo "--temperature <n>	Provide the idle temperature of the node in Celsius."
@@ -42,7 +43,7 @@ then
 	exit
 fi
 
-if [ "$#" -lt 8 ]; then
+if [ "$#" -lt 10 ]; then
 	echo "Illegal number of command line arguments"
 	exit
 fi
@@ -54,16 +55,18 @@ args=("$@")
 ELEMENTS=${#args[@]} 
 
 #Initiallize parameters
+username="0"
 ipAddress="0"
 checkTime="0"
-idleTemperature="0"
-idlePower="0"
+idleTemperature=0
+idlePower=0
 
 # echo each element in array  
 # for lQsds
 for (( i=0;i<$ELEMENTS;++i)); do  
 
 	case "${args[${i}]}" in 
+	("--username") username="${args[i+1]}" ;;
 	("--ipAddress") ipAddress="${args[i+1]}" ;;
  	("--temperature") idleTemperature="${args[i+1]}" ;;
  	("--power") idlePower="${args[i+1]}" ;;
@@ -71,13 +74,9 @@ for (( i=0;i<$ELEMENTS;++i)); do
 	esac
 done
 
-#Calling function responsible on check the availability of the node each X seconds|minutes|hours and so on.
-nodeStatus $ipAddress $checkTime &
-
-
 #################################################################################################################################
 ##						FUNCTIONS							 	       ##
-################################################################################################################################
+#################################################################################################################################
 
 function nodeStatus {
 
@@ -115,5 +114,55 @@ do
 	sleep $2
 done
 }
+
+function checkTemperature {
+
+	while true;
+	do
+		currentTemperature=$(sensors | grep "Package id 0" | awk '{print $4}' | awk -F "+" '{print $2}' | awk -F "°" '{print $1}' | awk -F "." '{print $1}')
+		let currentTemperature=currentTemperature+0
+		allowedTemp=$1
+		upperBoundTemp=$((allowedTemp+3))
+		if [ "$currentTemperature" -gt "$upperBoundTemp" ];
+		then
+			currentTime=$(date)
+			echo "[$currentTime] Error: Current temperature is high...trying again in 60 seconds!"
+			sleep 60
+		else
+			echo "Temperature is fine!"
+			break
+		fi
+	done
+}
+
+
+function checkPower {
+
+	remoteHost=$1@$2
+
+	while true;
+	do
+		currentConsumption=$(SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts -c 1'")
+		let currentConsumption=${currentConsumption%%.*}+0
+		allowedConsumption=$3
+		upperBoundConsumption=$((allowedConsumption+1))
+		if [ "$currentConsumption" -gt "$upperBoundConsumption" ];
+		then
+			currentTime=$(date)
+			echo "[$currentTime] Error: Current power consumption is high...trying again in 60 seconds!"
+			sleep 60
+		else
+			echo "Power consumption's condition stable!"
+			break
+		fi
+	done
+}
+
+#################################################################################################################################
+
+#Calling function responsible on check the availability of the node each X seconds|minutes|hours and so on.
+nodeStatus $ipAddress $checkTime &
+checkTemperature $idleTemperature
+checkPower $username $ipAddress $idlePower
 
 exit

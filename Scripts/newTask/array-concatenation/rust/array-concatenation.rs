@@ -1,7 +1,7 @@
 fn main() {
-    let a_vec: Vec<i32> = vec![1, 2, 3, 4, 5];
-    let b_vec: Vec<i32> = vec![6, 7, 8, 9, 10];
 	for  i in 0..100000000 {
+    		let a_vec: Vec<i32> = vec![1, 2, 3, 4, 5];
+   		let b_vec: Vec<i32> = vec![6, 7, 8, 9, 10];
     		let c_vec = concatenate_arrays::<i32>(a_vec.as_slice(), b_vec.as_slice());
 	}
 }
