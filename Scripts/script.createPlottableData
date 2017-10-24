@@ -232,7 +232,7 @@ echo "EnergyDelayProduct_Weight_3.txt"
 echo "EnergyDelayProduct files transferred to $graphDataDir..."
 
 
-echo "Done with scripts executing and calculated EDP" | ssmtp -s "Rosetta_Code_Research_Results" stefanos1316@gmail.com
+ssmtp stefanos1316@gmail.com < mails/execution_done.txt
 exit
 ###############################################################################################################################
 ###############################################################################################################################
