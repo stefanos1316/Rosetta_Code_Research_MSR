@@ -94,7 +94,6 @@ do
 	horseLine=$i
 	for j in `ls $fullPath/$i`
 	do
-		echo $j
 		#Before getting the file modify it
 		#Watts Up Pro stores 2 lines of meta-data before writing its results in the file
 		#Therefore the line below ensures that our files are cleard from those lines.
@@ -231,8 +230,7 @@ echo "EnergyDelayProduct_Weight_2.txt"
 echo "EnergyDelayProduct_Weight_3.txt"
 echo "EnergyDelayProduct files transferred to $graphDataDir..."
 
-
-echo "Done with scripts executing and calculated EDP" | ssmtp -s "Rosetta_Code_Research_Results" stefanos1316@gmail.com
+ssmtp stefanos1316@gmail.com < mails/execution_done.txt
 exit
 ###############################################################################################################################
 ###############################################################################################################################
