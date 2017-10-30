@@ -94,6 +94,7 @@ do
 	horseLine=$i
 	for j in `ls $fullPath/$i`
 	do
+		echo $j
 		#Before getting the file modify it
 		#Watts Up Pro stores 2 lines of meta-data before writing its results in the file
 		#Therefore the line below ensures that our files are cleard from those lines.
@@ -222,7 +223,7 @@ echo "Creating Energy Delay Product (EDP) results..."
 fileEnergy=$graphDataLocationEnergy
 filePerformance=$graphDataLocationPerformance
 
-java -jar createEnergyDelayProductFiles_and_Normalized_Them.jar  $fileEnergy $filePerformance
+java -jar createEnergyDelayProductFiles_and_Normalized_Them_Plus_Log_Function.jar $fileEnergy $filePerformance
 mv EnergyDelayProduct_Weight_* $graphDataDir
 mv Normalized_EDP_* $graphDataDir
 echo "Files Created: "
