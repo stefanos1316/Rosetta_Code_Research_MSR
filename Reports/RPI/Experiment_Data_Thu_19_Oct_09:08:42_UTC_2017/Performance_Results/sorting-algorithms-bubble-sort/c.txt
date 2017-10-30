@@ -1,0 +1,9 @@
+./script.executeTasksRemotelyRPi: line 186: ./rpi//sorting-algorithms-bubble-sort/c/numbers: Permission denied
+
+real	0m0.005s
+user	0m0.000s
+sys	0m0.000s
+
+real	5m5.140s
+user	5m4.970s
+sys	0m0.000s
