@@ -71,6 +71,8 @@ fullPath=0
 	fi
 
 
+declare -a languagesInSequence=("c-sharp.txt" "c.txt" "c++.txt" "go.txt" "javascript.txt" "java.txt" "perl.txt" "php.txt" "python.txt" "r.txt" "ruby.txt" "rust.txt" "swift.txt" "visual-basic-.net.txt")
+
 ###############################################################################################################################
 ###############################################################################################################################
 
@@ -92,19 +94,11 @@ horseLine=0
 for i in `ls $fullPath`
 do
 	horseLine=$i
-	for j in `ls $fullPath/$i`
-	do
-		echo $j
-		#Before getting the file modify it
-		#Watts Up Pro stores 2 lines of meta-data before writing its results in the file
-		#Therefore the line below ensures that our files are cleard from those lines.
-		#However, this process is done only the first time
-		graphDataDir=$pathWithoutEnergyResults"/GraphData"
-		#if [ ! -d "$graphDataDir" ]; then
-		#	tail -n+3 $fullPath/$i/$j > $fullPath/$i/temp_$j
-		#	mv $fullPath/$i/temp_$j $fullPath/$i/$j
-		#fi
-
+	for k in "${languagesInSequence[@]}"; do 
+		echo $k
+#	for j in `ls $fullPath/$i`
+#	do
+	if [ -f $fullPath/$i/$k ]; then  
 		counter=0
 		toDivideWith=0
 		sum=0
@@ -116,7 +110,7 @@ do
 				#echo "$j -> $var"
 				sum=$(echo $sum + $var | bc)
 			#fi
-		done < "$fullPath/$i/$j"
+		done < "$fullPath/$i/$k"
 		
 		average=0
 		if [ $toDivideWith -ne 0 ]; then
@@ -125,13 +119,15 @@ do
 		else
 			average=0
 		fi
-		horseLine=$horseLine"--"$average	
+		horseLine=$horseLine"--"$average
+	else
+		horseLine=$horseLine"---1"	
+	fi
 	done
 	echo $horseLine
 	array+=($horseLine)
 	
 done
-
 
 for each in "${array[@]}"
 do
@@ -171,14 +167,19 @@ do
 	horseLine=$i
 	totalTime=0
 	#Now we see all the tasks
-	for j in `ls $performanceResults/$i`
+	for j in "${languagesInSequence[@]}"
 	do
+		echo $j
+		if [ -f $performanceResults/$i/$j ]; then
 		#echo "Task $i and file $j"
 		getMinutes=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $1}')
 		getSeconds=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $2}' | awk -F "." '{print $1}')
 		getMinutes=$((getMinutes*60))
 		totalTime=$((getMinutes+getSeconds))
 		horseLine=$horseLine"--"$totalTime
+		else	
+			horseLine=$horseLine"--1"
+		fi
 	done	
 	echo $horseLine
 	arrayPerf+=($horseLine)

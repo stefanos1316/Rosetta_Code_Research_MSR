@@ -1,3 +1,3 @@
-concurrent-computing	193	0	135	4	427	5827	1694	299	218	0	6	173
-inheritance-multiple	0	0	29	3	2	2	2
-inheritance-single	1	0	17	29	3	0	2	14	2	2	1
+concurrent-computing	193	0	135	4	1	427	5827	1694	299	1	218	0	6	1
+inheritance-multiple	1	1	0	1	0	29	3	1	2	1	2	1	2	1
+inheritance-single	1	1	0	1	17	29	3	0	2	14	2	1	2	1
