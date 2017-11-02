@@ -71,7 +71,7 @@ fullPath=0
 	fi
 
 
-declare -a languagesInSequence=("c-sharp.txt" "c.txt" "c++.txt" "go.txt" "javascript.txt" "java.txt" "perl.txt" "php.txt" "python.txt" "r.txt" "ruby.txt" "rust.txt" "swift.txt" "visual-basic-.net.txt")
+declare -a languagesInSequence=("c-sharp.txt" "c.txt" "c++.txt" "go.txt" "javascript.txt" "java.txt" "perl.txt" "php.txt" "python.txt" "r.txt" "ruby.txt" "rust.txt" "swift.txt" "vb.net.txt")
 
 ###############################################################################################################################
 ###############################################################################################################################
@@ -95,7 +95,7 @@ for i in `ls $fullPath`
 do
 	horseLine=$i
 	for k in "${languagesInSequence[@]}"; do 
-		echo $k
+		#echo $k
 #	for j in `ls $fullPath/$i`
 #	do
 	if [ -f $fullPath/$i/$k ]; then  
@@ -169,7 +169,7 @@ do
 	#Now we see all the tasks
 	for j in "${languagesInSequence[@]}"
 	do
-		echo $j
+		#echo $j
 		if [ -f $performanceResults/$i/$j ]; then
 		#echo "Task $i and file $j"
 		getMinutes=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $1}')
@@ -232,25 +232,21 @@ echo "EnergyDelayProduct_Weight_1.txt"
 echo "EnergyDelayProduct_Weight_2.txt"
 echo "EnergyDelayProduct_Weight_3.txt"
 echo "EnergyDelayProduct files transferred to $graphDataDir..."
-echo "Normalized Energy Delay Product results are transferred to $graphDataDri..."
-ssmtp stefanos1316@gmail.com < mails/execution_done.txt
-exit
-###############################################################################################################################
-###############################################################################################################################
+echo "Normalized Energy Delay Product results are transferred to $graphDataDir..."
+echo ""
+echo ""
+echo "Plotting heatmaps for Normalized data with weight of 1,2, and 3..."
 
-						#Call script to plot graphs#
+myvar=1 runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_1_HeatMap_Logarithmic_Function.png created!"
+myvar=2 runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_2_HeatMap_Logarithmic_Function.png created!"
+myvar=3 runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_3_HeatMap_Logarithmic_Function.png created!"
+echo ""
+echo "Moving HeatMaps under $graphDataDir..."
+mv Normalized_Results_EDP_*_HeatMap_Logarithmic_Function.png $graphDataDir
 
-###############################################################################################################################
-###############################################################################################################################
-
-#The line below was added 
-echo "Plotting Graphs..."
-sleep 5
-
-#Here we must plot 4 graphs in general, 2 for energy (compiled + interpeted) and 2 for performance (compiled + interpreted)
-experimentName=$experimentName
-
-./script.plotGraphs --resultsFile $graphDataLocationEnergy --experimetName $experimentName --storeGraph $graphDataDir --dataType Energy --languageType $languageType --optimization $optimization --graphPointsSize 1.5
-./script.plotGraphs --resultsFile $graphDataLocationPerformance --experimetName $experimentName --storeGraph $graphDataDir --dataType Performance --languageType $languageType --optimization $optimization --graphPointsSize 1.5
-
+mail -a $graphDataDir/Normalized_Results_EDP_1_HeatMap_Logarithmic_Function.png -a $graphDataDir/Normalized_Results_EDP_2_HeatMap_Logarithmic_Function.png -a $graphDataDir/Normalized_Results_EDP_3_HeatMap_Logarithmic_Function.png -s "[Rosetta Code Research] Execution Done" sgeorgiou@aueb.gr < mails/execution_done.txt 
+echo "Sending all results to sgeorgiou@aueb.gr..."
 exit
