@@ -124,7 +124,7 @@ for (int k = 0; k < 1000; ++k ) {
        for(i=0; i < 5 ; i++)
        {
          ic = (*f[i])(ivals[2*j], ivals[2*j+1], approx[j], rf[j]);
-         printf("%10s [ 0,1] num: %+lf, an: %lf\n", names[i], ic, INTG((*If[j]), ivals[2*j], ivals[2*j+1]));
+    	//    printf("%10s [ 0,1] num: %+lf, an: %lf\n", names[i], ic, INTG((*If[j]), ivals[2*j], ivals[2*j+1]));
        }
      }
 }

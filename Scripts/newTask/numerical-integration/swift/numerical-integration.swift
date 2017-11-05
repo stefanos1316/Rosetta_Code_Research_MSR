@@ -64,7 +64,7 @@ func integral_trapezoid(_ function: String, _ a: Float, _ b: Float, _ n: Float) 
             if i < (b - 1) {
                 sum += cube(i) + (4 * cube(i - (h / 2))) + cube(i + 1)
             } else {
-                sum += cube(i) + (4 * cube(i - (h / 2))) + cube(i + 1)
+                sum += cube(i) + (4 * cube(i - (h / 2))) + cube(i + 1 - b)
             }
         }
 
@@ -72,7 +72,7 @@ func integral_trapezoid(_ function: String, _ a: Float, _ b: Float, _ n: Float) 
             if i < (b - 1) {
                 sum += reciprocal(i) + (4 * reciprocal(i - (h / 2))) + reciprocal(i + 1)
             } else {
-                sum += reciprocal(i) + (4 * reciprocal(i - (h / 2))) + reciprocal(i + 1)
+                sum += reciprocal(i) + (4 * reciprocal(i - (h / 2))) + reciprocal(i + 1 - b)
             }
         }
 
@@ -80,7 +80,7 @@ func integral_trapezoid(_ function: String, _ a: Float, _ b: Float, _ n: Float) 
             if i < (b - 1) {
                 sum += identity(i) + (4 * identity(i - (h / 2))) + identity(i + 1)
             } else {
-                sum += identity(i) + (4 * identity(i - (h / 2))) + identity(i + 1)
+                sum += identity(i) + (4 * identity(i - (h / 2))) + identity(i + 1 - b)
             }
         }
         i += b/n
