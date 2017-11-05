@@ -36,7 +36,7 @@ Fully done with 20 out of 30.
 
 * Arithmetic
 	* exponentiation-operator (Done) 
-	* numerical-integration (8/14) -> Stefanos currently working on this
+	* numerical-integration (Done)
 * Compression
 	* huffman-coding (Done)
 	* lzw-compression (11/14) -> R and VB.NET remains
