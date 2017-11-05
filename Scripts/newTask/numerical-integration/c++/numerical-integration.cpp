@@ -1,4 +1,7 @@
 // the integration routine
+
+#include <iostream>
+
 template<typename Method, typename F, typename Float>
  double integrate(F f, Float a, Float b, int steps, Method m)
 {
@@ -53,18 +56,38 @@ public:
 };
 
 // sample usage
-double f(double x) { return x*x; }
+double f1(double x) { return x*x*x; }
+double f2(double x) { return 1/x; }
+double f3(double x) { return x; }
 
 int main() {
 
 for ( int i = 0; i < 1000; ++i ) {
 
 // inside a function somewhere:
-double rl = integrate(f, 0.0, 1.0, 10, rectangular(rectangular::left));
-double rm = integrate(f, 0.0, 1.0, 10, rectangular(rectangular::middle));
-double rr = integrate(f, 0.0, 1.0, 10, rectangular(rectangular::right));
-double t  = integrate(f, 0.0, 1.0, 10, trapezium());
-double s  = integrate(f, 0.0, 1.0, 10, simpson());
+integrate(f1, 0.0, 1.0, 100, rectangular(rectangular::left));
+integrate(f1, 0.0, 1.0, 100, rectangular(rectangular::middle));
+integrate(f1, 0.0, 1.0, 100, rectangular(rectangular::right));
+integrate(f1, 0.0, 1.0, 100, trapezium());
+integrate(f1, 0.0, 1.0, 100, simpson());
+
+integrate(f2, 1.0, 100.0, 1000, rectangular(rectangular::left));
+integrate(f2, 1.0, 100.0, 1000, rectangular(rectangular::middle));
+integrate(f2, 1.0, 100.0, 1000, rectangular(rectangular::right));
+integrate(f2, 1.0, 100.0, 1000, trapezium());
+integrate(f2, 1.0, 100.0, 1000, simpson());
+
+integrate(f3, 0.0, 5000.0, 5000000, rectangular(rectangular::left));
+integrate(f3, 0.0, 5000.0, 5000000, rectangular(rectangular::middle));
+integrate(f3, 0.0, 5000.0, 5000000, rectangular(rectangular::right));
+integrate(f3, 0.0, 5000.0, 5000000, trapezium());
+integrate(f3, 0.0, 5000.0, 5000000, simpson());
+
+integrate(f3, 0.0, 6000.0, 6000000, rectangular(rectangular::left));
+integrate(f3, 0.0, 6000.0, 6000000, rectangular(rectangular::middle));
+integrate(f3, 0.0, 6000.0, 6000000, rectangular(rectangular::right));
+integrate(f3, 0.0, 6000.0, 6000000, trapezium());
+integrate(f3, 0.0, 6000.0, 6000000, simpson());
 }
 
 return 0;

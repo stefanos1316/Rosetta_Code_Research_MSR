@@ -1,0 +1,118 @@
+
+Imports System.Collections.Generic
+Imports System.Linq
+
+Public Class Interval
+	Public Sub New(leftEndpoint__1 As Double, size As Double)
+		LeftEndpoint = leftEndpoint__1
+		RightEndpoint = leftEndpoint__1 + size
+	End Sub
+
+	Public Property LeftEndpoint() As Double
+		Get
+			Return m_LeftEndpoint
+		End Get
+		Set
+			m_LeftEndpoint = Value
+		End Set
+	End Property
+	Private m_LeftEndpoint As Double
+
+	Public Property RightEndpoint() As Double
+		Get
+			Return m_RightEndpoint
+		End Get
+		Set
+			m_RightEndpoint = Value
+		End Set
+	End Property
+	Private m_RightEndpoint As Double
+
+	Public ReadOnly Property Size() As Double
+		Get
+			Return RightEndpoint - LeftEndpoint
+		End Get
+	End Property
+
+	Public ReadOnly Property Center() As Double
+		Get
+			Return (LeftEndpoint + RightEndpoint) / 2
+		End Get
+	End Property
+
+	Public Function Subdivide(subintervalCount As Integer) As IEnumerable(Of Interval)
+		Dim subintervalSize As Double = Size / subintervalCount
+		Return Enumerable.Range(0, subintervalCount).[Select](Function(index) New Interval(LeftEndpoint + index * subintervalSize, subintervalSize))
+	End Function
+End Class
+
+Public Class DefiniteIntegral
+	Public Sub New(integrand__1 As Func(Of Double, Double), domain__2 As Interval)
+		Integrand = integrand__1
+		Domain = domain__2
+	End Sub
+
+	Public Property Integrand() As Func(Of Double, Double)
+		Get
+			Return m_Integrand
+		End Get
+		Set
+			m_Integrand = Value
+		End Set
+	End Property
+	Private m_Integrand As Func(Of Double, Double)
+
+	Public Property Domain() As Interval
+		Get
+			Return m_Domain
+		End Get
+		Set
+			m_Domain = Value
+		End Set
+	End Property
+	Private m_Domain As Interval
+
+	Public Function SampleIntegrand(approximationMethod__1 As ApproximationMethod, subdomain As Interval) As Double
+		Select Case approximationMethod__1
+			Case ApproximationMethod.RectangleLeft
+				Return Integrand(subdomain.LeftEndpoint)
+			Case ApproximationMethod.RectangleMidpoint
+				Return Integrand(subdomain.Center)
+			Case ApproximationMethod.RectangleRight
+				Return Integrand(subdomain.RightEndpoint)
+			Case ApproximationMethod.Trapezium
+				Return (Integrand(subdomain.LeftEndpoint) + Integrand(subdomain.RightEndpoint)) / 2
+			Case ApproximationMethod.Simpson
+				Return (Integrand(subdomain.LeftEndpoint) + 4 * Integrand(subdomain.Center) + Integrand(subdomain.RightEndpoint)) / 6
+			Case Else
+				Throw New NotImplementedException()
+		End Select
+	End Function
+
+	Public Function Approximate(approximationMethod As ApproximationMethod, subdomainCount As Integer) As Double
+		Return Domain.Size * Domain.Subdivide(subdomainCount).Sum(Function(subdomain) SampleIntegrand(approximationMethod, subdomain)) / subdomainCount
+	End Function
+
+	Public Enum ApproximationMethod
+		RectangleLeft
+		RectangleMidpoint
+		RectangleRight
+		Trapezium
+		Simpson
+	End Enum
+End Class
+
+Public Class Program
+	Private Shared Sub TestApproximationMethods(integral As DefiniteIntegral, subdomainCount As Integer)
+		For Each approximationMethod As DefiniteIntegral.ApproximationMethod In [Enum].GetValues(GetType(DefiniteIntegral.ApproximationMethod))
+			Console.WriteLine(integral.Approximate(approximationMethod, subdomainCount))
+		Next
+	End Sub
+
+	Public Shared Sub Main()
+		TestApproximationMethods(New DefiniteIntegral(Function(x) x * x * x, New Interval(0, 1)), 10000)
+		TestApproximationMethods(New DefiniteIntegral(Function(x) 1 / x, New Interval(1, 99)), 1000)
+		TestApproximationMethods(New DefiniteIntegral(Function(x) x, New Interval(0, 5000)), 500000)
+		TestApproximationMethods(New DefiniteIntegral(Function(x) x, New Interval(0, 6000)), 6000000)
+	End Sub
+End Class

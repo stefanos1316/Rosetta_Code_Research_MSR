@@ -117,9 +117,9 @@ public class Program
  
     public static void Main()
     {
-        TestApproximationMethods(new DefiniteIntegral(x => x * x * x, new Interval(0, 1)), 10000);
+        TestApproximationMethods(new DefiniteIntegral(x => x * x * x, new Interval(0, 1)), 100);
         TestApproximationMethods(new DefiniteIntegral(x => 1 / x, new Interval(1, 99)), 1000);
-        TestApproximationMethods(new DefiniteIntegral(x => x, new Interval(0, 5000)), 500000);
+        TestApproximationMethods(new DefiniteIntegral(x => x, new Interval(0, 5000)), 5000000);
         TestApproximationMethods(new DefiniteIntegral(x => x, new Interval(0, 6000)), 6000000);
     }
 }
