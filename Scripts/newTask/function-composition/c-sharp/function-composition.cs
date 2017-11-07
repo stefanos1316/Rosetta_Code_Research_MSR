@@ -4,7 +4,8 @@ class Program
     static void Main(string[] args)
     {
         Func<int, int> outfunc = Composer<int, int, int>.Compose(functA, functB);
-        Console.WriteLine(outfunc(5)); //Prints 100
+        for (int i = 0; i < 1000000000; ++i)
+            outfunc(5); //Prints 100
     }
     static int functA(int i) { return i * 10; }
     static int functB(int i) { return i + 5; }

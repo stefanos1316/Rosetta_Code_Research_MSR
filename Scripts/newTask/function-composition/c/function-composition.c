@@ -47,18 +47,21 @@ double asin_call(double_to_double *this, double x) {
 #include <stdio.h>
 
 int main() {
-  double_to_double *my_sin = malloc(sizeof(double_to_double));
-  my_sin->fn = &sin_call;
-  double_to_double *my_asin = malloc(sizeof(double_to_double));
-  my_asin->fn = &asin_call;
 
-  double_to_double *sin_asin = compose(my_sin, my_asin);
+  for (int i = 0; i < 1000000000; ++i) {
+    double_to_double *my_sin = malloc(sizeof(double_to_double));
+    my_sin->fn = &sin_call;
+    double_to_double *my_asin = malloc(sizeof(double_to_double));
+    my_asin->fn = &asin_call;
 
-  printf("%f\n", CALL(sin_asin, 0.5)); /* prints "0.500000" */
+    double_to_double *sin_asin = compose(my_sin, my_asin);
 
-  free(sin_asin);
-  free(my_sin);
-  free(my_asin);
+  //  printf("%f\n", CALL(sin_asin, 0.5)); /* prints "0.500000" */
+    CALL(sin_asin, 0.5);
+    free(sin_asin);
+    free(my_sin);
+    free(my_asin);
+  }
 
   return 0;
 }

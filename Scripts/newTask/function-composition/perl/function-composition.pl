@@ -7,4 +7,6 @@ sub compose {
 }
 
 use Math::Trig;
-print compose(sub {sin $_[0]}, \&asin)->(0.5), "\n";
+for($a = 0; $a < 1000000000; $a += 1) { 
+    compose(sub {sin $_[0]}, \&asin)->(0.5)
+}
