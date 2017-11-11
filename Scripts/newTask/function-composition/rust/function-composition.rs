@@ -1,12 +1,15 @@
-
-fn compose<'a,F,G,T,U,V>(f: F, g: G) -> Box<Fn(T) -> V + 'a>
-    where F: Fn(U) -> V + 'a,
-          G: Fn(T) -> U + 'a,
-{
-   Box::new(move |x| f(g(x)))
+fn comp<F: 'static, Fin, Fout, G: 'static, Gout>(g: G, f: F) -> Box<Fn(Fin) -> Gout>
+    where 
+    F: Fn(Fin) -> Fout,
+    G: Fn(Fout) -> Gout {
+    Box::new(move |x| g(f(x)))
 }
 
-fn main() {
-    let sin_asin = compose(sin(), asin());
-    print!("{}",sin_asin(0.5));
+fn main(){
+
+	for _i in 0..1000000000 {
+		let inc = |x| x + 1;
+    		let half = |x| x / 2;
+   		assert!((comp(inc,half))(3) == 2)
+	}
 }

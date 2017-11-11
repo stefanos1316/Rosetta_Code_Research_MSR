@@ -1,9 +1,29 @@
-import Foundation
+typealias Modifier = (String)->String
 
-
-func compose<A,B,C>(f: @escaping (B) -> C, g: @escaping (A) -> B) -> (A) -> C {
-  return { f(g($0)) } 
+func uppercase() -> Modifier {
+    return { string in
+        return string.uppercased()
+    }
 }
 
-let sin_asin = compose(f:sin, g:asin)
-print(sin_asin(0.5))
+func removeLast() -> Modifier {
+    return { string in
+        return String(string.characters.dropLast())
+    }
+}
+
+func addSuffix(suffix: String) -> Modifier {
+    return { string in
+        return string + suffix
+    }
+}
+
+func compose(_ left: @escaping Modifier, _ right: @escaping Modifier) -> Modifier {
+    return { string in
+        left(right(string))
+    }
+}
+
+for i in 0...1000000000 {
+	let a = compose(compose(uppercase(), removeLast()), addSuffix(suffix: "Abc"))("IntitialValue")
+}
