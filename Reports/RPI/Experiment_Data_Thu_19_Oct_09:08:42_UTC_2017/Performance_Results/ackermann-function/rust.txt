@@ -1,5 +1,0 @@
-./script.executeTasksRemotelyRPi: line 626: ./rpi//ackermann-function/rust/ackermann-function: cannot execute binary file: Exec format error
-
-real	0m0.016s
-user	0m0.000s
-sys	0m0.000s

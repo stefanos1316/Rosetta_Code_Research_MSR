@@ -1,6 +1,0 @@
-Error: cannot allocate vector of size 3.7 Gb
-Execution halted
-
-real	0m0.508s
-user	0m0.420s
-sys	0m0.050s

@@ -224,7 +224,11 @@ echo "Creating Energy Delay Product (EDP) results..."
 fileEnergy=$graphDataLocationEnergy
 filePerformance=$graphDataLocationPerformance
 
-java -jar createEnergyDelayProductFiles_and_Normalized_Them_Plus_Log_Function.jar $fileEnergy $filePerformance
+getNumberOfTasks=$(cat $graphDataLocationPerformance | wc -l)
+getNumberOfLangauges=$(awk '{print NF; exit}' $graphDataLocationPerformance)
+getNumberOfLanguages=$((getNumberOfLanguages - 1))
+
+java -jar createEnergyDelayProductFiles_and_Normalized_Them_Plus_Log_Function.jar $fileEnergy $filePerformance $getNumberOfTasks $getNumberOfLanguages
 mv EnergyDelayProduct_Weight_* $graphDataDir
 mv Normalized_EDP_* $graphDataDir
 echo "Files Created: "
@@ -237,11 +241,11 @@ echo ""
 echo ""
 echo "Plotting heatmaps for Normalized data with weight of 1,2, and 3..."
 
-myvar=1 runipy MakingHeatMap.ipynb 
+myvar=1 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages runipy MakingHeatMap.ipynb 
 echo "HeatMaps Normalized_Results_EDP_1_HeatMap_Logarithmic_Function.png created!"
-myvar=2 runipy MakingHeatMap.ipynb 
+myvar=2 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages runipy MakingHeatMap.ipynb 
 echo "HeatMaps Normalized_Results_EDP_2_HeatMap_Logarithmic_Function.png created!"
-myvar=3 runipy MakingHeatMap.ipynb 
+myvar=3 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages runipy MakingHeatMap.ipynb 
 echo "HeatMaps Normalized_Results_EDP_3_HeatMap_Logarithmic_Function.png created!"
 echo ""
 echo "Moving HeatMaps under $graphDataDir..."

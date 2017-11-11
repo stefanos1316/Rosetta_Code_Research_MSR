@@ -1,0 +1,7 @@
+/usr/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require': cannot load such file -- priority_queue (LoadError)
+	from /usr/lib/ruby/2.1.0/rubygems/core_ext/kernel_require.rb:55:in `require'
+	from rpi/huffman-coding/ruby/huffman-coding.rb:1:in `<main>'
+
+real	0m0.211s
+user	0m0.180s
+sys	0m0.020s

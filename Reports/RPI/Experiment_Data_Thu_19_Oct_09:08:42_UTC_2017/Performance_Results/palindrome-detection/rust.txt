@@ -1,5 +1,0 @@
-./script.executeTasksRemotelyRPi: line 626: ./rpi//palindrome-detection/rust/palindrome-detection: cannot execute binary file: Exec format error
-
-real	0m0.014s
-user	0m0.000s
-sys	0m0.000s
