@@ -12,7 +12,7 @@ speak.CallAnObjectMethod <- function(obj) {
 	value = obj$name
 }
 
-for ( i in 0:1000000000 ) {
+for ( i in 0:100000000 ) {
 	object <- list(name="Object")
 
 	#inherit
