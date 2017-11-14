@@ -3,10 +3,10 @@
 #Necessary command line argument is the path of the Task's directory
 
 #C's compilation flags
-C_FLAGS="-pthread -L/home/yourname/gsl/lib -lgsl -lgslcblas -lm polifitgsl.c -lyajl -std=c99 -fopenmp"
-C_PLUS_PLUS_FLAGS="-std=c++11 -D_GLIBCXX_USE_NANOSLEEP -lpthread"
-C_SHARP_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
-VB_DOT_NET_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+#C_FLAGS="-pthread -L/home/yourname/gsl/lib -lgsl -lgslcblas -lm polifitgsl.c -lyajl -std=c99 -fopenmp"
+#C_PLUS_PLUS_FLAGS="-std=c++11 -D_GLIBCXX_USE_NANOSLEEP -lpthread"
+#C_SHARP_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+#VB_DOT_NET_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
 
 for containesTasks in `ls $1`;
 do
