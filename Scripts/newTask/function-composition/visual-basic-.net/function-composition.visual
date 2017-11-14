@@ -1,0 +1,32 @@
+Imports System
+Imports System.Collections.Generic
+
+Module Module1
+    Sub Main()
+        ' Lambda expression that receives Integer, returns Integer.
+        Dim func1 As Func(Of Integer, Integer) = Function(value As Integer)
+                                                     Return value + 1
+                                                 End Function
+
+        ' Lambda expression that receives two Integers, returns Integer.
+        Dim func2 As Func(Of Integer, Integer, Integer) =
+            Function(value As Integer, value2 As Integer)
+                Return value * value2
+            End Function
+
+        ' Lambda expression that receives Integer, returns String.
+        ' ... Short syntax.
+        Dim func3 As Func(Of Integer, String) = Function(x) (x + 1).ToString()
+
+        ' Lambda expression that returns void.
+        Dim action1 As Action = Sub()
+                                    Console.WriteLine("action1")
+                                End Sub
+
+        ' Use Func and Action instances.
+        Console.WriteLine(func1.Invoke(4))
+        Console.WriteLine(func2.Invoke(2, 3))
+        Console.WriteLine(func3.Invoke(3))
+        action1.Invoke()
+    End Sub
+End Module
