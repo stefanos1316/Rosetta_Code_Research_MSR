@@ -9,7 +9,7 @@ class SynchronousConcurrency
 {
   public static void main(String[] args) throws Exception
   {
-    for (int i = 0; i < 1000; ++i) {
+    for (int i = 0; i < 100000; ++i) {
     final AtomicLong lineCount = new AtomicLong(0);
     final BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
     final String EOF = new String();

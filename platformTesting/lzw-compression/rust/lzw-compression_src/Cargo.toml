@@ -1,0 +1,7 @@
+[package]
+name = "lzw-compression"
+version = "0.1.0"
+authors = ["sgeorgiou"]
+
+[dependencies]
+lzw = "0.10.0"

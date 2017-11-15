@@ -1,8 +1,0 @@
-Changes Needed to run tasks on RPis
-===================================
-
-C -> add -std=c99 to compile correctly
-C++ -> As it is from the RPi
-C# ->  Installed from this website https://nanite.co/tag/mcs/
-Golang -> Installed and followed instrcutions from this side https://github.com/tgogos/rpi_golang
-
