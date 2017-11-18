@@ -1,0 +1,8 @@
+> mydata = read.csv("./first_5_tasks_2_pl.csv")
+> wilcox.test(VL ~ PL, data = mydata)
+
+Wilcoxon rank sum test with continuity correction
+
+data:  VL by PL
+W = 17, p-value = 0.3886
+alternative hypothesis: true location shift is not equal to 0
