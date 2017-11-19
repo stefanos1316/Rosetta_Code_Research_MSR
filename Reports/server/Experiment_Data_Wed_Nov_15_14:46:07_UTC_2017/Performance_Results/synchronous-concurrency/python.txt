@@ -1,0 +1,12 @@
+  File "server//synchronous-concurrency/python/input.txt", line 1
+    The Republic By Plato
+               ^
+SyntaxError: invalid syntax
+
+real	0m0.014s
+user	0m0.009s
+sys	0m0.004s
+
+real	0m3.061s
+user	0m2.504s
+sys	0m1.411s

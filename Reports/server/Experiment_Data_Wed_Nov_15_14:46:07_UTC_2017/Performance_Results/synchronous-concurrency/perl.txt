@@ -1,0 +1,15 @@
+syntax error at server//synchronous-concurrency/perl/input.txt line 2, near "===="
+No such class prayers at server//synchronous-concurrency/perl/input.txt line 17, near "up my prayers"
+No such class prayers at server//synchronous-concurrency/perl/input.txt line 21, near "had
+finished our prayers"
+syntax error at server//synchronous-concurrency/perl/input.txt line 21, near "our prayers and"
+No such class way at server//synchronous-concurrency/perl/input.txt line 23, near "starting on our way"
+Unrecognized character \xE2; marked by <-- HERE after s, Glaucon<-- HERE near column 33 at server//synchronous-concurrency/perl/input.txt line 29.
+
+real	0m0.154s
+user	0m0.002s
+sys	0m0.002s
+
+real	0m4.605s
+user	0m4.772s
+sys	0m0.406s

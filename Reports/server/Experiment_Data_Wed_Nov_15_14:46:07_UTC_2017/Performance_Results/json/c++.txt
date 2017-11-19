@@ -1,0 +1,9 @@
+
+real	2m34.773s
+user	2m34.507s
+sys	0m0.003s
+./script.executeTasksRemotelyServer: line 225: ./server//json/c++/json.hpp: Permission denied
+
+real	0m0.003s
+user	0m0.002s
+sys	0m0.000s

@@ -1,0 +1,9 @@
+./script.executeTasksRemotelyServer: line 635: ./server//exponentiation-operator/rust/exponentiation-operator: Is a directory
+
+real	0m0.002s
+user	0m0.002s
+sys	0m0.000s
+
+real	1m54.348s
+user	1m54.235s
+sys	0m0.002s

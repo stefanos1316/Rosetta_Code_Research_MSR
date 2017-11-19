@@ -13,4 +13,6 @@ palindrome-detection: swift to 3, vb.net
 exponentiation-operator: php, swift, vb.net
 regular-expressions: rust, vb.net
 ackermann-function: vb.net
-concurrent-computing: php,
+concurrent-computing: php
+lzw-compression: vb.net
+numerical-integration: javascript, perl, swift, php, vb.net

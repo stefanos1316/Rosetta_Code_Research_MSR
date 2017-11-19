@@ -1,0 +1,13 @@
+FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
+ 1: node::Abort() [node]
+ 2: 0xdd5d3e [node]
+ 3: v8::Utils::ReportApiFailure(char const*, char const*) [node]
+ 4: v8::internal::V8::FatalProcessOutOfMemory(char const*, bool) [node]
+ 5: v8::internal::Factory::NewFillerObject(int, bool, v8::internal::AllocationSpace) [node]
+ 6: v8::internal::Runtime_AllocateInTargetSpace(int, v8::internal::Object**, v8::internal::Isolate*) [node]
+ 7: 0x1713435079a7
+./script.executeTasksRemotelyServer: line 170: 12146 Aborted                 (core dumped) node -max_old_space_size=4096 $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
+
+real	5m25.486s
+user	3m26.747s
+sys	0m45.388s

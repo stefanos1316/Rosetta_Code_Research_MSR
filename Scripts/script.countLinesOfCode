@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# This script upon execution provides the number of source code lines found in this directory.
+
+#Counting all the lines for the BASH script source code
+echo ""
+echo "Total written code to manage the data-set of Rosetta Code: "
+../cloc/cloc script.* *.py FilterFiles/src/FilterFiles.java 
+
+echo ""
+echo "============================================================================="
+echo ""
+echo "Total written source code for missing tasks or had to be added in the data-set"
+
+../cloc/cloc newTask/call-an-object-method/c/*.c newTask/call-an-object-method/c-sharp/*.cs newTask/call-an-object-method/visual-basic-.net/*.vb newTask/call-an-object-method/r/* newTask/classes/c-sharp/*.cs newTask/classes/rust/*.rs newTask/file-input-output/c-sharp/*.cs newTask/file-input-output/swift/*.swift newTask/sorting-algorithms-bubble-sort/c-sharp/*.cs newTask/sorting-algorithms-insertion-sort/c-sharp/*.cs newTask/sorting-algorithms-insertion-sort/c-sharp/*.cs newTask/sorting-algorithms-insertion-sort/rust/*.rs  newTask/sorting-algorithms-insertion-sort/swift/*.swift newTask/sorting-algorithms-insertion-sort/visual-basic-.net/*.vb newTask/sorting-algorithms-merge-sort/c-sharp/*.cs newTask/sorting-algorithms-merge-sort/visual-basic-.net/*.vb newTask/sorting-algorithms-quick-sort/c-sharp/*.cs newTask/sorting-algorithms-quick-sort/visual-basic-.net/*.vb newTask/sorting-algorithms-selection-sort/c-sharp/*.cs newTask/sorting-algorithms-selection-sort/visual-basic-.net/*.vb newTask/sorting-algorithms-selection-sort/rust/*.rust newTask/url-decoding/rust/*.rs newTask/url-decoding/visual-basic-.net/*.vb newTask/url-encoding/rust/*.rs newTask/url-encoding/visual-basic-.net/*.vb newTask/url-encoding/swift/*.swift newTask/json/visual-basic-.net/*.vb newTask/palindrome-detection/swift/*.swift newTask/palindrome-detection/visual-basic-.net/*.vb newTask/exponentiation-operator/php/*.php newTask/exponentiation-operator/swift/*.swift newTask/exponentiation-operator/visual-basic-.net/*.vb newTask/regular-expressions/rust/*.rs newTask/regular-expressions/visual-basic-.net/*.vb newTask/ackermann-function/visual-basic-.net/*.vb newTask/concurrent-computing/php/*.php newTask/lzw-compression/visual-basic-.net/*.vb newTask/numerical-integration/javascript/*.js newTask/numerical-integration/perl/*.pl newTask/numerical-integration/php/*.php newTask/numerical-integration/swift/*.swift newTask/numerical-integration/visual-basic-.net/*.vb 
+
+
+echo "Done..."

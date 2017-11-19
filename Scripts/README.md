@@ -39,10 +39,10 @@ Fully done with 20 out of 30.
 	* numerical-integration (Done)
 * Compression
 	* huffman-coding (Done)
-	* lzw-compression (11/14) -> R and VB.NET remains
+	* lzw-compression (13/14) -> R remains
 * Cocurrency
 	* concurrent-computing (12/14) -> R and JS are ignore from this task
-	* synchronous-concurrency (11/14) -> Stefanos started working on this
+	* synchronous-concurrency (11/14) 
 * Data Strucutres
 	* array-concatentation (Done)
 	* json (Done)
@@ -71,7 +71,7 @@ Fully done with 20 out of 30.
 	* classes (Done)
 
 * Functional Programming (We are not using any functional language)
-	* Function application
+	* function-composission (13/14) -> Having issues with VB.NET
 	* List Processing 	
 
 * Execptions 
