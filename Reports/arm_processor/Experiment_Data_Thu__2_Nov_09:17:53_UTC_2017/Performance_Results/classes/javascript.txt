@@ -1,0 +1,16 @@
+
+/home/pi/GitHub/Rosetta_Code_Research_MSR/Scripts/rpi/classes/javascript/classes.js:1
+(function (exports, require, module, __filename, __dirname) { class MyClass{
+                                                              ^^^^^
+SyntaxError: Unexpected reserved word
+    at Module._compile (module.js:439:25)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Function.Module.runMain (module.js:497:10)
+    at startup (node.js:119:16)
+    at node.js:906:3
+
+real	0m0.223s
+user	0m0.200s
+sys	0m0.010s

@@ -1,0 +1,11 @@
+
+real	4m55.700s
+user	0m16.950s
+sys	0m37.494s
+server//file-input-output/ruby/output.txt:2: syntax error, unexpected ===, expecting end-of-input
+=====================
+   ^
+
+real	0m0.034s
+user	0m0.029s
+sys	0m0.005s

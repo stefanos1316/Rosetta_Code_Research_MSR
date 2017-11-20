@@ -1,0 +1,7 @@
+rpi//ackermann-function/swift/ackermann-function.swift:14:13: warning: result of call to 'ackerman(m:n:)' is unused
+            ackerman(m:m,n:n)
+            ^       ~~~~~~~~~
+
+real	1m16.504s
+user	1m12.440s
+sys	0m0.270s

@@ -71,6 +71,8 @@ fullPath=0
 	fi
 
 
+declare -a languagesInSequence=("c-sharp.txt" "c.txt" "c++.txt" "go.txt" "javascript.txt" "java.txt" "perl.txt" "php.txt" "python.txt" "r.txt" "ruby.txt" "rust.txt" "swift.txt" "vb.net.txt")
+
 ###############################################################################################################################
 ###############################################################################################################################
 
@@ -92,19 +94,11 @@ horseLine=0
 for i in `ls $fullPath`
 do
 	horseLine=$i
-	for j in `ls $fullPath/$i`
-	do
-		echo $j
-		#Before getting the file modify it
-		#Watts Up Pro stores 2 lines of meta-data before writing its results in the file
-		#Therefore the line below ensures that our files are cleard from those lines.
-		#However, this process is done only the first time
-		graphDataDir=$pathWithoutEnergyResults"/GraphData"
-		#if [ ! -d "$graphDataDir" ]; then
-		#	tail -n+3 $fullPath/$i/$j > $fullPath/$i/temp_$j
-		#	mv $fullPath/$i/temp_$j $fullPath/$i/$j
-		#fi
-
+	for k in "${languagesInSequence[@]}"; do 
+		#echo $k
+#	for j in `ls $fullPath/$i`
+#	do
+	if [ -f $fullPath/$i/$k ]; then  
 		counter=0
 		toDivideWith=0
 		sum=0
@@ -116,7 +110,7 @@ do
 				#echo "$j -> $var"
 				sum=$(echo $sum + $var | bc)
 			#fi
-		done < "$fullPath/$i/$j"
+		done < "$fullPath/$i/$k"
 		
 		average=0
 		if [ $toDivideWith -ne 0 ]; then
@@ -125,13 +119,15 @@ do
 		else
 			average=0
 		fi
-		horseLine=$horseLine"--"$average	
+		horseLine=$horseLine"--"$average
+	else
+		horseLine=$horseLine"---1"	
+	fi
 	done
 	echo $horseLine
 	array+=($horseLine)
 	
 done
-
 
 for each in "${array[@]}"
 do
@@ -171,14 +167,19 @@ do
 	horseLine=$i
 	totalTime=0
 	#Now we see all the tasks
-	for j in `ls $performanceResults/$i`
+	for j in "${languagesInSequence[@]}"
 	do
+		#echo $j
+		if [ -f $performanceResults/$i/$j ]; then
 		#echo "Task $i and file $j"
 		getMinutes=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $1}')
 		getSeconds=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $2}' | awk -F "." '{print $1}')
 		getMinutes=$((getMinutes*60))
 		totalTime=$((getMinutes+getSeconds))
 		horseLine=$horseLine"--"$totalTime
+		else	
+			horseLine=$horseLine"--1"
+		fi
 	done	
 	echo $horseLine
 	arrayPerf+=($horseLine)
@@ -223,33 +224,34 @@ echo "Creating Energy Delay Product (EDP) results..."
 fileEnergy=$graphDataLocationEnergy
 filePerformance=$graphDataLocationPerformance
 
-java -jar createEnergyDelayProductFiles.jar $fileEnergy $filePerformance
+getNumberOfTasks=$(cat $graphDataLocationPerformance | wc -l)
+getNumberOfLanguages=$(awk '{print NF; exit}' $graphDataLocationPerformance)
+getNumberOfLanguages=$((getNumberOfLanguages - 1))
+getTasksNames=$(awk '{print $1}' ORS=',' $graphDataLocationPerformance)
+
+java -jar createEnergyDelayProductFiles_and_Normalized_Them_Plus_Log_Function.jar $fileEnergy $filePerformance $getNumberOfTasks $getNumberOfLanguages
 mv EnergyDelayProduct_Weight_* $graphDataDir
+mv Normalized_EDP_* $graphDataDir
 echo "Files Created: "
 echo "EnergyDelayProduct_Weight_1.txt"
 echo "EnergyDelayProduct_Weight_2.txt"
 echo "EnergyDelayProduct_Weight_3.txt"
 echo "EnergyDelayProduct files transferred to $graphDataDir..."
+echo "Normalized Energy Delay Product results are transferred to $graphDataDir..."
+echo ""
+echo ""
+echo "Plotting heatmaps for Normalized data with weight of 1,2, and 3..."
 
+myvar=1 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_1_HeatMap_Logarithmic_Function.png created!"
+myvar=2 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_2_HeatMap_Logarithmic_Function.png created!"
+myvar=3 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_3_HeatMap_Logarithmic_Function.png created!"
+echo ""
+echo "Moving HeatMaps under $graphDataDir..."
+mv Normalized_Results_EDP_*_HeatMap_Logarithmic_Function.png $graphDataDir
 
-ssmtp stefanos1316@gmail.com < mails/execution_done.txt
-exit
-###############################################################################################################################
-###############################################################################################################################
-
-						#Call script to plot graphs#
-
-###############################################################################################################################
-###############################################################################################################################
-
-#The line below was added 
-echo "Plotting Graphs..."
-sleep 5
-
-#Here we must plot 4 graphs in general, 2 for energy (compiled + interpeted) and 2 for performance (compiled + interpreted)
-experimentName=$experimentName
-
-./script.plotGraphs --resultsFile $graphDataLocationEnergy --experimetName $experimentName --storeGraph $graphDataDir --dataType Energy --languageType $languageType --optimization $optimization --graphPointsSize 1.5
-./script.plotGraphs --resultsFile $graphDataLocationPerformance --experimetName $experimentName --storeGraph $graphDataDir --dataType Performance --languageType $languageType --optimization $optimization --graphPointsSize 1.5
-
+mail -a $graphDataDir/Normalized_Results_EDP_1_HeatMap_Logarithmic_Function.png -a $graphDataDir/Normalized_Results_EDP_2_HeatMap_Logarithmic_Function.png -a $graphDataDir/Normalized_Results_EDP_3_HeatMap_Logarithmic_Function.png -s "[Rosetta Code Research] Execution Done" sgeorgiou@aueb.gr < mails/execution_done.txt 
+echo "Sending all results to sgeorgiou@aueb.gr..."
 exit

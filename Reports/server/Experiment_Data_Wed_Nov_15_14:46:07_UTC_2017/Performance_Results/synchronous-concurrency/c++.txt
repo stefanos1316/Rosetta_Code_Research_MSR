@@ -1,0 +1,9 @@
+./script.executeTasksRemotelyServer: line 225: ./server//synchronous-concurrency/c++/input.txt: Permission denied
+
+real	0m0.001s
+user	0m0.001s
+sys	0m0.000s
+
+real	0m0.689s
+user	0m0.101s
+sys	0m0.204s

@@ -364,3 +364,4 @@ Execution         	Wed Oct 18 14:06:58 UTC 2017      temp//inheritance-single/r/
 Execution		Wed Oct 18 14:09:08 UTC 2017	temp//inheritance-single/ruby/inheritance-single.rb:Ruby
 Execution         Wed Oct 18 14:11:20 UTC 2017      temp//inheritance-single/swift/inheritance-single.swift:Swift
 Execution		Wed Oct 18 14:13:30 UTC 2017	temp//inheritance-single/visual-basic-.net/inheritance-single.exe:Visual-Basic-.Net
+Execution         	Tue 14 Nov 13:38:56 UTC 2017      rpi//call-an-object-method/r/call-an-object-method.r:R

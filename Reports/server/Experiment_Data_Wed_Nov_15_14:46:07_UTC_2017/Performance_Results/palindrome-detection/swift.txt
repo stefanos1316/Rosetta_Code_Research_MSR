@@ -1,0 +1,7 @@
+server//palindrome-detection/swift/palindrome-detection.swift:18:7: warning: result of call to 'isPalindrome()' is unused
+ data.isPalindrome()   // true
+      ^           ~~
+
+real	50m36.092s
+user	50m32.149s
+sys	0m0.054s
