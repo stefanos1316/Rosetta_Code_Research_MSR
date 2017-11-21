@@ -1,5 +1,0 @@
-./script.executeTasksRemotelyServer: line 225: .//home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/server//call-an-object-method/c++/call-an-object-method: No such file or directory
-
-real	0m0.002s
-user	0m0.000s
-sys	0m0.002s

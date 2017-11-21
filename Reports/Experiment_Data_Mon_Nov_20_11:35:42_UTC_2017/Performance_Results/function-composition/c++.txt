@@ -1,5 +1,0 @@
-./script.executeTasksRemotelyServer: line 225: .//home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/server//function-composition/c++/function-composition: No such file or directory
-
-real	0m0.006s
-user	0m0.003s
-sys	0m0.003s
