@@ -1,12 +1,3 @@
-server//exponentiation-operator/swift/exponentiation-operator.swift:3:19: warning: operator should no longer be declared with body; use a precedence group instead
-infix operator ** { associativity left precedence 170 }
-                  ^
-server//exponentiation-operator/swift/exponentiation-operator.swift:10:6: warning: result of operator '**' is unused
-        2017**12
-        ~~~~^ ~~
-server//exponentiation-operator/swift/exponentiation-operator.swift:11:7: warning: result of operator '**' is unused
-        19.88**12
-        ~~~~~^ ~~
 
 real	1m52.611s
 user	1m46.603s

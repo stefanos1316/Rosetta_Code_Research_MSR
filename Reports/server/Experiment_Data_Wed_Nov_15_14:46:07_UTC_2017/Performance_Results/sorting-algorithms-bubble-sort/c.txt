@@ -1,8 +1,3 @@
-./script.executeTasksRemotelyServer: line 186: ./server//sorting-algorithms-bubble-sort/c/numbers: Permission denied
-
-real	0m0.003s
-user	0m0.003s
-sys	0m0.000s
 
 real	0m25.753s
 user	0m25.701s

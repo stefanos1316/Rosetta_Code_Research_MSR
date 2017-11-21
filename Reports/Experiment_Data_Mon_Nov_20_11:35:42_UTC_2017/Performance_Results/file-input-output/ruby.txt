@@ -1,0 +1,11 @@
+
+real	1m12.555s
+user	0m16.959s
+sys	0m44.027s
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/server//file-input-output/ruby/output.txt:2: syntax error, unexpected ===, expecting end-of-input
+=====================
+   ^
+
+real	0m0.041s
+user	0m0.038s
+sys	0m0.003s

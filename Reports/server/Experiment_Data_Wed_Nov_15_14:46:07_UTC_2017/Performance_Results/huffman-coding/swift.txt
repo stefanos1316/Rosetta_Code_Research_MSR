@@ -1,7 +1,4 @@
-server//huffman-coding/swift/huffman-coding.swift:49:28: warning: 'where' clause next to generic parameters is deprecated and will be removed in the future version of Swift
-func getFreqs<S : Sequence where S.Iterator.Element : Hashable>(seq: S) -> [(S.Iterator.Element, Int)] {
-                          ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-                                                                                                       where S.Iterator.Element : Hashable
+
 
 real	1m30.475s
 user	1m30.194s

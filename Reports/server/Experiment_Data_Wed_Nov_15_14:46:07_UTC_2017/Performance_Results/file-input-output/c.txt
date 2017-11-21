@@ -2,8 +2,4 @@
 real	6m38.400s
 user	1m43.148s
 sys	0m34.290s
-./script.executeTasksRemotelyServer: line 186: ./server//file-input-output/c/output.txt: Permission denied
 
-real	0m0.002s
-user	0m0.000s
-sys	0m0.002s

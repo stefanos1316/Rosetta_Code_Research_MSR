@@ -1,0 +1,9 @@
+
+real	1m11.532s
+user	0m9.410s
+sys	0m46.269s
+go run: no go files listed
+
+real	0m0.013s
+user	0m0.005s
+sys	0m0.009s

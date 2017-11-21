@@ -523,7 +523,8 @@ do
 						
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
-						if grep "huffman" $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation; then;
+						if grep "huffman" $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
+						then
 							(time ruby-mri $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/ruby.txt &
 						else
 							(time ruby $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/ruby.txt &

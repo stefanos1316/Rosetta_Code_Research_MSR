@@ -1,0 +1,5 @@
+./script.executeTasksRemotelyServer: line 635: .//home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/server//factorial/rust/factorial: No such file or directory
+
+real	0m0.006s
+user	0m0.005s
+sys	0m0.001s

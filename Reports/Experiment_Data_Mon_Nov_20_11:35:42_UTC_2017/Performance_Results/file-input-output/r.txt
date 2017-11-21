@@ -1,0 +1,10 @@
+
+real	6m1.164s
+user	5m20.166s
+sys	0m37.460s
+Error: unexpected symbol in "The Republic"
+Execution halted
+
+real	0m0.075s
+user	0m0.057s
+sys	0m0.017s

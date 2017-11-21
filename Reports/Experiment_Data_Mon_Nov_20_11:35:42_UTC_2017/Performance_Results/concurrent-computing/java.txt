@@ -1,0 +1,11 @@
+
+real	6m25.899s
+user	7m4.436s
+sys	8m17.511s
+Error: Main method not found in class Threads$DelayedMessagePrinter, please define the main method as:
+   public static void main(String[] args)
+or a JavaFX application class must extend javafx.application.Application
+
+real	0m0.059s
+user	0m0.050s
+sys	0m0.006s
