@@ -2,8 +2,4 @@
 real	4m15.960s
 user	0m8.169s
 sys	0m36.801s
-./script.executeTasksRemotelyServer: line 635: ./server//file-input-output/rust/output.txt: Permission denied
 
-real	0m0.002s
-user	0m0.001s
-sys	0m0.001s

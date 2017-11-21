@@ -1,9 +1,0 @@
-./script.executeTasksRemotelyServer: line 635: ./server//synchronous-concurrency/rust/input.txt: Permission denied
-
-real	0m0.001s
-user	0m0.000s
-sys	0m0.000s
-
-real	0m1.321s
-user	0m0.795s
-sys	0m0.524s
