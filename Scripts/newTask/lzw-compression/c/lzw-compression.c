@@ -8,6 +8,8 @@
 #include <sys/stat.h>
 
 /* -------- aux stuff ---------- */
+void _clear(void*);
+
 void* mem_alloc(size_t item_size, size_t n_item)
 {
 	size_t *x = calloc(1, sizeof(size_t)*2 + n_item * item_size);
