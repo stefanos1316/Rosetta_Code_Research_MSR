@@ -1,0 +1,7 @@
+[package]
+name = "jsonTask"
+version = "0.1.0"
+authors = ["Stefanos Georgiou <stefanos1316@gmail.com>"]
+
+[dependencies]
+rustc-serialize = "0.3.24"
