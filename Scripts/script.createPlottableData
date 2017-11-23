@@ -172,8 +172,8 @@ do
 		#echo $j
 		if [ -f $performanceResults/$i/$j ]; then
 		#echo "Task $i and file $j"
-		getMinutes=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $1}')
-		getSeconds=$(grep 'user' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $2}' | awk -F "." '{print $1}')
+		getMinutes=$(grep 'real' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $1}')
+		getSeconds=$(grep 'real' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $2}' | awk -F "." '{print $1}')
 		getMinutes=$((getMinutes*60))
 		totalTime=$((getMinutes+getSeconds))
 		horseLine=$horseLine"--"$totalTime
