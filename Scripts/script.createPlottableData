@@ -243,15 +243,15 @@ echo ""
 echo "Plotting heatmaps for Normalized data with weight of 1,2, and 3..."
 
 myvar=1 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
-echo "HeatMaps Normalized_Results_EDP_1_HeatMap_Logarithmic_Function.png created!"
+echo "HeatMaps Normalized_Results_EDP_1_HeatMap_Logarithmic_Function.pdf created!"
 myvar=2 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
-echo "HeatMaps Normalized_Results_EDP_2_HeatMap_Logarithmic_Function.png created!"
+echo "HeatMaps Normalized_Results_EDP_2_HeatMap_Logarithmic_Function.pdf created!"
 myvar=3 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
-echo "HeatMaps Normalized_Results_EDP_3_HeatMap_Logarithmic_Function.png created!"
+echo "HeatMaps Normalized_Results_EDP_3_HeatMap_Logarithmic_Function.pdf created!"
 echo ""
 echo "Moving HeatMaps under $graphDataDir..."
-mv Normalized_Results_EDP_*_HeatMap_Logarithmic_Function.png $graphDataDir
+mv Normalized_Results_EDP_*_HeatMap_Logarithmic_Function.pdf $graphDataDir
 
-mail -a $graphDataDir/Normalized_Results_EDP_1_*_HeatMap_Logarithmic_Function.png -a $graphDataDir/Normalized_Results_EDP_2_*_HeatMap_Logarithmic_Function.png -a $graphDataDir/Normalized_Results_EDP_3_*_HeatMap_Logarithmic_Function.png -s "[Rosetta Code Research] Execution Done" sgeorgiou@aueb.gr < mails/execution_done.txt 
+mail -a $graphDataDir/Normalized_Results_EDP_1_*_HeatMap_Logarithmic_Function.pdf -a $graphDataDir/Normalized_Results_EDP_2_*_HeatMap_Logarithmic_Function.pdf -a $graphDataDir/Normalized_Results_EDP_3_*_HeatMap_Logarithmic_Function.pdf -s "[Rosetta Code Research] Execution Done" sgeorgiou@aueb.gr < mails/execution_done.txt 
 echo "Sending all results to sgeorgiou@aueb.gr..."
 exit
