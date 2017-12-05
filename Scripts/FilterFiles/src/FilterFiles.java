@@ -47,7 +47,9 @@ public class FilterFiles {
 		DecimalFormat df = new DecimalFormat();
 		df.setMaximumFractionDigits(2);
 		float lowestEDP = 0;
+		float highestEDP = 0;
 		float[] newLowestEDP = new float[numberOfLanguages * numberOfTasks];
+		float[] newHighestEDP = new float[numberOfLanguages * numberOfTasks];
 		int counter = 0;
 		// Making use of EDP = Energy * (Delay)^w where w = 1,2, and 3
 		for (int n = 1; n < 4; ++n) {
@@ -62,17 +64,24 @@ public class FilterFiles {
 					line += " " + df.format(energyValue * (Math.pow(performanceValue, (double) n)));
 					String str = df.format(energyValue * (Math.pow(performanceValue, (double) n))).toString()
 							.replaceAll(",", "");
+					//Retrieve the Lowest EDP
 					if (lowestEDP == 0 && Float.parseFloat(str) != 0 && Float.parseFloat(str) != -1 ) {
 						lowestEDP = Float.parseFloat(str);
 					} else if (lowestEDP > Float.parseFloat(str) && Float.parseFloat(str) != 0 && Float.parseFloat(str) != -1 ) {
 						lowestEDP = Float.parseFloat(str);
-
+					}
+					
+					//Retrieve the Highest EDP
+					if (highestEDP < Float.parseFloat(str)) {
+						highestEDP = Float.parseFloat(str);
 					}
 				}
 				writer.println(line);
 				newLowestEDP[counter] = lowestEDP;
+				newHighestEDP[counter] = highestEDP;
 				counter++;
 				lowestEDP = 0;
+				highestEDP = 0;
 			}
 			writer.close();
 		}
@@ -108,6 +117,36 @@ public class FilterFiles {
 			writer.close();
 			fileReader.close();
 		}
+		
+		
+		//Create files with the lowest and the highest Energy Delay Products
+		counter1=0;
+		for (int n = 1; n < 4; ++n) {
+			PrintWriter writer = new PrintWriter("Normalized_EDP_" + n + "_Lowest_and_Highest.txt", "UTF-8");
+			File file = new File("EnergyDelayProduct_Weight_" + n + ".txt");
+			FileReader fileReader = new FileReader(file);
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+			String line;
+			String writeBackLine = null;
+			while ((line = bufferedReader.readLine()) != null) {
+				String[] splitWhiteSpace = line.split("\\s+");
+				writeBackLine = splitWhiteSpace[0];
+				//for (int i = 1; i < splitWhiteSpace.length; ++i) {
+					//float dividend = Float.parseFloat(splitWhiteSpace[i].replace(",", ""));
+					//if (dividend != -1 && dividend != 0) {
+					writeBackLine += " Lowest -> " + df.format(newLowestEDP[counter1]) + " Highest -> " + df.format(newHighestEDP[counter1]) + " Difference -> " + df.format(newHighestEDP[counter1] / newLowestEDP[counter1]);
+					//} else {
+					//	writeBackLine += " " + df.format(dividend);
+				//	}
+					//writeBackLine += " " + df.format((double) dividend / newLowestEDP[counter1]);
+				//}
+				counter1++;
+				writer.println(writeBackLine);
+			}
+			writer.close();
+			fileReader.close();
+		}
+		
 
 		System.out.println("Execution done, you can collect now your results");
 	}
