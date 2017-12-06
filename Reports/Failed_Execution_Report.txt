@@ -648,3 +648,8 @@ Execution		Thu Nov 23 18:50:08 UTC 2017	/home/sgeorgiou/GitHub/Rosetta_Code_Rese
 Execution		Thu Nov 23 18:52:12 UTC 2017	/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/laptop//synchronous-concurrency/c++/synchronous-concurrency:C++
 Execution         Thu Nov 23 18:54:14 UTC 2017      /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/laptop//synchronous-concurrency/rust/input.txt:Rust
 Execution         Thu Nov 23 18:56:19 UTC 2017      /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/laptop//synchronous-concurrency/rust/synchronous-concurrency:Rust
+Execution		Wed Dec  6 15:28:34 UTC 2017	laptop//numerical-integration/java/NumericalIntegration$1.class:Java
+Execution		Wed Dec  6 15:29:38 UTC 2017	laptop//numerical-integration/java/NumericalIntegration$2.class:Java
+Execution		Wed Dec  6 15:30:42 UTC 2017	laptop//numerical-integration/java/NumericalIntegration$3.class:Java
+Execution		Wed Dec  6 15:31:46 UTC 2017	laptop//numerical-integration/java/NumericalIntegration$4.class:Java
+Execution		Wed Dec  6 17:03:06 UTC 2017	laptop//numerical-integration/java/NumericalIntegration$FPFunction.class:Java
