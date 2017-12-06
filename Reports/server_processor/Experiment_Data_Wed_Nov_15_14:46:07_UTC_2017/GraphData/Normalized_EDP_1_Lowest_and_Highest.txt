@@ -20,6 +20,6 @@ sorting-algorithms-insertion-sort: Lowest -> 227.8 Highest -> 12,191,445 Differe
 sorting-algorithms-merge-sort: Lowest -> 246.6 Highest -> 11,904,448 Difference -> 48,274.32
 sorting-algorithms-quick-sort: Lowest -> 58.8 Highest -> 20,886,544 Difference -> 355,213.34
 sorting-algorithms-selection-sort: Lowest -> 2,776.2 Highest -> 9,328,252 Difference -> 3,360.08
-synchronous-concurrency: Lowest -> 55.9 Highest -> 4,980 Difference -> 89.09
+synchronous-concurrency: Lowest -> 37.1 Highest -> 4,980 Difference -> 134.23
 url-decoding: Lowest -> 44.1 Highest -> 7,550,161.5 Difference -> 171,205.48
 url-encoding: Lowest -> 57.6 Highest -> 20,634,266 Difference -> 358,233.78

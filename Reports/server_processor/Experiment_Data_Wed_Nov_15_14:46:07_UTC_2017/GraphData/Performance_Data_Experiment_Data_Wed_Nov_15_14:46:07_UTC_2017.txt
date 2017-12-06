@@ -20,6 +20,6 @@ sorting-algorithms-insertion-sort	9	6	13	2	4	44	457	141	224	441	154	48	134	10
 sorting-algorithms-merge-sort	6	6	5	2	35	67	302	182	219	930	123	78	437	11
 sorting-algorithms-quick-sort	1	2	3	1	55	22	99	58	100	271	83	32	581	22
 sorting-algorithms-selection-sort	7	12	20	9	10	66	379	194	309	381	355	98	139	11
-synchronous-concurrency	1	0	0	1	1	0	4	1	3	1	0	1	1	10
+synchronous-concurrency	1	1	1	1	1	1	4	1	3	1	2	1	1	10
 url-decoding	5	4	7	2	2	267	29	1	24	349	7	2	11	5
 url-encoding	12	25	9	30	7	276	29	1	19	574	11	2	50	9
