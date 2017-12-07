@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+# To run the program, type in the command line: python stats-rosetta.py your-file.csv
+
 import sys
 import os
 from pandas import *
