@@ -29,7 +29,7 @@ class CameraPhone extends MobilePhone(Camera(Device)) {
 
 }
 
-for (var i = 0; i < 1000000000; ++i) {
+for (var i = 0; i < 100000000; ++i) {
 const ziaomi = new CameraPhone(); 
 ziaomi.shootPictures();
 ziaomi.call();

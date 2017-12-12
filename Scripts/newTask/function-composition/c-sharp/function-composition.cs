@@ -1,14 +1,15 @@
 using System;
+
 class Program
 {
     static void Main(string[] args)
     {
-        Func<int, int> outfunc = Composer<int, int, int>.Compose(functA, functB);
-        for (int i = 0; i < 1000000000; ++i)
-            outfunc(5); //Prints 100
+        Func<double, double> outfunc = Composer<double, double, double>.Compose(functA, functB);
+        for (double i = 0; i < 1000000000; ++i)
+	  	outfunc(0.5);
     }
-    static int functA(int i) { return i * 10; }
-    static int functB(int i) { return i + 5; }
+    static double functA(double i) { return Math.Sin(i); }
+    static double functB(double i) { return Math.Asin(i); }
     class Composer<A, B, C>
     {
         public static Func<C, A> Compose(Func<B, A> a, Func<C, B> b)

@@ -232,6 +232,7 @@ getTasksNames=$(awk '{print $1}' ORS=',' $graphDataLocationPerformance)
 java -jar createEnergyDelayProductFiles_and_Normalized_Them_Plus_Log_Function.jar $fileEnergy $filePerformance $getNumberOfTasks $getNumberOfLanguages
 mv EnergyDelayProduct_Weight_* $graphDataDir
 mv Normalized_EDP_* $graphDataDir
+mv Only_EDP.txt $graphDataDir
 echo "Files Created: "
 echo "EnergyDelayProduct_Weight_1.txt"
 echo "EnergyDelayProduct_Weight_2.txt"
