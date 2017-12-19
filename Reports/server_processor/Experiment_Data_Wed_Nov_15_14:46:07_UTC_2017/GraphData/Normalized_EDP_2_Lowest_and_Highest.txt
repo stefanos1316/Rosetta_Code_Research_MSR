@@ -6,7 +6,7 @@ concurrent-computing: Lowest -> 10.58 Highest -> 28.32 Difference -> 17.73
 exponentiation-operator: Lowest -> 12.23 Highest -> 28.68 Difference -> 16.45
 factorial: Lowest -> 12.67 Highest -> 27.91 Difference -> 15.24
 file-input-output: Lowest -> 17.35 Highest -> 32.53 Difference -> 15.17
-function-composition: Lowest -> 8.93 Highest -> 26.85 Difference -> 17.93
+function-composition: Lowest -> 8.93 Highest -> 26.84 Difference -> 17.91
 huffman-coding: Lowest -> 9.42 Highest -> 24.52 Difference -> 15.1
 inheritance-multiple: Lowest -> 8.5 Highest -> 21.59 Difference -> 13.09
 inheritance-single: Lowest -> 8.38 Highest -> 14.93 Difference -> 6.54

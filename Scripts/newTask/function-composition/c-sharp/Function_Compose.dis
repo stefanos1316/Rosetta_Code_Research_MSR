@@ -1,0 +1,193 @@
+.assembly extern mscorlib
+{
+  .ver 4:0:0:0
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 ) // .z\V.4..
+}
+.assembly 'function-composition'
+{
+  .custom instance void class [mscorlib]System.Runtime.CompilerServices.RuntimeCompatibilityAttribute::'.ctor'() =  (
+		01 00 01 00 54 02 16 57 72 61 70 4E 6F 6E 45 78   // ....T..WrapNonEx
+		63 65 70 74 69 6F 6E 54 68 72 6F 77 73 01       ) // ceptionThrows.
+
+  .hash algorithm 0x00008004
+  .ver  0:0:0:0
+}
+.module 'function-composition.exe' // GUID = {1AE0D013-D182-47F3-B611-A2EDD5598ADD}
+
+
+  .class private auto ansi beforefieldinit Program
+  	extends [mscorlib]System.Object
+  {
+    .field  private static  class [mscorlib]System.Func`2<float64,float64> '<>f__mg$cache0'
+    .custom instance void class [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::'.ctor'() =  (01 00 00 00 ) // ....
+
+    .field  private static  class [mscorlib]System.Func`2<float64,float64> '<>f__mg$cache1'
+    .custom instance void class [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::'.ctor'() =  (01 00 00 00 ) // ....
+
+
+    // method line 1
+    .method public hidebysig specialname rtspecialname 
+           instance default void '.ctor' ()  cil managed 
+    {
+        // Method begins at RVA 0x2050
+	// Code size 7 (0x7)
+	.maxstack 8
+	IL_0000:  ldarg.0 
+	IL_0001:  call instance void object::'.ctor'()
+	IL_0006:  ret 
+    } // end of method Program::.ctor
+
+    // method line 2
+    .method private static hidebysig 
+           default void Main (string[] args)  cil managed 
+    {
+        // Method begins at RVA 0x2058
+	.entrypoint
+	// Code size 123 (0x7b)
+	.maxstack 3
+	.locals init (
+		class [mscorlib]System.Func`2<float64, float64>	V_0,
+		float64	V_1)
+	IL_0000:  ldsfld class [mscorlib]System.Func`2<float64,float64> Program::'<>f__mg$cache0'
+	IL_0005:  brtrue.s IL_0018
+
+	IL_0007:  ldnull 
+	IL_0008:  ldftn float64 class Program::functA(float64)
+	IL_000e:  newobj instance void class [mscorlib]System.Func`2<float64, float64>::'.ctor'(object, native int)
+	IL_0013:  stsfld class [mscorlib]System.Func`2<float64,float64> Program::'<>f__mg$cache0'
+	IL_0018:  ldsfld class [mscorlib]System.Func`2<float64,float64> Program::'<>f__mg$cache0'
+	IL_001d:  ldsfld class [mscorlib]System.Func`2<float64,float64> Program::'<>f__mg$cache1'
+	IL_0022:  brtrue.s IL_0035
+
+	IL_0024:  ldnull 
+	IL_0025:  ldftn float64 class Program::functB(float64)
+	IL_002b:  newobj instance void class [mscorlib]System.Func`2<float64, float64>::'.ctor'(object, native int)
+	IL_0030:  stsfld class [mscorlib]System.Func`2<float64,float64> Program::'<>f__mg$cache1'
+	IL_0035:  ldsfld class [mscorlib]System.Func`2<float64,float64> Program::'<>f__mg$cache1'
+	IL_003a:  call class [mscorlib]System.Func`2<!2,!0> class Program/Composer`3<float64, float64, float64>::Compose(class [mscorlib]System.Func`2<!1,!0>, class [mscorlib]System.Func`2<!2,!1>)
+	IL_003f:  stloc.0 
+	IL_0040:  ldc.r8 0.
+	IL_0049:  stloc.1 
+	IL_004a:  br IL_006b
+
+	IL_004f:  ldloc.0 
+	IL_0050:  ldc.r8 0.5
+	IL_0059:  callvirt instance !1 class [mscorlib]System.Func`2<float64, float64>::Invoke(!0)
+	IL_005e:  pop 
+	IL_005f:  ldloc.1 
+	IL_0060:  ldc.r8 1.
+	IL_0069:  add 
+	IL_006a:  stloc.1 
+	IL_006b:  ldloc.1 
+	IL_006c:  ldc.r8 1000000000.
+	IL_0075:  blt IL_004f
+
+	IL_007a:  ret 
+    } // end of method Program::Main
+
+    // method line 3
+    .method private static hidebysig 
+           default float64 functA (float64 i)  cil managed 
+    {
+        // Method begins at RVA 0x20df
+	// Code size 7 (0x7)
+	.maxstack 8
+	IL_0000:  ldarg.0 
+	IL_0001:  call float64 class [mscorlib]System.Math::Sin(float64)
+	IL_0006:  ret 
+    } // end of method Program::functA
+
+    // method line 4
+    .method private static hidebysig 
+           default float64 functB (float64 i)  cil managed 
+    {
+        // Method begins at RVA 0x20e7
+	// Code size 7 (0x7)
+	.maxstack 8
+	IL_0000:  ldarg.0 
+	IL_0001:  call float64 class [mscorlib]System.Math::Asin(float64)
+	IL_0006:  ret 
+    } // end of method Program::functB
+
+  .class nested private auto ansi beforefieldinit Composer`3<A,B,C>
+  	extends [mscorlib]System.Object
+  {
+
+    // method line 5
+    .method public hidebysig specialname rtspecialname 
+           instance default void '.ctor' ()  cil managed 
+    {
+        // Method begins at RVA 0x20ef
+	// Code size 7 (0x7)
+	.maxstack 8
+	IL_0000:  ldarg.0 
+	IL_0001:  call instance void object::'.ctor'()
+	IL_0006:  ret 
+    } // end of method Composer`3::.ctor
+
+    // method line 6
+    .method public static hidebysig 
+           default class [mscorlib]System.Func`2<!C, !A> Compose (class [mscorlib]System.Func`2<!B, !A> a, class [mscorlib]System.Func`2<!C, !B> b)  cil managed 
+    {
+        // Method begins at RVA 0x20f8
+	// Code size 33 (0x21)
+	.maxstack 2
+	.locals init (
+		class Program/Composer`3/'<Compose>c__AnonStorey0'<!A, !B, !C>	V_0)
+	IL_0000:  newobj instance void class Program/Composer`3/'<Compose>c__AnonStorey0'<!A, !B, !C>::'.ctor'()
+	IL_0005:  stloc.0 
+	IL_0006:  ldloc.0 
+	IL_0007:  ldarg.0 
+	IL_0008:  stfld class [mscorlib]System.Func`2<!1,!0> class Program/Composer`3/'<Compose>c__AnonStorey0'<!0,!1,!2>::a
+	IL_000d:  ldloc.0 
+	IL_000e:  ldarg.1 
+	IL_000f:  stfld class [mscorlib]System.Func`2<!2,!1> class Program/Composer`3/'<Compose>c__AnonStorey0'<!0,!1,!2>::b
+	IL_0014:  ldloc.0 
+	IL_0015:  ldftn instance !0 class Program/Composer`3/'<Compose>c__AnonStorey0'<!A, !B, !C>::'<>m__0'(!2)
+	IL_001b:  newobj instance void class [mscorlib]System.Func`2<!C, !A>::'.ctor'(object, native int)
+	IL_0020:  ret 
+    } // end of method Composer`3::Compose
+
+  .class nested private auto ansi sealed beforefieldinit '<Compose>c__AnonStorey0'<A,B,C>
+  	extends [mscorlib]System.Object
+  {
+    .custom instance void class [mscorlib]System.Runtime.CompilerServices.CompilerGeneratedAttribute::'.ctor'() =  (01 00 00 00 ) // ....
+
+    .field  assembly  class [mscorlib]System.Func`2<!1,!0> a
+    .field  assembly  class [mscorlib]System.Func`2<!2,!1> b
+
+    // method line 7
+    .method public hidebysig specialname rtspecialname 
+           instance default void '.ctor' ()  cil managed 
+    {
+        // Method begins at RVA 0x2125
+	// Code size 7 (0x7)
+	.maxstack 8
+	IL_0000:  ldarg.0 
+	IL_0001:  call instance void object::'.ctor'()
+	IL_0006:  ret 
+    } // end of method <Compose>c__AnonStorey0::.ctor
+
+    // method line 8
+    .method assembly hidebysig 
+           instance default !A '<>m__0' (!C i)  cil managed 
+    {
+        // Method begins at RVA 0x212d
+	// Code size 24 (0x18)
+	.maxstack 8
+	IL_0000:  ldarg.0 
+	IL_0001:  ldfld class [mscorlib]System.Func`2<!1,!0> class Program/Composer`3/'<Compose>c__AnonStorey0'<!0,!1,!2>::a
+	IL_0006:  ldarg.0 
+	IL_0007:  ldfld class [mscorlib]System.Func`2<!2,!1> class Program/Composer`3/'<Compose>c__AnonStorey0'<!0,!1,!2>::b
+	IL_000c:  ldarg.1 
+	IL_000d:  callvirt instance !1 class [mscorlib]System.Func`2<!C, !B>::Invoke(!0)
+	IL_0012:  callvirt instance !1 class [mscorlib]System.Func`2<!B, !A>::Invoke(!0)
+	IL_0017:  ret 
+    } // end of method <Compose>c__AnonStorey0::<>m__0
+
+  } // end of class <Compose>c__AnonStorey0
+
+  } // end of class Composer`3
+
+  } // end of class Program
+
