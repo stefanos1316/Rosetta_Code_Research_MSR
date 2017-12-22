@@ -12,7 +12,7 @@ inheritance-multiple: Lowest -> 10.03 Highest -> 28.3 Difference -> 18.27
 inheritance-single: Lowest -> 10.12 Highest -> 18.64 Difference -> 8.52
 json: Lowest -> 9.92 Highest -> 21.29 Difference -> 11.36
 lzw-compression: Lowest -> 0.69 Highest -> 22.71 Difference -> 22.02
-numerical-integration: Lowest -> 9.91 Highest -> 29.36 Difference -> 19.45
+numerical-integration: Lowest -> 16.45 Highest -> 29.36 Difference -> 12.91
 palindrome-detection: Lowest -> 11.87 Highest -> 20.32 Difference -> 8.45
 regular-expressions: Lowest -> 6.43 Highest -> 16.48 Difference -> 10.05
 sorting-algorithms-bubble-sort: Lowest -> 11.27 Highest -> 22.43 Difference -> 11.16
@@ -20,5 +20,6 @@ sorting-algorithms-insertion-sort: Lowest -> 9.11 Highest -> 20.94 Difference ->
 sorting-algorithms-merge-sort: Lowest -> 4.81 Highest -> 19.84 Difference -> 15.03
 sorting-algorithms-quick-sort: Lowest -> 6.68 Highest -> 18.2 Difference -> 11.52
 sorting-algorithms-selection-sort: Lowest -> 9.33 Highest -> 18.51 Difference -> 9.18
+synchronous-concurrency: Lowest -> 7.06 Highest -> 8.39 Difference -> 1.33
 url-decoding: Lowest -> 6.62 Highest -> 14.95 Difference -> 8.33
 url-encoding: Lowest -> 6.29 Highest -> 17.75 Difference -> 11.46
