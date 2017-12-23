@@ -653,3 +653,4 @@ Execution		Wed Dec  6 15:29:38 UTC 2017	laptop//numerical-integration/java/Numer
 Execution		Wed Dec  6 15:30:42 UTC 2017	laptop//numerical-integration/java/NumericalIntegration$3.class:Java
 Execution		Wed Dec  6 15:31:46 UTC 2017	laptop//numerical-integration/java/NumericalIntegration$4.class:Java
 Execution		Wed Dec  6 17:03:06 UTC 2017	laptop//numerical-integration/java/NumericalIntegration$FPFunction.class:Java
+Execution		Fri Dec 22 10:06:27 UTC 2017	laptop//inheritance-multiple/javascript/inheritance-multiple.js:JavaScript

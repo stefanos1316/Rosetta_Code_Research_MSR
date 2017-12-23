@@ -8,7 +8,7 @@ factorial: Lowest -> 15.16 Highest -> 35.34 Difference -> 20.18
 file-input-output: Lowest -> 14.47 Highest -> 42.04 Difference -> 27.57
 function-composition: Lowest -> 10.49 Highest -> 31.86 Difference -> 21.37
 huffman-coding: Lowest -> 9.81 Highest -> 30.52 Difference -> 20.71
-inheritance-multiple: Lowest -> 7.72 Highest -> 17.18 Difference -> 9.46
+inheritance-multiple: Lowest -> 9.43 Highest -> 33.24 Difference -> 23.81
 inheritance-single: Lowest -> 9.25 Highest -> 17.1 Difference -> 7.85
 json: Lowest -> 11.22 Highest -> 34.24 Difference -> 23.02
 lzw-compression: Lowest -> 3.12 Highest -> 22.31 Difference -> 19.19

@@ -1,0 +1,1 @@
+inheritance-multiple: Lowest -> 15.57 Highest -> 15.57 Difference -> 0
