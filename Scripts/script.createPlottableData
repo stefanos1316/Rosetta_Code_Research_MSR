@@ -229,7 +229,7 @@ getNumberOfLanguages=$(awk '{print NF; exit}' $graphDataLocationPerformance)
 getNumberOfLanguages=$((getNumberOfLanguages - 1))
 getTasksNames=$(awk '{print $1}' ORS=',' $graphDataLocationPerformance)
 
-java -jar createEnergyDelayProductFiles_and_Normalized_Them_Plus_Log_Function.jar $fileEnergy $filePerformance $getNumberOfTasks $getNumberOfLanguages
+java -jar createEnergyDelayProductFiles_and_Normalized_Them_Plus_Log_10_Function.jar $fileEnergy $filePerformance $getNumberOfTasks $getNumberOfLanguages
 mv EnergyDelayProduct_Weight_* $graphDataDir
 mv Normalized_EDP_* $graphDataDir
 mv Only_EDP.txt $graphDataDir
