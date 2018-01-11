@@ -1,3 +1,12 @@
 [submodule "cloc"]
 	path = cloc
 	url = https://github.com/AlDanial/cloc.git
+
+[submodule "watts-up"]
+        path = watts-up
+        url = https://github.com/pyrovski/watts-up.git
+
+[submodule "RosettaCodeData"]
+        path = RosettaCodeData
+        url = https://github.com/acmeism/RosettaCodeData.git
+
