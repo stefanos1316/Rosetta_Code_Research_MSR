@@ -6,13 +6,14 @@
 
 int main()
 {
+
+for (int i = 0; i < 10000000; ++i ) {
+   
    regex_t preg;
    regmatch_t substmatch[1];
    const char *tp = "string$";
    const char *t1 = "this is a matching string";
    const char *ss = "istyfied";
-
-for (int i = 0; i < 10000000; ++i ) {
 
    regcomp(&preg, "string$", REG_EXTENDED);
    //printf("'%s' %smatched with '%s'\n", t1, (regexec(&preg, t1, 0, NULL, 0)==0) ? "" : "did not ", tp);

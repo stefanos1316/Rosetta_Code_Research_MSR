@@ -2,10 +2,11 @@ package main
 import "regexp"
 
 func main() {
-  str := "this is a matching string"
 
   // Test
   for i := 0; i < 10000000; i++ {
+
+  str := "this is a matching string"
   matched, _ := regexp.MatchString(".*string$", str)
   if matched { }
 

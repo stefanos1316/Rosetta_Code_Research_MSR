@@ -1,1 +1,0 @@
-/home/pi/GitHub/Rosetta_Code_Research_MSR/Scripts/rpi/exponentiation-operator/rust/exponentiation-operator/target/release/exponentiation-operator: /home/pi/GitHub/Rosetta_Code_Research_MSR/Scripts/rpi/exponentiation-operator/rust/exponentiation-operator/src/main.rs

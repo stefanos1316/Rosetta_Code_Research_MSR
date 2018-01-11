@@ -1,1 +1,0 @@
-/home/pi/GitHub/Rosetta_Code_Research_MSR/Scripts/rpi/lzw-compression/rust/lzw-compression_src/target/release/lzw-compression: /home/pi/GitHub/Rosetta_Code_Research_MSR/Scripts/rpi/lzw-compression/rust/lzw-compression_src/src/main.rs
