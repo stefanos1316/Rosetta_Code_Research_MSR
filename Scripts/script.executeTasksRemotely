@@ -183,7 +183,7 @@ do
 						sleep 2
 
 						executable=$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
-						(time /$executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c.txt &
+						(time ./$executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c.txt &
 						
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -222,7 +222,7 @@ do
 						sleep 2
 						
 						executable=$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
-						(time /$executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c++.txt &
+						(time ./$executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c++.txt &
 						
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -632,7 +632,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time /$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/rust.txt &
+						(time ./$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/rust.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!

@@ -14,7 +14,7 @@ json: Lowest -> 3.97 Highest -> 11.46 Difference -> 7.49
 lzw-compression: Lowest -> 1.36 Highest -> 7.57 Difference -> 6.22
 numerical-integration: Lowest -> 8.28 Highest -> 14.82 Difference -> 6.54
 palindrome-detection: Lowest -> 5.38 Highest -> 13.46 Difference -> 8.08
-regular-expressions: Lowest -> 1.38 Highest -> 8.46 Difference -> 7.08
+regular-expressions: Lowest -> 1.48 Highest -> 8.03 Difference -> 6.55
 sorting-algorithms-bubble-sort: Lowest -> 4.46 Highest -> 11.36 Difference -> 6.9
 sorting-algorithms-insertion-sort: Lowest -> 2.71 Highest -> 9.04 Difference -> 6.32
 sorting-algorithms-merge-sort: Lowest -> 2.12 Highest -> 9.26 Difference -> 7.14
