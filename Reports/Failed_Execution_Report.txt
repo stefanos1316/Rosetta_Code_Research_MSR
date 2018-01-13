@@ -686,3 +686,7 @@ Execution		Fri Jan 12 14:44:41 UTC 2018	laptop//regular-expressions/ruby/regular
 Execution         Fri Jan 12 14:45:13 UTC 2018      laptop//regular-expressions/rust/regular-expressions:Rust
 Execution         Fri Jan 12 14:46:32 UTC 2018      laptop//regular-expressions/swift/regular-expressions.swift:Swift
 Execution		Fri Jan 12 14:47:32 UTC 2018	laptop//regular-expressions/visual-basic-.net/regular-expressions.exe:Visual-Basic-.Net
+Execution		Fri Jan 12 23:28:27 UTC 2018	laptop//function-composition/c++/function-composition:C++
+Execution		Fri Jan 12 23:31:23 UTC 2018	laptop//function-composition/c-sharp/function-composition.exe:C-Sharp
+Execution         Fri Jan 12 23:34:08 UTC 2018      laptop//function-composition/go/function-composition.go:Go
+Execution		Sat Jan 13 00:30:24 UTC 2018	laptop//function-composition/javascript/function-composition.js:JavaScript
