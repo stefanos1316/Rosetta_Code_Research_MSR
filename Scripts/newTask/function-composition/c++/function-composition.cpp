@@ -3,8 +3,11 @@
 #include <ext/functional>
 
 int main() {
-  for (int i = 0; i < 1000000000; ++i) {
-     __gnu_cxx::compose1(std::ptr_fun(::sin), std::ptr_fun(::asin))(0.5);
+  volatile double k = 0.5;
+  volatile double r;
+
+  for (double i = 0; i < 1000000000; ++i) {
+     r = __gnu_cxx::compose1(std::ptr_fun(::sin), std::ptr_fun(::asin))(i);
   }
   return 0;
 }

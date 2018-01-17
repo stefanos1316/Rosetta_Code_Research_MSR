@@ -2,19 +2,21 @@ using System;
 
 class Program
 {
+
+    public static  volatile float r = 0.0f;
     static void Main(string[] args)
     {
-        for (double i = 0; i < 1000000000; ++i)
+        for (float i = 0; i < 1000000000; ++i)
 	{
-       		Func<double, double> outfunc = Composer<double, double, double>.Compose(functA, functB);
-	  	outfunc(0.5);
+       		Func<float, float> outfunc = Composer<float, float, float>.Compose(functA, functB);
+	  	outfunc(i);
     	}
 	}
-  	static double functA(double i) { return Math.Sin(i); }
-	static double functB(double i) { return Math.Asin(i); }
+  	static float functA(float i) { return (float)Math.Sin(i); }
+	static float functB(float i) { return (float)Math.Asin(i); }
 
-//    static double functA(double i) { return i+i; }
-  //  static double functB(double i) { return i+i; }
+//    static float functA(float i) { return i+i; }
+  //  static float functB(float i) { return i+i; }
 
 
     class Composer<A, B, C>

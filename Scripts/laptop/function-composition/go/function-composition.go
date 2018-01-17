@@ -10,9 +10,12 @@ func compose(f, g ffType) ffType {
     }
 }
 
-func main() {
+
+func main() { 
+    r := float64(0.0)
     for i := 0; i < 1000000000; i++ {
         sin_asin := compose(math.Sin, math.Asin)
-        sin_asin(.5)
+        r = sin_asin((float64)(i))
     }
+    _ = r
 }

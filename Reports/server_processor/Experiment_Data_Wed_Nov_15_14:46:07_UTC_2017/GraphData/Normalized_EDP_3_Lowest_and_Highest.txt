@@ -6,7 +6,7 @@ concurrent-computing: Lowest -> 5.5 Highest -> 16.13 Difference -> 10.63
 exponentiation-operator: Lowest -> 6.49 Highest -> 16.03 Difference -> 9.54
 factorial: Lowest -> 6.87 Highest -> 15.63 Difference -> 8.77
 file-input-output: Lowest -> 11.04 Highest -> 18.79 Difference -> 7.74
-function-composition: Lowest -> 8.06 Highest -> 16.03 Difference -> 7.97
+function-composition: Lowest -> 8.06 Highest -> 16.01 Difference -> 7.96
 huffman-coding: Lowest -> 4.87 Highest -> 13.6 Difference -> 8.74
 inheritance-multiple: Lowest -> 4.29 Highest -> 11.89 Difference -> 7.6
 inheritance-single: Lowest -> 4.24 Highest -> 8.01 Difference -> 3.77
@@ -14,7 +14,7 @@ json: Lowest -> 5.79 Highest -> 14.49 Difference -> 8.7
 lzw-compression: Lowest -> 1.72 Highest -> 10.59 Difference -> 8.87
 numerical-integration: Lowest -> 11.26 Highest -> 19.09 Difference -> 7.83
 palindrome-detection: Lowest -> 7.3 Highest -> 18.56 Difference -> 11.26
-regular-expressions: Lowest -> 5.06 Highest -> 12.42 Difference -> 7.36
+regular-expressions: Lowest -> 3.07 Highest -> 12.87 Difference -> 9.8
 sorting-algorithms-bubble-sort: Lowest -> 4.77 Highest -> 14.91 Difference -> 10.13
 sorting-algorithms-insertion-sort: Lowest -> 2.96 Highest -> 12.37 Difference -> 9.42
 sorting-algorithms-merge-sort: Lowest -> 2.99 Highest -> 12.36 Difference -> 9.36
