@@ -52,17 +52,20 @@ func encode(sym2freq map[rune]int) []coded {
 
 const txt = "this is an example for huffman encoding"
 
-func main() {
-    for i := 0; i < 1000000; i++ {
+func executeTask(i int) int {
+
     sym2freq := make(map[rune]int)
     for _, c := range txt {
         sym2freq[c]++
     }
     table := encode(sym2freq)
     _ = table
-    //fmt.Println("Symbol  Weight Huffman Code")
-   //for _, c := range table {
-    //    fmt.Printf("     %c    %d    %s\n", c.sym, sym2freq[c.sym], c.code)
-    //}
-   }
+	return i + 1
+}
+
+func main() {
+	r := int(1)
+	for i := 0; i < 1000000; i++ {
+   		r = executeTask(i + r)
+	}
 }

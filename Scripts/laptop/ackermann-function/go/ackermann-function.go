@@ -1,5 +1,15 @@
 package main
 
+func executeTask(i int) int {
+
+        for m := 0; m <= 3; m++ {
+            for n := 0; n <= 3; n++ {
+                 Ackermann(m, n)
+            }
+        }
+	return i + 1;
+}
+
 func Ackermann(m, n int) int {
 	switch 0 {
 	case m:
@@ -13,11 +23,7 @@ func Ackermann(m, n int) int {
 func main() {
     r := int(0)
     for i := 0; i < 1000000; i++ {
-        for m := 0; m <= 3; m++ {
-            for n := 0; n <= 3; n++ {
-                r = Ackermann(m, n)
-            }
-        }
+	r = executeTask(i + r);
     }
  _ = r
 }

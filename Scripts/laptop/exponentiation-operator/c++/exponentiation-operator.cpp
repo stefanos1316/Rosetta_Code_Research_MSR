@@ -34,8 +34,8 @@ template<typename Number>
 }
 
 int executeTask(int i) {
-	power(2017,12 + i);
-	power(19.88,12 + i);
+	power(2017,12 );
+	power(19.88,12 );
 
 	return 1 + i;
 }

@@ -7,9 +7,8 @@ import (
     "os"
 )
 
-func main() {
+func executeTask(i int) int {
 
-    for i := 0; i < 1000; i++ {
     lines := make(chan string)
     count := make(chan int)
     go func() {
@@ -31,5 +30,12 @@ func main() {
     f.Close()
     close(lines)
     fmt.Println("Number of lines:", <-count)
+	return i + 1
 }
+
+func main() {
+    r := int(1)
+    for i := 0; i < 1000; i++ {
+	r = executeTask(i + r)	
+    }
 }

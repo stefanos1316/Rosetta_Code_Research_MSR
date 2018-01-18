@@ -9,12 +9,18 @@ func factorial(x uint) uint {
 	return x * factorial(x-1)
 }
 
-func main() {
-	a := uint(0);
-
- 	for i := 0; i < 1000000000; i++ {
+func executeTask(i int) int {
+	a := uint(0)
 	x := uint(10)
-	a = factorial(x)
-	}
+        a = factorial(x)
 	_=a
+	return i + 1;
+}
+
+func main() {
+	r := int(1);
+
+ 	for i := 0; i < 2000000000; i++ {
+		r = executeTask(i + r)
+	}
 }

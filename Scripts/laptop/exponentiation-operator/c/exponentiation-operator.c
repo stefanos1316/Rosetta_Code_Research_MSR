@@ -35,8 +35,8 @@ double dpow(double base, int exp)
 }
 
 int executeTask(int i) {
-   ipow(2017,12+i);
-   dpow(19.88,12+i);
+   ipow(2017,12);
+   dpow(19.88,12);
    return i;
 }
 

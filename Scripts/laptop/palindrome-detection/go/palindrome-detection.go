@@ -1,12 +1,18 @@
 package main
 
-func main() {
+func executeTask(i int) int{
 
-for i := 0; i < 1000000000; i++ {
 	var flag bool
 	flag = isPalindrome("saippuakivikauppias")
 	_ = flag
+	return i + 1
 }
+
+func main() {
+	r := int(1)
+	for i := 0; i < 1000000000; i++ {
+		r = executeTask(i + r)	
+	}
 }
 
 func isPalindrome(s string) bool {
