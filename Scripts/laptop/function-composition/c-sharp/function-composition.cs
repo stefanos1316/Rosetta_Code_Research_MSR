@@ -3,20 +3,24 @@ using System;
 class Program
 {
 
-    public static  volatile float r = 0.0f;
+    private static volatile int r = 1;
+    
+    public static int executeTask(int i) {
+
+        Func<float, float> outfunc = Composer<float, float, float>.Compose(functA, functB);
+	outfunc((float)i);
+ 	return 1 + i;
+    } 
+
     static void Main(string[] args)
     {
-        for (float i = 0; i < 1000000000; ++i)
+        for (int i = 0; i < 1000000000; ++i)
 	{
-       		Func<float, float> outfunc = Composer<float, float, float>.Compose(functA, functB);
-	  	outfunc(i);
+		r = executeTask(i + r);
     	}
 	}
   	static float functA(float i) { return (float)Math.Sin(i); }
 	static float functB(float i) { return (float)Math.Asin(i); }
-
-//    static float functA(float i) { return i+i; }
-  //  static float functB(float i) { return i+i; }
 
 
     class Composer<A, B, C>

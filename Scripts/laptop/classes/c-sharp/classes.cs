@@ -17,15 +17,23 @@ class MyClass{
   */
   public void someMethod(){
    this.variable = 1;
-    Console.WriteLine("Variable value is "+this.variable);
+  }
+
+  private static volatile int r = 1;
+
+  public static int executeTask(int i) {
+
+	MyClass obj = new MyClass();
+	obj.someMethod();
+
+	return i + 1;
   }
 
 public static void Main(String[] args){
 
-for (int i = 0; i < 1000000; ++i) {
-	MyClass obj = new MyClass();
-	obj.someMethod();
-}
+	for (int i = 0; i < 2000000000; ++i) {
+		r = executeTask(i + r);
+	}
 }
 
 }

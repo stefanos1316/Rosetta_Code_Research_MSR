@@ -2,7 +2,19 @@ using System;
 class Program
 {
 
-    private static volatile float r = 0;
+    private static volatile int r = 0;
+
+    public static int executeTask(int i) {
+
+            for (long m = 0; m <= 3; ++m)
+            {
+                for (long n = 0; n <= 3; ++n)
+                {
+                  Ackermann(m, n);
+                }
+            }
+	return i + 1;	
+    }
 
     public static long Ackermann(long m, long n)
     {
@@ -25,16 +37,9 @@ class Program
     static void Main()
     {
 
-	long results;
-        for (int i = 0; i < 1000000; ++i) {
-            for (long m = 0; m <= 3; ++m)
-            {
-                for (long n = 0; n <= 3; ++n)
-                {
-                  results = Ackermann(m, n);
-		  r = Convert.ToSingle(results);
-                }
-            }
-        }
+
+       	for (int i = 0; i < 1000000; ++i) {
+    		r = executeTask(i + r);
+	}
     }
 }

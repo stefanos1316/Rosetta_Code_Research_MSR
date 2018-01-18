@@ -2,16 +2,20 @@ using System;
 
 class exponentiationOperator {
 
+private static volatile int r = 1;
 
-private static volatile float r1;
-private static volatile float r2;
+public static int executeTask(int i) {
+
+	Expon(2017, 12);
+	Expon(19.88, 12);
+	return i + 1;
+}
 
 static void Main(string[] args)
 {
 
 for (int i = 0; i < 1000000000; ++i ) {
-	r1 = (float)Expon(2017, 12);
-	r2 = (float)Expon(19.88, 12);
+	r = executeTask(i + r);
 }
 }
  

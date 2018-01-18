@@ -14,11 +14,17 @@ class Program
         return value == Reverse(value);
     }
  
-    private static volatile bool j = false;
+    private static volatile int r = 0;
+
+    public static int executeTask(int i) {
+
+	IsPalindrome("saippuakivikauppias");
+	return i + 1;
+    }	
+
     static void Main(string[] args)
     {
-	//bool j = false;
-	for (int i = 0; i < 1000000000; ++i)
-	       j = IsPalindrome("saippuakivikauppias");
+	for (int i = 0; i < 2000000000; ++i)
+    		r = executeTask(i +r);
     }
 }

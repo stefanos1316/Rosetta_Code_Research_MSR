@@ -7,15 +7,25 @@ namespace SynchronousConcurrency
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            for (int i = 0; i < 1000;  ++i) {
+	
+	private static volatile int r = 1;
+
+	public static int executeTask(int i) {
+
+		
             BlockingCollection<string> toWriterTask = new BlockingCollection<string>();
             BlockingCollection<int> fromWriterTask = new BlockingCollection<int>();
             Task writer = Task.Factory.StartNew(() => ConsoleWriter(toWriterTask, fromWriterTask));
             Task reader = Task.Factory.StartNew(() => FileReader(fromWriterTask, toWriterTask));
             Task.WaitAll(writer, reader);
-            }
+	    return i + 1;
+	} 
+
+       static void Main(string[] args)
+        {
+            	for (int i = 0; i < 1000;  ++i) {
+            		r =executeTask(i + r);
+		}
         }
         static void ConsoleWriter(BlockingCollection<string> input, BlockingCollection<int> output)
         {
