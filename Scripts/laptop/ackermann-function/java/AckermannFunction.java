@@ -3,18 +3,25 @@ import java.math.BigInteger;
 
 public class AckermannFunction {
 
-private static long r;
+private static int r;
 
-public static void main(String[] args) {
+public static int executeTask(int i) {
 
-    for (int i = 0; i < 1000000; ++i) {
         for (long m = 0; m <= 3; ++m)
         {
             for (long n = 0; n <= 3; ++n)
             {
-                r = Ackermann(m,n);
+                Ackermann(m,n);
             }
         }
+	return i + 1;
+}
+
+
+public static void main(String[] args) {
+
+    for (int i = 0; i < 1000000; ++i) {
+	r = executeTask(i + r);
     }
 }
 

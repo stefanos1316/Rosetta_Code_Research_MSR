@@ -1,7 +1,7 @@
 public class MyClass{
 
   // instance variable
-  private volatile int variable;  // Note: instance variables are usually "private"
+  private static volatile int r = 1;  // Note: instance variables are usually "private"
 
   /**
   * The constructor
@@ -14,16 +14,23 @@ public class MyClass{
   * A method
   */
   public void someMethod(){
-   this.variable = 1;
-   System.out.println("Variable value is "+this.variable);
+   this.r = 1;
+//  System.out.println("Variable value is "+this.variable);
   }
+
+public static int executeTask(int i) {
+
+	MyClass obj = new MyClass();
+	obj.someMethod();
+
+	return i + 1;
+}
 
 public static void main(String[] args){
 
-for (int i = 0; i < 1000000; ++i) {
-	MyClass obj = new MyClass();
-	obj.someMethod();
-}
+	for (int i = 0; i < 2000000000; ++i) {
+		r = executeTask(i + r);
+	}
 }
 
 }

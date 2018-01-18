@@ -60,14 +60,18 @@ public class LZW {
 
     private static volatile String decompressed;
     private static volatile List<Integer> compressed;	
+    private static volatile int r = 0;
+
+    public static int executeTask(int i) {
+        compressed = compress("TOBEORNOTTOBEORTOBEORNOT");
+        decompressed = decompress(compressed);
+	return i + 1;
+    }
 
     public static void main(String[] args) {
         
         for (int i = 0; i < 100000; ++i) {
-            compressed = compress("TOBEORNOTTOBEORTOBEORNOT");
-            // System.out.println(compressed);
-            decompressed = decompress(compressed);
-            //System.out.println(decompressed);
+		r = executeTask(i + r);
         }
     }
 }
