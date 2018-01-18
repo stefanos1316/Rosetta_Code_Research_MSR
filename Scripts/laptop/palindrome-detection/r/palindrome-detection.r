@@ -6,5 +6,14 @@ palindroi <- function(p) {
   TRUE
 }
 
-for (i in 0:1000000000)
-palindroi("saippuakivikauppias")
+executeTask <- function(i) {
+
+	palindroi("saippuakivikauppias")
+	return(i+1)
+}
+
+r = 0
+
+for (i in 0:2000000000) {
+	r = executeTask(i)	
+}

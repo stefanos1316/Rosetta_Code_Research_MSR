@@ -2,12 +2,15 @@ package main
 
 import (
 	"log"
-	"net/url"
+	"net/url"	
+	"strconv"
 )
 
-func executeTask(i int) int {
+func main() {
 
-		var urlString = "http%3A%2F%2Ffoo%20bar%2F"
+	for i := 0; i < 100000000; i++ {
+		str := strconv.Itoa(i)
+		var urlString = "http%3A%2F%2Ffoo%20bar%2F" + str
 
 		u, err := url.QueryUnescape(urlString)
 		if err != nil {
@@ -15,13 +18,5 @@ func executeTask(i int) int {
 		
 		}
 		_ = u
-	return i + 1
-}
-
-func main() {
-
-	r := int(1)
-	for i := 0; i < 10000000; i++ {
-		r = executeTask(i + r)
 	}
 }

@@ -1,7 +1,14 @@
 library(rjson)
 
-for (i in 0:10000000) {
-data <- fromJSON('{ "foo": 1, "bar": [10, "apples"] }')
+r = 0
 
-toJSON(data)
+executeTask <- function(i) {
+
+	data <- fromJSON('{ "foo": 1, "bar": [10, "apples"] }')
+	toJSON(data)
+	return(i+1)
+}
+
+for (i in 0:10000000) {
+	r = executeTask(i+r)
 }

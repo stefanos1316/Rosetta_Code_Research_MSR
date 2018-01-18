@@ -3,18 +3,17 @@ using System;
 class Program
 {
 
-    private static volatile int r = 1;
-    
-    public static int executeTask(int i) {
+    private static volatile float r = 0;
+   
+    public static float executeTask(float i) {
 
         Func<float, float> outfunc = Composer<float, float, float>.Compose(functA, functB);
-	outfunc((float)i);
- 	return 1 + i;
+	return outfunc(i);
     } 
 
     static void Main(string[] args)
     {
-        for (int i = 0; i < 1000000000; ++i)
+        for (float i = 0; i < 1000000000; ++i)
 	{
 		r = executeTask(i + r);
     	}

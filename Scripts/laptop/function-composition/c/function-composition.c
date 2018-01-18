@@ -44,7 +44,7 @@ double asin_call(double_to_double *this, double x) {
   // return x+x;
 }
 
-int executeTask(int i){
+double executeTask(int i){
     double_to_double *my_sin = malloc(sizeof(double_to_double));
     my_sin->fn = &sin_call;
     double_to_double *my_asin = malloc(sizeof(double_to_double));
@@ -53,19 +53,19 @@ int executeTask(int i){
     double_to_double *sin_asin = compose(my_sin, my_asin);
 
   //  printf("%f\n", CALL(sin_asin, 0.5)); /* prints "0.500000" */
-    CALL(sin_asin, 0.5);
+    double result = CALL(sin_asin, 0.5);
     free(sin_asin);
     free(my_sin);
     free(my_asin);
 	
-    return i + 1;
+    return result;
 }
 
 #include <stdio.h>
 
 int main() {
 
-  volatile int r;
+  volatile double r = 0;
   for (int i = 0; i < 1000000000; ++i) {
   	r = executeTask(i);
   }

@@ -7,8 +7,7 @@ function compose(f, g) {
 function executeTask(i) {
 
   	var id = compose(Math.sin, Math.asin);
-  	id2 = id(0.5); // 0.5
-	return i + 1;
+  	return id(i); 
 }
 
 var r = 1;

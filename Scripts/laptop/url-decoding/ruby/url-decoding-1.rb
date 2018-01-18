@@ -1,4 +1,4 @@
-for i in 0..1000000
+for i in 0..100000000
 require 'cgi'
-puts CGI.unescape("http%3A%2F%2Ffoo%20bar%2F")
+CGI.unescape("http%3A%2F%2Ffoo%20bar%2F" + i.to_s)
 end

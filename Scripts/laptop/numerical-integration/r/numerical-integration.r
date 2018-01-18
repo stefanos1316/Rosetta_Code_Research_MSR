@@ -24,7 +24,7 @@ f2 <- (function(x) {1/x})
 f3 <- (function(x) {x})
 f4 <- (function(x) {x})
 
-for (i in 0:1000) {
+executeTask <- function(i) {
 
   integrate.rect(f1,0,1,100,0) #TopLeft 0.245025
   integrate.rect(f1,0,1,100,0.5) #Mid 0.2499875
@@ -49,4 +49,11 @@ for (i in 0:1000) {
   integrate.rect(f3,0,6000,6000000,1) #TopRight 0.255025
   integrate.trapezoid(f3,0,6000,6000000) # 0.250025
   integrate.simpsons(f3,0,6000,6000000) #0.25
+	return(i+1)
+}
+
+r=1
+
+for (i in 0:100) {
+	r = executeTask(i)
 }

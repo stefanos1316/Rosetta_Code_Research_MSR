@@ -10,17 +10,17 @@ func compose(f, g ffType) ffType {
     }
 }
 
-func executeTask(i int) int {
+func executeTask(i int) float64 {
 
         sin_asin := compose(math.Sin, math.Asin)
-        sin_asin((float64)(i))
-	return i + 1
+        return sin_asin((float64)(i))
+	
 }
 
 func main() { 
-    	r := int(1)
+    	r := float64(0.0)
     	for i := 0; i < 1000000000; i++ {
-    		r = executeTask(i + r)
+    		r = executeTask(i)
 	}
     _ = r
 }

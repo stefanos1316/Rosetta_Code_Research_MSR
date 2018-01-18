@@ -33,8 +33,15 @@ bhuffman <- function (pvecin) {
     return(code); 
 } 
 
+r = 0
+
+executeTask <- function(i) {
+
+    	p=c("space"=6, "a"=3, "c"=1, "d"=1, "e"=3, "f"=2, "g"=1, "h"=1, "i"=3, "l"=1, "m"=2, "n"=3, "o"=2, "p"=1, "s"=2, "t"=1) 
+   	bhuffman(p/sum(p)) 
+	return(i+1)
+}
 
 for ( i in 0:1000000 ) {
-    p=c("space"=6, "a"=3, "c"=1, "d"=1, "e"=3, "f"=2, "g"=1, "h"=1, "i"=3, "l"=1, "m"=2, "n"=3, "o"=2, "p"=1, "s"=2, "t"=1) 
-    bhuffman(p/sum(p)) 
+	r = executeTask(i+r)
 }

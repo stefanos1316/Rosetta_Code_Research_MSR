@@ -5,15 +5,6 @@ sub urldecode {
     return $s;
 }
 
-my $r = 1;
-
-sub executeTask {
-	my ($i) = @_;
-	
-	urldecode('http%3A%2F%2Ffoo+bar%2F');
-	return ($i + 1);
-}
-
-for( $a=0; $a < 10000000; $a = $a + 1) {
-	$r = executeTask($a + $r);
+for( $a=0; $a < 100000000; $a = $a + 1) {
+	urldecode('http%3A%2F%2Ffoo+bar%2F' + $a);
 }

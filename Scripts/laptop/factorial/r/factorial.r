@@ -3,6 +3,13 @@ fact <- function(n) {
   else n * fact(n-1)
 }
 
-for(i in 0:1000000000) {
+executeTask <- function(i) {
 	fact(10)
+	return(i + 1)
+}
+
+r = 1
+
+for(i in 0:2000000000) {
+	r = executeTask(i + r)
 }

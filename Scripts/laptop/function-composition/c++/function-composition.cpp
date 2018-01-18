@@ -4,7 +4,7 @@
 
 double executeTask(int i) {
 	
-	return __gnu_cxx::compose1(std::ptr_fun(::sin), std::ptr_fun(::asin))(i); ;
+	 return __gnu_cxx::compose1(std::ptr_fun(::sin), std::ptr_fun(::asin))(i); ;
 }
 
 int main() {
