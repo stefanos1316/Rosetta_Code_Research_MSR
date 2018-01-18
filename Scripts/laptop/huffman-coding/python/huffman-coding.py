@@ -16,13 +16,15 @@ def encode(symb2freq):
     return sorted(heappop(heap)[1:], key=lambda p: (len(p[-1]), p))
 
 txt = "this is an example for huffman encoding"
-for i in range(1000000):
+r = 1
+
+def executeTask(i):
     symb2freq = defaultdict(int)
     for ch in txt:
         symb2freq[ch] += 1
-# in Python 3.1+:
-# symb2freq = collections.Counter(txt)
     huff = encode(symb2freq)
-    #print "Symbol\tWeight\tHuffman Code"
-    #for p in huff:
-        #print "%s\t%s\t%s" % (p[0], symb2freq[p[0]], p[1])
+    return i + 1
+
+
+for i in range(1000000):
+ 	r = executeTask(i + r)

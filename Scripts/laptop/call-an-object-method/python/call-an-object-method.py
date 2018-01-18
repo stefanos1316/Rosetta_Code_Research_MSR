@@ -8,9 +8,13 @@ class MyClass(object):
 	def myMethod(self, x):
 		y = x 
 		
+r = 1
 
-for i in xrange(1000000000):	
+def executeTask(i):
 	myInstance = MyClass()
 	myInstance.myMethod(6)
-# Instance method
+	return i + 1
+
+for i in xrange(2000000000):	
+	r = executeTask(i + r)
 

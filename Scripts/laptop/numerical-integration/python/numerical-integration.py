@@ -30,7 +30,9 @@ def integrate( f, a, b, steps, meth):
    return ival
 
 # Tests
-for i in range(1000):
+r = 1
+
+def executeTask(i):
   integrate(cube,0,1,100,left_rect)
   integrate(cube,0,1,100,mid_rect)
   integrate(cube,0,1,100,right_rect)
@@ -55,3 +57,7 @@ for i in range(1000):
   integrate(identity,0,6000,6000000,trapezium)
   integrate(identity,0,6000,6000000,simpson)
 
+  return i + 1
+
+for i in range(100):
+	r = executeTask(i + r)

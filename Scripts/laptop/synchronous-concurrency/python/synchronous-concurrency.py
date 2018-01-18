@@ -23,11 +23,16 @@ def write(file):
         n += 1
     count.put(n)
 
-
-for i in range(1000):
+def executeTask(i):
     reader = Thread(target=read, args=(open('input.txt'),))
     writer = Thread(target=write, args=(sys.stdout,))
     reader.start()
     writer.start()
     reader.join()
-    writer.join()
+    writer.join() 
+    return i + 1
+
+r = 1
+
+for i in range(1000):
+	r = executeTask(i + r)

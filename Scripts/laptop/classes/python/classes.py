@@ -4,8 +4,14 @@ class MyClass:
       self.variable = variable
    
    def displayMyClass(self):
-      print " Variable value is ", self.variable
+	self.variable = 1
 
-for i in range(1000000):
+def executeTask(i):
 	obj = MyClass( 2000)
 	obj.displayMyClass()
+	return i + 1
+
+r = 1
+
+for i in xrange(2100000000):
+	r = executeTask(i + r)

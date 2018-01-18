@@ -52,10 +52,13 @@ def decompress(compressed):
     return result
 
 
+r = 1
+
+def executeTask(i):
+    compressed = compress('TOBEORNOTTOBEORTOBEORNOT')
+    decompressed = decompress(compressed)
+    return i + 1
 
 # How to use:   
 for i in range(100000):
-    compressed = compress('TOBEORNOTTOBEORTOBEORNOT')
-#print (compressed)
-    decompressed = decompress(compressed)
-#print (decompressed)
+	r = executeTask(i + r)
