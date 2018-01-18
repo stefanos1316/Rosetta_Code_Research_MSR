@@ -4,18 +4,14 @@
 #include <random>
 #include <chrono> 
 
-int main()
-{
 
-for (int i = 0; i < 1000000; ++i) {
-
+int executeTask(int i) {
   std::random_device rd;
   std::mt19937 eng(rd()); // mt19937 generator with a hardware random seed.
   std::uniform_int_distribution<> dist(1,2);
   std::vector<std::thread> threads;
  
   for(const auto& str: {"Enjoy\n", "Rosetta\n", "Code\n"}) {
-    // between 1 and 1000ms per our distribution
     std::chrono::milliseconds duration(dist(eng)); 
  
     threads.emplace_back([str, duration](){                                                                    
@@ -25,6 +21,14 @@ for (int i = 0; i < 1000000; ++i) {
   }
  
   for(auto& t: threads) t.join(); 
+  return i + 1;
 }
+
+int main()
+{
+	volatile int r = 1;
+	for (int i = 0; i < 1000000; ++i) {
+		r = executeTask(i + r);
+	}
   return 0;
 }

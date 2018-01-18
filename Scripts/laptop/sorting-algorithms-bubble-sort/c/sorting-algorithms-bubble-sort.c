@@ -26,7 +26,7 @@ int executeTask(int i) {
 int main () {
     int i; 
     volatile int r = 1;
-    for (i = 0; i < 1000000; i++) {
+    for (i = 0; i < 1000000000; i++) {
     	r = executeTask(i + r);
     }
     return 0;

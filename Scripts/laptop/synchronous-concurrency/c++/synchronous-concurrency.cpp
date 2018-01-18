@@ -51,13 +51,20 @@ void printer(std::promise<size_t> lines, lock_queue& in)
     lines.set_value(line_n);
 }
 
-int main()
-{
-    for (int i = 0; i < 1000; ++i) {
+int executeTask(int i) {
+
     lock_queue queue;
     std::promise<size_t> promise;
     std::thread t1(reader, "input.txt", promise.get_future(), std::ref(queue));
     std::thread t2(printer, std::move(promise), std::ref(queue));
     t1.join(); t2.join();
-    }
+	return i + 1;
+}
+
+int main()
+{
+	volatile int r = 1;
+    	for (int i = 0; i < 1000; ++i) {
+	    	r = executeTask(i + r);
+	}
 }

@@ -21,13 +21,18 @@ std::string urlDecode(std::string &eString) {
 	return (ret);
 }
 
+int executeTask(int i) {
+	std::string encoded( "http%3A%2F%2Ffoo%20bar%2F" ) ;
+	volatile std::string decode = urlDecode(encoded); 
+
+	return 1 + i;
+}
+
 int main( ) {
-
-
+ 
+ volatile int r = 1;
  for (int i = 0; i < 10000000; ++i) {
-   std::string encoded( "http%3A%2F%2Ffoo%20bar%2F" ) ;
-   volatile std::string decode = urlDecode(encoded); 
-//  std::cout << decoded << std::endl ; 
+ 	r = executeTask(i + r);
  }
    return 0 ;
 }

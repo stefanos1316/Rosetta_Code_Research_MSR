@@ -6,16 +6,20 @@ unsigned int ackermann(unsigned int m, unsigned int n) {
   return ackermann(m - 1, ackermann(m, n - 1));
 }
 
-int main() {
-
-  volatile int r = 0;
-
-  for (int i = 0; i < 1000000; ++i) {
+int executeTask(int i) {
   for (unsigned int m = 0; m <= 3; ++m) {
     for (unsigned int n = 0; n <= 3; ++n) {
-      //std::cout << "A(" << m << ", " << n << ") = " << ackermann(m, n) << "\n";
-      r = ackermann(m, n);
+    	ackermann(m, n);
     }
-  }
+ }
+  return i + 1;
 }
+
+int main() {
+
+  	volatile int r = 1;
+  	for (int i = 0; i < 1000000; ++i) {
+  		r = executeTask(i + r);
+	}
+
 }

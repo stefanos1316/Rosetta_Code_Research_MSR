@@ -2,11 +2,15 @@
 
 int factorial(int);
 
-int main() {
-volatile int j;
+int executeTask(int i) {
+	return factorial(10)  +i;
+}
 
-for (int i = 0; i < 1000000000; ++i) {	
-	j = factorial(10);
+int main() {
+
+volatile int r = 1;
+for (int i = 0; i < 2000000000; ++i) {	
+	r =executeTask(i + r);
 }
 	return 0; 	
 }
