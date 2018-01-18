@@ -18,12 +18,17 @@ void *array_concat(const void *a, size_t an,
 const int a[] = { 1, 2, 3, 4, 5 };
 const int b[] = { 6, 7, 8, 9, 0 };
 
+int executeTask(int i) {
+  int *c = ARRAY_CONCAT(int, a, 5, b, 5);
+  free(c);
+  return i+1;
+}
+
 int main(void)
 {
   unsigned int i;
-
-  for (int j = 0; j < 100000000; ++j) {
-  volatile int *c = ARRAY_CONCAT(int, a, 5, b, 5);
-  free(c);
-  }
+  volatile int r = 1;
+  	for (int j = 0; j < 2000000000; ++j) {
+ 		r = r + executeTask(i); 
+	}
 }

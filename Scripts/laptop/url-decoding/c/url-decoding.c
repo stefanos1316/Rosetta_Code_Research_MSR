@@ -28,17 +28,18 @@ int decode(const char *s, char *dec)
 	return o - dec;
 }
 
-int main()
-{
-  volatile int r;
-
-  for ( int i = 0; i < 10000000; ++i) {	
+int executeTask(int i) {
 	const char *url = "http%3A%2F%2ffoo+bar%2fabcd";
 	char out[strlen(url) + 1];
+	return decode(url,0) + i;
+}
 
-	//printf("length: %d\n", decode(url, 0));
-	//puts(decode(url, out) < 0 ? "bad string" : out);
-	r = decode(url,0);
+int main()
+{
+	volatile int r = 1;
+
+  	for ( int i = 0; i < 10000000; ++i) {	
+		r = executeTask( i + r);
 	}
 	return 0;
 }

@@ -18,11 +18,16 @@ void MyClass_someMethod(MyClass pthis)
   int value = pthis->variable;
 }
 
-int main() {
+int executeTask(MyClass obj, int i) {
+	MyClass_someMethod(obj);
+	return i;
+}
 
+int main() {
+	volatile int r = 1;
 	volatile MyClass obj = MyClass_new();
-	for (int i = 0; i < 1000000000; ++i) {
-		MyClass_someMethod(obj);
+	for (int i = 0; i < 2000000000; ++i) {
+		r = executeTask(obj, i + r);
 	}
 
 return 0;

@@ -21,19 +21,26 @@ void MyClass_delete(MyClass* pthis)
   }
 }
 
-void MyClass_someMethod(MyClass pthis)
+void MyClass_someMethod(MyClass pthis, int i)
 {
-  pthis->variable = 1;
-  printf("Variable value is %d\n", &pthis->variable);
+  pthis->variable = 1 + i;
+ // printf("Variable value is %d\n", &pthis->variable);
 }
 
-int main() {
-volatile MyClass obj = MyClass_new();
 
-for (int i = 0; i < 1000000; ++i) {
+int executeTask(int i){
+
 	MyClass obj1 = MyClass_new();
-	MyClass_someMethod(obj1);
+	MyClass_someMethod(obj1, i);
 	MyClass_delete(&obj1);
+	return i;
+}
+
+
+int main() {
+volatile int r = 1;
+for (int i = 0; i < 2100000000; ++i) {
+	r = executeTask(i + r);
 }
 
 return 0;

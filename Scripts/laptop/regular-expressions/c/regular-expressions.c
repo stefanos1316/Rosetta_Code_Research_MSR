@@ -4,11 +4,7 @@
 #include <regex.h>
 #include <string.h>
 
-int main()
-{
-
-for (int i = 0; i < 10000000; ++i ) {
-   
+int executeTask(int i) {
    regex_t preg;
    regmatch_t substmatch[1];
    const char *tp = "string$";
@@ -38,6 +34,16 @@ for (int i = 0; i < 10000000; ++i ) {
       //printf("the string '%s' is the same: no matching!\n", t1);
    }
    regfree(&preg);
+
+   return i + 1;
 }
+
+
+int main()
+{
+	volatile int r = 1;
+	for (int i = 0; i < 10000000; ++i ) {
+   		r = executeTask(i + r);
+	}
    return 0;
 }

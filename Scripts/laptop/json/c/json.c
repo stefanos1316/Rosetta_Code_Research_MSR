@@ -94,11 +94,7 @@ static void print_tree (FILE *f, yajl_val tree, int parse_numbers)
   yajl_gen_free (gen);
 }
 
-int main (int argc, char **argv)
-{
-
-  for (int i = 0; i < 10000000; ++i) {
-
+int executeTask(int i) {
   char err_buf[200];
   const char *json =
     //"{\"pi\": 3.14, \"large number\": 123456789123456789123456789, "
@@ -113,12 +109,16 @@ int main (int argc, char **argv)
       return EXIT_FAILURE;
     }
 
-  //printf ("Treating numbers as strings...\n");
-  //print_tree (stdout, tree, 0);
-  //printf ("Parsing numbers to long long or double...\n");
- // print_tree (stdout, tree, 1);
-
   yajl_tree_free (tree);
+
+ return i + 1;
+}
+
+int main (int argc, char **argv)
+{
+  volatile int r;
+  for (int i = 0; i < 10000000; ++i) {
+	r = executeTask(i);
   }
 
   return EXIT_SUCCESS;

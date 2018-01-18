@@ -34,15 +34,19 @@ double dpow(double base, int exp)
    return v;
 }
 
+int executeTask(int i) {
+   ipow(2017,12+i);
+   dpow(19.88,12+i);
+   return i;
+}
+
 int main()
 {
 
 volatile int r1 = 0; 
-volatile double r2 = 0.0;
 
 for ( int i = 0; i < 1000000000; ++i) {
-   r1 = ipow(2017,12);
-   r2 = dpow(19.88,12);
+	r1 = executeTask(i);
 }
 return 0;
 }

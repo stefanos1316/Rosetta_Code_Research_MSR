@@ -2,22 +2,27 @@
 
 int palindrome(const char*);
 
+int executeTask(int i) {
+	char* array = "saippuakivikauppias";
+	palindrome(array);
+
+   return i + 1;
+}
+
 int main() {
 
-   	volatile int j;
-
-	for (int i=0; i<1000000000; ++i) {
-	char* array = "saippuakivikauppias";
-	j = palindrome(array);
+   	volatile int r = 1;
+	for (int i=0; i<2000000000; ++i) {
+		r = executeTask(i + r);
 	}
 	return 0;
 }
 
 int palindrome(const char *s)
 {
-   int i,l;
+   int l;
    l = strlen(s);
-   for(i=0; i<l/2; i++)
+   for(int i=0; i<l/2; i++)
    {
      if ( s[i] != s[l-i-1] ) return 0;
    }
