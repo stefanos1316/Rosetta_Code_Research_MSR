@@ -75,25 +75,25 @@ public class HuffmanCode {
         }
     }
 
-    private static volatile HuffmanTree tree; 
+    	private static volatile HuffmanTree tree; 
+	private static volatile int r = 0;
 
-    public static void main(String[] args) {
-        String test = "this is an example for huffman encoding";
+    	public static int executeTask(int i) {
 
-        // we will assume that all our characters will have
-        // code less than 256, for simplicity
-	for (int i = 0; i < 1000000; ++i) {
-        int[] charFreqs = new int[256];
-        // read each character and record the frequencies
-        for (char c : test.toCharArray())
-            charFreqs[c]++;
+	        String test = "this is an example for huffman encoding";
+        	int[] charFreqs = new int[256];
 
-        // build tree
-        tree = buildTree(charFreqs);
+        	for (char c : test.toCharArray())
+            		charFreqs[c]++;
+
+	        tree = buildTree(charFreqs);
+		return i + 1;
 	}
 
-        // print out results
-        //System.out.println("SYMBOL\tWEIGHT\tHUFFMAN CODE");
-        //printCodes(tree, new StringBuffer());
+    public static void main(String[] args) {
+
+	for (int i = 0; i < 1000000; ++i) {
+		r = executeTask(i + r);
+	}
     }
 }

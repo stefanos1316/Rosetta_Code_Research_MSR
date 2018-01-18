@@ -174,17 +174,19 @@ HuffmanEncoding.prototype.decode = function(encoded) {
     }
     return decoded;
 }
-for ( var i = 0; i < 1000000; i++) {
-var s = "this is an example for huffman encoding";
-//console.log(s);
 
+var r = 1;
+
+function executeTask(i) {
+	
+var s = "this is an example for huffman encoding";
 var huff = new HuffmanEncoding(s);
 huff.inspect_encoding();
-
 var e = huff.encoded_string;
-//console.log(e);
-
 var t = huff.decode(e);
-//console.log(t);
+return i + 1;
 }
-//console.log("is decoded string same as original? " + (s==t));
+
+for ( var i = 0; i < 1000000; i++) {
+	r = executeTask(i + r);
+}

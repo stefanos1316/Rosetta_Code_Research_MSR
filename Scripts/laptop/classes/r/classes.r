@@ -1,6 +1,5 @@
-
-for(i in 0:1000000) {
-
+executeTask <- function(i) {
+	
 myClassVariable <- list(Variable="193578")
 class(myClassVariable) <- append(class(myClassVariable), "Value")
 
@@ -11,7 +10,12 @@ GetVariable <- function(x) {
 GetVariable.Value <-function(x) {
 	return(x$Variable)
 }
+	return(i + 1)
+}
 
-print(paste("Variable value is ",GetVariable(myClassVariable)))
+r = 1
+
+for(i in 0:2100000000) {
+	r = executeTask(i + r)
 }
 

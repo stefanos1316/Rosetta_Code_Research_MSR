@@ -16,11 +16,7 @@ int encode(const char *s, char *enc, char *tb)
 	return 1;
 }
 
-int main()
-{
-    volatile int r;
-
-    for (int i = 0; i < 10000000; ++i) {
+int executeTask(int j) {
 	const char url[] = "http://foo bar/";
 	char enc[(strlen(url) * 3) + 1];
 
@@ -32,8 +28,14 @@ int main()
 			? i : (i == ' ') ? '+' : 0;
 	}
 
-	r = encode(url, enc, rfc3986);
-	//puts(enc);
+	return encode(url, enc, rfc3986) + j;
+}
+
+int main()
+{
+    	volatile int r = 1;
+    	for (int i = 0; i < 10000000; ++i) {
+		r = executeTask(i +r);
 	}
 	return 0;
 }

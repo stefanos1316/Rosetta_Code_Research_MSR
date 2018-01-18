@@ -287,16 +287,25 @@ namespace Huffman_Encoding
 
     internal class Program
     {
+	private static volatile int r = 1;
+	
+	public static int executeTask(int i) {
+	    
+		var huffman = new Huffman<char>(Example);
+            	List<int> encoding = huffman.Encode(Example);
+           	List<char> decoding = huffman.Decode(encoding);
+            	var outString = new string(decoding.ToArray());
+		
+		return 1 + i;
+	}
+	
         private const string Example = "this is an example for huffman encoding";
         private static void Main()
         {
 
-	for ( int i = 0; i < 1000000; ++i) {
-	    var huffman = new Huffman<char>(Example);
-            List<int> encoding = huffman.Encode(Example);
-            List<char> decoding = huffman.Decode(encoding);
-            var outString = new string(decoding.ToArray());
-            }
+		for ( int i = 0; i < 1000000; ++i) {
+            		r = executeTask(i + r);
+		}
 	 }
     }
 }

@@ -1,9 +1,6 @@
 #include <string>
 #include <map>
 
-// Compress a string to a list of output symbols.
-// The result will be written to the output iterator
-// starting at "result"; the final iterator is returned.
 template <typename Iterator>
 Iterator compress(const std::string &uncompressed, Iterator result) {
   // Build the dictionary.
@@ -33,8 +30,6 @@ Iterator compress(const std::string &uncompressed, Iterator result) {
   return result;
 }
 
-// Decompress a list of output ks to a string.
-// "begin" and "end" must form a valid range of ints
 template <typename Iterator>
 std::string decompress(Iterator begin, Iterator end) {
   // Build the dictionary.
@@ -69,16 +64,20 @@ std::string decompress(Iterator begin, Iterator end) {
 #include <iterator>
 #include <vector>
 
-int main() {
- 
+int executeTask(int i) {
 
-  for (int i=0; i<100000; ++i) {
   std::vector<int> compressed;
   compress("TOBEORNOTTOBEORTOBEORNOT", std::back_inserter(compressed));
-  //copy(compressed.begin(), compressed.end(), std::ostream_iterator<int>(std::cout, ", "));
-  //std::cout << std::endl;
   std::string decompressed = decompress(compressed.begin(), compressed.end());
-  //std::cout << decompressed << std::endl;
+ 
+ return i + 1;
+}
+
+int main() {
+ 
+  volatile int r = 1;
+  for (int i=0; i<100000; ++i) {
+	r = executeTask(i + r);
   }
   return 0;
 }

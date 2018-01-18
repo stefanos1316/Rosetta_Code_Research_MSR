@@ -44,13 +44,7 @@ double asin_call(double_to_double *this, double x) {
   // return x+x;
 }
 
-
-
-#include <stdio.h>
-
-int main() {
-
-  for (int i = 0; i < 1000000000; ++i) {
+int executeTask(int i){
     double_to_double *my_sin = malloc(sizeof(double_to_double));
     my_sin->fn = &sin_call;
     double_to_double *my_asin = malloc(sizeof(double_to_double));
@@ -63,6 +57,17 @@ int main() {
     free(sin_asin);
     free(my_sin);
     free(my_asin);
+	
+    return i + 1;
+}
+
+#include <stdio.h>
+
+int main() {
+
+  volatile int r;
+  for (int i = 0; i < 1000000000; ++i) {
+  	r = executeTask(i);
   }
 
   return 0;

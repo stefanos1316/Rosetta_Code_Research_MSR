@@ -7,13 +7,19 @@ using std::endl;
  
 std::string urlencode(const std::string &c);
 
-int main(int argc, char *argv[])
-{
+int executeTask(int i) {
 
-   for (int i = 0; i < 10000000; ++i) {
     	std::string address = "http://foo bar/";
      	urlencode(address);
-  }
+	return i + 1;
+}
+
+int main(int argc, char *argv[])
+{
+	volatile int r = 0;
+	for (int i = 0; i < 10000000; ++i) {
+  		r = executeTask(i + r);
+	}
 }
 
 std::string urlencode(const std::string &s)

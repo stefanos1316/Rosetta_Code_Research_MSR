@@ -22,17 +22,20 @@ int* concatArrays( T1& array_1, T2& array_2) {
   return p;
 }
  
-int main() {
-
-
+int executeTask(int i) {
   int ary[5] = {1, 2, 3, 4, 5};
   int anotherAry[5] = {6, 7, 8, 9, 10};
 
-  for ( int j=0; j < 100000000; ++j) {
-
-  volatile int *r = concatArrays(ary, anotherAry);
- 
+  int *r = concatArrays(ary, anotherAry);
   delete r;
+  return i + 1;
+}
+
+int main() {
+
+  volatile int r = 1;
+  for ( int j=0; j < 2000000000; ++j) {
+	r = executeTask(j + r);
   }
 
   return 0;

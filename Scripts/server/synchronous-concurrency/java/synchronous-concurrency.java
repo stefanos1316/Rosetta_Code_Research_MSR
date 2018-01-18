@@ -7,9 +7,11 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 class SynchronousConcurrency
 {
-  public static void main(String[] args) throws Exception
-  {
-    for (int i = 0; i < 100000; ++i) {
+ 
+  private static volatile int r = 1;
+
+  public static int executeTask(int i) throws Exception {
+	
     final AtomicLong lineCount = new AtomicLong(0);
     final BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
     final String EOF = new String();
@@ -48,7 +50,13 @@ class SynchronousConcurrency
     writerThread.join();
     // AtomicLong is not needed here due to memory barrier created by thread join, but still need a mutable long since lineCount must be final to access it from an anonymous class
     System.out.println("Line count: " + lineCount.get());
-    return;
+	return i + 1;
   }
-}
+
+  public static void main(String[] args) throws Exception
+  {
+  	  for (int i = 0; i < 1000; ++i) {
+		r = executeTask(i + r);
+	  }
+  }
 }

@@ -101,17 +101,21 @@ public class DefiniteIntegral
 
 public class Program
 {
-    private static void TestApproximationMethods(DefiniteIntegral integral, int subdomainCount)
-    {
+    private static int r = 1;
 
-	for (int i = 0; i < 1000; ++i ) {
+    public static int executeTask(int i, DefiniteIntegral integral, int subdomainCount) {
 
         foreach (DefiniteIntegral.ApproximationMethod approximationMethod in Enum.GetValues(typeof(DefiniteIntegral.ApproximationMethod)))
         {
-            	//Console.WriteLine
 		integral.Approximate(approximationMethod, subdomainCount);
         }
+	return 1 + i;
+    }
 
+    private static void TestApproximationMethods(DefiniteIntegral integral, int subdomainCount)
+    {
+	for (int i = 0; i < 100; ++i ) {
+		r = executeTask(i + r, integral, subdomainCount);
 	}
     }
  

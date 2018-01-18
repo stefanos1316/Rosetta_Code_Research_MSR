@@ -6,16 +6,20 @@ namespace LZW
 {
     public class Program
     {
-	private static volatile string decompressed;
-	
+	private static volatile int r = 1;
+
+	public static int executeTask(int i) {
+
+            	List<int> compressed = Compress("TOBEORNOTTOBEORTOBEORNOT");
+            	string decompressed = Decompress(compressed);
+		return i + 1;
+	}
+
         public static void Main(string[] args)
         {
-            for (int i=0; i<100000; ++i) {
-            List<int> compressed = Compress("TOBEORNOTTOBEORTOBEORNOT");
-            //Console.WriteLine(string.Join(", ", compressed));
-            decompressed = Decompress(compressed);
-            //Console.WriteLine(decompressed);
-            }
+            	for(int i=0; i<100000; ++i) {
+           		r = executeTask(i + r);
+		}
         }
 
         public static List<int> Compress(string uncompressed)

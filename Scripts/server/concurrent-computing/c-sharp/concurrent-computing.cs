@@ -3,9 +3,9 @@ using System.Threading;
 
 class Concurrent {
 
-static void Main(string[] args)
-{
-	for ( int i = 0; i < 1000000; ++i ) {
+private static volatile int r = 1;
+
+public static int executeTask(int i) {
 
 	Thread t = new Thread(new ParameterizedThreadStart(WriteText));
 	t.Start("Enjoy");
@@ -15,7 +15,14 @@ static void Main(string[] args)
  
 	t = new Thread(new ParameterizedThreadStart(WriteText));
 	t.Start("Code");	
+	return i + 1;
 }
+
+static void Main(string[] args)
+{
+	for ( int i = 0; i < 1000000; ++i ) {
+		r = executeTask(i + r);
+	}
 }
  
 private static void WriteText(object p)

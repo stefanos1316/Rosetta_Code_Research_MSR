@@ -1,5 +1,12 @@
+var r = 1;
+
+function executeTask(i) {
+
+	var normal = 'http://foo/bar/';
+	var encoded = encodeURIComponent(normal);
+	return i + 1;
+}
+
 for ( var i = 0; i < 10000000; i++) { 
-var normal = 'http://foo/bar/';
-var encoded = encodeURIComponent(normal);
-//console.log(encoded);
+	r = executeTask(i + r);
 }

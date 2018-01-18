@@ -8,10 +8,18 @@ ackermann <- function(m, n) {
   }
 }
 
-for ( i in 0:1000000 ) {
+executeTask <- function(i) {
   for ( m in 0:3 ) {
     for ( n in 0:3 ) {
       ackermann(m, n)
     }
   }
+
+	return(i+1)
+}
+
+r = 1
+
+for ( i in 0:1000000 ) {
+	r = executeTask(i + r)	
 }

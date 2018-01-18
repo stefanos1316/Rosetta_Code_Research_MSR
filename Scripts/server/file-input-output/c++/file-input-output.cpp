@@ -4,16 +4,11 @@
 
 using namespace std;
 
-int main() {
-
+int executeTask(int i) {
 
     string line;
     ifstream input ( "../input.txt" );
     ofstream output ("output.txt");
-
-for ( int i = 0; i < 1000000; ++i ) {
-
-
     if (output.is_open()) {
         if (input.is_open()){
             while (getline (input,line)) {
@@ -30,6 +25,14 @@ for ( int i = 0; i < 1000000; ++i ) {
         cout << "output.txt cannot be written to!\n";
     }
 
+	return i + 1;
 }
+
+int main() {
+	
+	volatile int r = 1;
+	for ( int i = 0; i < 1000000; ++i ) {
+		r = executeTask(i + r);
+	}
     return 0;
 }

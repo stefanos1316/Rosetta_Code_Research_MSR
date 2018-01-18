@@ -218,12 +218,8 @@ bail:	_del(d);
 	return out;
 }
 
-int main()
-{
-	volatile int i, fd = open("unixdict.txt", O_RDONLY);
-
-	 for (int i=0; i<100000; ++i) {
-
+int executeTask(int j) {
+	int i, fd = open("unixdict.txt", O_RDONLY);
 	if (fd == -1) {
 		fprintf(stderr, "Can't read file\n");
 		return 1;
@@ -237,13 +233,10 @@ int main()
 	_setsize(in, st.st_size);
 	close(fd);
 	_len(in);
-	//printf("input size:   %d\n", _len(in));
 
 	byte *enc = lzw_encode(in, 9);
-	//printf("encoded size: %d\n", _len(enc));
 	_len(enc);
 	byte *dec = lzw_decode(enc);
-	//printf("decoded size: %d\n", _len(dec));
 	_len(dec);
 
 	for (i = 0; i < _len(dec); i++)
@@ -251,13 +244,19 @@ int main()
 			printf("bad decode at %d\n", i);
 			break;
 		}
-
-	//if (i == _len(dec)) printf("Decoded ok\n");
-		
-
 	_del(in);
 	_del(enc);
 	_del(dec);
+
+
+	return j + 1;
+}
+
+int main()
+{
+	volatile int r;
+	for (int i=0; i<100000; ++i) {
+		r = executeTask(i);
 	}
 	return 0;
 }

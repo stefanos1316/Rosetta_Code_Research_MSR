@@ -1,14 +1,20 @@
 public class RegularExpressions {
 
- private static volatile boolean ma;
- private static volatile String strR;
+ private static volatile int r = 1;
+
+ public static int executeTask(int i) {
+
+
+  String str = "this is a matching string";
+  boolean ma = (str.matches(".*string")); 
+  String strR = str.replaceAll("string", "istyfied"); {}
+  return i  + 1;
+ }
 
  public static void main(String[] args) {
 
   for (int i = 0; i < 10000000; ++i) {
-  String str = "this is a matching string";
-    ma = (str.matches(".*string")); 
-    strR = str.replaceAll("string", "istyfied"); {}
+  	r = executeTask(i + r);
   }
  }
 

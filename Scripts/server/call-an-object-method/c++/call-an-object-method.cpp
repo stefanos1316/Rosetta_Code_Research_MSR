@@ -1,12 +1,3 @@
-
-
-// Static
-//MyClass::method(someParameter);
-
-// Instance
-//myInstance.method(someParameter);
-
-
 #include <iostream>
 
 using namespace std;
@@ -22,12 +13,15 @@ void someMethod::setValue (int value) {
 }
 
 
-int main () {
-
+int executeTask(int i) {
 	someMethod objectCall;
+	objectCall.setValue(100);
+	return i + 1;
+}
 
-	for (int i = 0; i < 1000000000; ++i)
-		objectCall.setValue(100);
-
+int main () {
+	volatile int r = 1;
+	for (int i = 0; i < 2000000000; ++i)
+		r = executeTask(i + r);
 	return 0;
 }

@@ -7,8 +7,15 @@ class CallAnObjectMethod {
 	}
 }
 
+var r = 1;
 const obj = new CallAnObjectMethod();
 
-for (var i = 0; i < 1000000000; ++i) {
+function executeTask(i) {
+
 	obj.someMethod(1);
+	return i + 1;
+}
+
+for (var i = 0; i < 2000000000; ++i) {
+	r = executeTask(i + r);
 }

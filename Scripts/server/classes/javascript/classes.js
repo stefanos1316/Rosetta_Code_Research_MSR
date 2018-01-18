@@ -4,11 +4,18 @@ class MyClass{
 	}
 
 	someMethod() {
-		console.log(this.variable);
+		this.variable++;
 	}
 }
 
-for (var i = 0; i < 1000000; ++i) {
+function executeTask(i) {
 	const obj = new MyClass(123456);
 	obj.someMethod();
+	return 1 + i;
+}
+
+var r = 1;
+
+for (var i = 0; i < 2000000000; ++i) {
+	r = executeTask(i + r);
 }

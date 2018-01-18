@@ -1,12 +1,7 @@
 #include <stdio.h>
 
-int main(int argc, char **argv) {
-  volatile FILE *in, *out;
-  volatile int c;
 
-
-for ( int i = 0; i < 1000000; ++i) {
-
+int executeTask(int i, FILE *in, FILE *out, int c){
   in = fopen("../input.txt", "r");
   if (!in) {
     fprintf(stderr, "Error opening input.txt for reading.\n");
@@ -26,6 +21,17 @@ for ( int i = 0; i < 1000000; ++i) {
 
   fclose(out);
   fclose(in);
+
+  return i;
 }
+
+int main(int argc, char **argv) {
+  volatile FILE *in, *out;
+  volatile int c;
+  volatile int r;
+
+for ( int i = 0; i < 1000000; ++i) {
+	r = executeTask(i, &in, &out, c);
+}	
   return 0;
 }

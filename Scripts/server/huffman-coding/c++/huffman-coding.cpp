@@ -90,13 +90,9 @@ void GenerateCodes(const INode* node, const HuffCode& prefix, HuffCodeMap& outCo
     }
 }
 
-int main()
-{
-    // Build frequency table
+int executeTask(int i) {
     int frequencies[UniqueSymbols] = {0};
-    volatile const char* ptr = SampleString;
- for (int i = 0; i < 1000000; ++i) {
-
+    const char* ptr = SampleString;
     while (*ptr != '\0')
         ++frequencies[*ptr++];
 
@@ -105,6 +101,15 @@ int main()
     HuffCodeMap codes;
     GenerateCodes(root, HuffCode(), codes);
     delete root;
+
+	return i + 1;
 }
-    return 0;
+
+int main()
+{
+	volatile int r = 1; 
+	for (int i = 0; i < 1000000; ++i) {
+		r = executeTask(i + r);
+	}
+    	return 0;
 }

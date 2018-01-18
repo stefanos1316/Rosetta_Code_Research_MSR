@@ -93,8 +93,7 @@ typedef double (*rfunc)(double);
 
 #define INTG(F,A,B) (F((B))-F((A)))
 
-int main()
-{
+int executeTask(int z) {
      int i, j;
      volatile double ic;
 
@@ -116,18 +115,23 @@ int main()
        0.0, 6000.0
      };
      double approx[] = { 100.0, 1000.0, 5000000.0, 6000000.0 };
-
-
-for (int k = 0; k < 1000; ++k ) {
+     
      for(j=0; j < (sizeof(rf) / sizeof(rfunc)); j++)
      {
-       for(i=0; i < 5 ; i++)
-       {
-         ic = (*f[i])(ivals[2*j], ivals[2*j+1], approx[j], rf[j]);
-    	//    printf("%10s [ 0,1] num: %+lf, an: %lf\n", names[i], ic, INTG((*If[j]), ivals[2*j], ivals[2*j+1]));
-       }
+	for(i=0; i < 5 ; i++)
+       	{
+         	ic = (*f[i])(ivals[2*j], ivals[2*j+1], approx[j], rf[j]);
+       	}
      }
+	return z + 1;
 }
+
+int main()
+{
+	volatile int r;
+	for (int i = 0; i < 100; ++i) {
+     		r = executeTask(i);
+	}
 
 }
 

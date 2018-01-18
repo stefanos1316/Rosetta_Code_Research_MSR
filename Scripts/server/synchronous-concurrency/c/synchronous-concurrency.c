@@ -90,10 +90,8 @@ reader_entry(void)
  * The printer cothread starts the reader cothread, prints every line
  * line from the reader cothread, and counts the number of lines.
  */
-int main() {
 
-
-for (int i = 0; i < 1000; ++i) {
+int executeTask(int i) {
 	reader = co_create(4096, reader_entry);
 	printer = co_active();
 	count = 0;
@@ -109,6 +107,15 @@ for (int i = 0; i < 1000; ++i) {
 	}
 	printf("%d\n", i);
 	co_delete(reader);
+
+	return i + 1;
 }
+
+int main() {
+	
+	volatile int r = 1;
+	for (int i = 0; i < 1000; ++i) {
+		r = executeTask(i + r);
+	}
 	return 0;
 }

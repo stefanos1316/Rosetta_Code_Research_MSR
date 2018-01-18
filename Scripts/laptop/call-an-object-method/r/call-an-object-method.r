@@ -1,7 +1,6 @@
 CallAnObjectMethod <- function(a) {
 	value <- list(name = a)
 	attr(value, "class") <- "CallAnObjectMethod"
-	value
 }
 
 speak <- function(obj) {
@@ -12,10 +11,14 @@ speak.CallAnObjectMethod <- function(obj) {
 	value = obj$name
 }
 
-for ( i in 0:1000000000 ) {
-	object <- list(name="Object")
+executeTask <- function(i) {
 
-	#inherit
+	object <- list(name="Object")
 	class(object) <- c("Object","CallAnObjectMethod")
 	speak(object)
+	return(i + 1)
+}
+ r = 1
+for ( i in 0:2000000000 ) {
+	r = executeTask(i + r)
 }

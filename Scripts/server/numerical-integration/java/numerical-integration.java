@@ -95,10 +95,9 @@ class NumericalIntegration
     return;
   }
 
-  public static void main(String[] args)
-  {
+  private static volatile int r = 0;
 
-  for (int i = 0; i < 1000; i++) {
+  public static int executeTask(int i) {
 
     testFunction("x^3", 0.0, 1.0, 100, new FPFunction() {
         public double eval(double n) {
@@ -127,7 +126,15 @@ class NumericalIntegration
         }
       }
     );
+	return i + 1;
+  }
 
+
+  public static void main(String[] args)
+  {
+
+  for (int i = 0; i < 100; i++) {
+	r = executeTask(i + r);
   }
     return;
   }

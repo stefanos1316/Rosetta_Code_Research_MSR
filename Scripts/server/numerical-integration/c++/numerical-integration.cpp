@@ -60,13 +60,7 @@ double f1(double x) { return x*x*x; }
 double f2(double x) { return 1/x; }
 double f3(double x) { return x; }
 
-int main() {
-
-volatile double r;
-
-for ( int i = 0; i < 1000; ++i ) {
-
-// inside a function somewhere:
+int executeTask(int r) {
 r = integrate(f1, 0.0, 1.0, 100, rectangular(rectangular::left));
 r = integrate(f1, 0.0, 1.0, 100, rectangular(rectangular::middle));
 r = integrate(f1, 0.0, 1.0, 100, rectangular(rectangular::right));
@@ -90,7 +84,17 @@ r = integrate(f3, 0.0, 6000.0, 6000000, rectangular(rectangular::middle));
 r = integrate(f3, 0.0, 6000.0, 6000000, rectangular(rectangular::right));
 r = integrate(f3, 0.0, 6000.0, 6000000, trapezium());
 r = integrate(f3, 0.0, 6000.0, 6000000, simpson());
+	
+
+	return 1 + r;
 }
+
+int main() {
+
+	volatile double r;
+	for ( int i = 0; i < 100; ++i ) {
+		r = executeTask(i + r);
+	}
 
 return 0;
 }

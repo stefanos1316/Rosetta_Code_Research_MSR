@@ -2,17 +2,23 @@
 #include <string>
 #include <regex>
 
+int executeTask(int i) {
+
+  	std::string base="this is a test string";
+  	std::string str=base; 
+
+    	std::regex_match (base, std::regex("(.*)(string)"));
+    	str.replace(str.begin()+15,str.begin()+23,"istyfied"); 
+	return i + 1;
+}
+
 int main ()
 {
-  volatile bool m;
 
-  for ( int i = 0; i < 10000000; ++i ) { 
-  std::string base="this is a test string";
-  std::string str=base; 
-
-    m = std::regex_match (base, std::regex("(.*)(string)"));
-    str.replace(str.begin()+15,str.begin()+23,"istyfied"); 
-  }
+  	volatile int r;
+  	for ( int i = 0; i < 10000000; ++i ) { 
+  		r = executeTask(i + r);
+	}
 
   return 0;
 }

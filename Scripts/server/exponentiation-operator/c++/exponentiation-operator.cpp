@@ -33,16 +33,19 @@ template<typename Number>
   return result;
 }
 
+int executeTask(int i) {
+	power(2017,12 );
+	power(19.88,12 );
 
+	return 1 + i;
+}
 
 int main() {
 
-volatile int r1 = 0;
-volatile double r2 = 0.0;
+volatile int r = 1;  
 
 for ( int i = 0; i < 1000000000; ++i ) {
-	r1 = power(2017,12);
-	r2 = power(19.88,12);
+	r = executeTask(i + r);
 }
 
 }
