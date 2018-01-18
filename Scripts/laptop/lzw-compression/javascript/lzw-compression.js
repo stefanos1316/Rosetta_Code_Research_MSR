@@ -1,6 +1,7 @@
 //LZW Compression/Decompression for Strings
-for (var i = 0; i < 100000; i++) {
 
+function executeTask(i) {
+	
 var LZW = {
     compress: function (uncompressed) {
         "use strict";
@@ -80,5 +81,11 @@ var LZW = {
 }, // For Test Purposes
     comp = LZW.compress("TOBEORNOTTOBEORTOBEORNOT");      
     decomp = LZW.decompress(comp);  
+	return i + 1;
 }
-    //console.log(comp + '<br>' + decomp);
+
+var r = 1;
+
+for (var i = 0; i < 100000; i++) {
+	r = executeTask(i + r);
+}

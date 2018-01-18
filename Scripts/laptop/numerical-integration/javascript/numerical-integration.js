@@ -88,7 +88,7 @@ function identity(x) {
 	return x;
 }
 
-for ( var i = 0; i < 1000; ++i) {
+function executeTask(i) {
 
 integrateRectagle("cube",0,1,100,0);
 integrateRectagle("cube",0,1,100,0.5);
@@ -113,4 +113,11 @@ integrateRectagle("identity",0,6000,6000000,0.5);
 integrateRectagle("identity",0,6000,6000000,1);
 integrateTrapezoid("identity",0,6000,6000000);
 integrateSimpsons("identity",0,6000,6000000);
+	return i + 1;
+}
+
+var r = 1;
+
+for ( var i = 0; i < 100; ++i) {
+	r = executeTask(i + r);
 }
