@@ -101,8 +101,10 @@ function identity($x) {
     return $x;
 }
 
+$r = 1;
 
-for ($i = 0; $i < 1000; $i += 1) {
+function executeTask($i) {
+	
 	integralRect("cube",0,1,100,0);
 	integralRect("cube",0,1,100,0.5);
 	integralRect("cube",0,1,100,1);
@@ -126,6 +128,12 @@ for ($i = 0; $i < 1000; $i += 1) {
 	integralRect("identity",0,6000,6000000,1);
 	integralTrapezoid("identity",0,6000,6000000);
 	integralSimpsons("identity",0,6000,6000000);
+
+	return $i + 1;
+}
+
+for ($i = 0; $i < 100; $i += 1) {
+	$r = executeTask($i + $r);
 }
 
 ?>

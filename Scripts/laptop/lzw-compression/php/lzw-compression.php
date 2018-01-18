@@ -26,7 +26,6 @@ class LZW
         }
         return implode(",",$result);
     }
-
     function decompress($com) {
         $com = explode(",",$com);
         $i;$w;$k;$result;
@@ -56,14 +55,21 @@ class LZW
         return $result;
     }
 }
-
 //How to use
-for ( $i = 0; $i < 100000; $i++) {
+$r = 1;
+
+function executeTask($i) {
+
     $str = 'TOBEORNOTTOBEORTOBEORNOT';
     $lzw = new LZW();
     $com = $lzw->compress($str);
     $dec = $lzw->decompress($com);
 #echo $com . "<br>" . $dec;
+	return $i + 1;
 }
 
+
+for ( $i = 0; $i < 100000; $i++) {
+	$r = executeTask($i + $r);
+}
 ?>

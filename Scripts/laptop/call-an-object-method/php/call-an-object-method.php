@@ -10,8 +10,16 @@ class CallAnObjectMethod {
     	}
 }
 
+
+$r = 1;
+
+function executeTask($i) {
 	$myObj = new CallAnObjectMethod();
-	for ( $i = 0; $i < 1000000000; $i++) {
-		$myObj->someMethod(1);
-	}
+	$myObj->someMethod(1);
+	return $i + 1;
+}
+
+for ( $i = 0; $i < 2000000000; $i++) {
+	$r = executeTask($i + $r);
+}
 ?>

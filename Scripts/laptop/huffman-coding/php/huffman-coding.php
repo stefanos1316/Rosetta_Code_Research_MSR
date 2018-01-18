@@ -18,12 +18,18 @@ function encode($symb2freq) {
     $result = $heap->extract();
     return $result['data'];
 }
+
+$r = 1;
+
+function executeTask($i) {
+
+	$txt = 'this is an example for huffman encoding';
+	$symb2freq = array_count_values(str_split($txt));
+	$huff = encode($symb2freq);
+	return $i + 1;
+}
+
 for ( $i = 0; $i < 1000000; $i++) {
-$txt = 'this is an example for huffman encoding';
-$symb2freq = array_count_values(str_split($txt));
-$huff = encode($symb2freq);
-#echo "Symbol\tWeight\tHuffman Code\n";
-#foreach ($huff as $sym => $code)
- #   echo "$sym\t$symb2freq[$sym]\t$code\n";
+	$r = executeTask($i + $r);
 }
 ?>

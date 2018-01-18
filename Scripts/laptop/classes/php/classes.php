@@ -8,12 +8,20 @@ class MyClass {
     }
     function someMethod() {
         self::$classVar = 3;
-	echo "Variable value is $this->instanceVar\n";
+
     }
 }
 
-for ( $i = 0; $i < 1000000; $i++) {
+$r = 1;
+
+function executeTask($i) {
+	
 	$myObj = new MyClass(1974);
 	$myObj->someMethod();
+	return $i + 1;
+}
+
+for ( $i = 0; $i < 2100000000; $i++) {
+	$r = executeTask($i + $r);
 }
 ?>

@@ -1,6 +1,8 @@
 <?php
 
-for ( $i = 0; $i < 1000000; $i++) {
+$r = 1;
+
+function executeTask($i) {
 
 if (!$in = fopen('../input.txt', 'r')) {
     die('Could not open input file.');
@@ -17,5 +19,10 @@ while (!feof($in)) {
 
 fclose($out);
 fclose($in);
+	return $i + 1;
+}
+
+for ( $i = 0; $i < 1000000; $i++) {
+	$r = executeTask($i + $r);
 }
 ?>

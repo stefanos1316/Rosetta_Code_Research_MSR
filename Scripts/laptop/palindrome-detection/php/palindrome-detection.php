@@ -3,7 +3,14 @@ function is_palindrome($string) {
   return $string == strrev($string);
 }
 
-for ( $i = 0; $i < 1000000000; ++$i ) {
-$result = is_palindrome("saippuakivikauppias");
+$r = 1;
+
+function executeTask($i) {
+	$result = is_palindrome("saippuakivikauppias");
+	return $i + 1;
+}
+
+for ( $i = 0; $i < 2000000000; ++$i ) {
+	$r = executeTask($i + $r);
 }
 ?>

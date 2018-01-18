@@ -19,11 +19,19 @@ class AsyncOperation extends Thread
     }
 }
 
+$r = 1;
+
+function executeTasn($i) {
+
+    	$t[$i] = new AsyncOperation($i);
+    	$t[$i]->start();
+    	$t[$i]->join();
+	return $i + 1;
+}
+
 $start = microtime(true);
 for ($i = 0; $i < 1000000; $i++) {
-    $t[$i] = new AsyncOperation($i);
-    $t[$i]->start();
-    $t[$i]->join();
+	$r = executeTask($i + $r);
 }
 
 ?>

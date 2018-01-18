@@ -13,8 +13,17 @@ function factorial($n) {
   }
 }
 
-for ( $i = 0; $i < 1000000000; $i++) {
- factorial(10);
+
+$r = 1;
+
+function executeTask($i) {
+
+	factorial(10);
+	return $i + 1;
+}
+
+for ( $i = 0; $i < 2000000000; $i++) {
+	$r = executeTask($i + $r);
 }
 
 ?>
