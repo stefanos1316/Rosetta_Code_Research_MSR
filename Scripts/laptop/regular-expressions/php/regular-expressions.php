@@ -6,15 +6,15 @@ $r = 1;
 
 function executeTask($i) {
 
-$string = 'this is a matching string';
+$string = 'this is a matching string' . $i;
 
 if (preg_match('/string$/', $string))
 {}
 $string = preg_replace('/\bstring\b/', 'istyfied', $string);
-	return $i + 1;
+	return $i;
 }
 
 for ( $i = 0; $i < 10000000; $i++) {
-	$r = executeTask($i + $r);
+	$r = executeTask($i);
 }
 ?>

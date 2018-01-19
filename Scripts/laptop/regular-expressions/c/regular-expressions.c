@@ -8,7 +8,7 @@ int executeTask(int i) {
    regex_t preg;
    regmatch_t substmatch[1];
    const char *tp = "string$";
-   const char *t1 = "this is a matching string";
+   const char *t1 = "this is a matching string" + (char)i;
    const char *ss = "istyfied";
 
    regcomp(&preg, "string$", REG_EXTENDED);
@@ -35,7 +35,7 @@ int executeTask(int i) {
    }
    regfree(&preg);
 
-   return i + 1;
+   return i;
 }
 
 
@@ -43,7 +43,7 @@ int main()
 {
 	volatile int r = 1;
 	for (int i = 0; i < 10000000; ++i ) {
-   		r = executeTask(i + r);
+ 		r = executeTask(i);
 	}
    return 0;
 }

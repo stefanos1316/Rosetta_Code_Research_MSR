@@ -1,11 +1,11 @@
 
 executeTask <- function(i) {
-	
+
 pattern <- "string"
-text1 <- "this is a matching string"
+text1 <- paste("this is a matching string",i)
 grep(pattern, c(text1))  # 1
 gsub(pattern, "istyfied", c(text1))
-	return(i+1)
+	return(i)
 }
 
 r = 0

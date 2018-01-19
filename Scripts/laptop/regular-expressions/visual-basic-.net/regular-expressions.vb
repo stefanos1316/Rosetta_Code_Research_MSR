@@ -7,7 +7,7 @@ Module Module1
 
         For value As Integer = 0 To 10000000
 
-        Dim input As String = "this is a matching string"
+        Dim input As String = "this is a matching string" + value.ToString()
         Dim pattern As String = "string"
         Dim replacement As String = "istyfied"
 

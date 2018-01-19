@@ -4,17 +4,16 @@ public class RegularExpressions {
 
  public static int executeTask(int i) {
 
-
-  String str = "this is a matching string";
+  String str = "this is a matching string" + i;
   boolean ma = (str.matches(".*string")); 
   String strR = str.replaceAll("string", "istyfied"); {}
-  return i  + 1;
+  return i;
  }
 
  public static void main(String[] args) {
 
   for (int i = 0; i < 10000000; ++i) {
-  	r = executeTask(i + r);
+  	r = executeTask(i);
   }
  }
 

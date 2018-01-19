@@ -1,12 +1,12 @@
 var r = 1;
 
 function executeTask(i) {
-    	var str = "this is a matching string"; 
+    	var str = "this is a matching string" + i; 
      	if( str.match(/string/g)) {}
      	if(str.replace("string", "istyfied")) {}
-	return i + 1;
+	return i;
 }
 
 for (var i = 0; i < 10000000; ++i) {
-	r = executeTask(i + r);
+	r = executeTask(i);
 }

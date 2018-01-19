@@ -8,18 +8,18 @@ class Program {
     public static int executeTask(int i) {
 	
 	
-        string str = "this is a matching string";
+        string str = "this is a matching string" + i;
 
         new Regex("string$").IsMatch(str);
         new Regex("string").Replace(str, "istyfied");
 
-	return 1 + i;
+	return i;
     }
  
     static void Main(string[] args) {
-    
+   
     for (int i = 0; i < 10000000; ++i) {
-    		r = executeTask(i + r);
+    		r = executeTask(i );
 	}
     }
 }
