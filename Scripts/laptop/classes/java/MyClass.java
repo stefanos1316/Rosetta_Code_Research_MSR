@@ -13,22 +13,22 @@ public class MyClass{
   /**
   * A method
   */
-  public void someMethod(){
-   this.r = 1;
+  public void someMethod(int i){
+   this.r = 1 + i;
 //  System.out.println("Variable value is "+this.variable);
   }
 
 public static int executeTask(int i) {
 
 	MyClass obj = new MyClass();
-	obj.someMethod();
+	obj.someMethod(i);
 
-	return i + 1;
+	return i;
 }
 
 public static void main(String[] args){
 
-	for (int i = 0; i < 2000000000; ++i) {
+	for (int i = 0; i < 2100000000; ++i) {
 		r = executeTask(i + r);
 	}
 }

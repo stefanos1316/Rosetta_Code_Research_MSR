@@ -8,13 +8,13 @@ fn main() {
         pub fn new() -> MyClass {
             MyClass { variable: 19022 }
         }
-        pub fn someMethod(&self) -> u32 {
-            return self.variable
+        pub fn someMethod(&self, i: u32) -> u32 {
+            return self.variable + i
         }
     }
 
-for i in 0..1000000{
+for i in 0..2100000000{
     let my_class = MyClass::new();
-    println!("Variable value is {}", my_class.someMethod());
+     my_class.someMethod(i);
 }
 }

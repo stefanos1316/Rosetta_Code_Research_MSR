@@ -3,13 +3,13 @@ class MyClass:
    def __init__(self,  variable):
       self.variable = variable
    
-   def displayMyClass(self):
-	self.variable = 1
+   def displayMyClass(self, i):
+	self.variable = 1 + i
 
 def executeTask(i):
 	obj = MyClass( 2000)
-	obj.displayMyClass()
-	return i + 1
+	obj.displayMyClass(i)
+	return i
 
 r = 1
 

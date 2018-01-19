@@ -13,13 +13,12 @@ class MyClass{
   /**
   * A method
   */
-  func someMethod() {
-    self.variable = 123456 
-    print("Variable value is ",self.variable)
+  func someMethod(i:Int) {
+    self.variable = 1 + i 
   }
 }
 
-for i in 0...1000000 {
+for i in 0...2100000000 {
 let value = MyClass()
-value.someMethod()
+value.someMethod(i: i)
 }

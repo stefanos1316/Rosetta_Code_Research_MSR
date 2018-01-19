@@ -6,19 +6,18 @@ class MyClass {
     function __construct($value) {
         $this->instanceVar = $value;
     }
-    function someMethod() {
-        self::$classVar = 3;
-
+    function someMethod($i) {
+        self::$classVar = 3 + $i;
     }
 }
 
 $r = 1;
 
 function executeTask($i) {
-	
+
 	$myObj = new MyClass(1974);
-	$myObj->someMethod();
-	return $i + 1;
+	$myObj->someMethod($i);
+	return $i;
 }
 
 for ( $i = 0; $i < 2100000000; $i++) {

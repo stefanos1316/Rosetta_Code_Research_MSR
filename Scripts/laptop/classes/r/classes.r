@@ -4,13 +4,13 @@ myClassVariable <- list(Variable="193578")
 class(myClassVariable) <- append(class(myClassVariable), "Value")
 
 GetVariable <- function(x) {
-	UseMethod("GetVariable",x)
+	UseMethod("GetVariable",x,i)
 }
 
-GetVariable.Value <-function(x) {
-	return(x$Variable)
+GetVariable.Value <-function(x,i) {
+	return(x$Variable + i)
 }
-	return(i + 1)
+	return(i)
 }
 
 r = 1

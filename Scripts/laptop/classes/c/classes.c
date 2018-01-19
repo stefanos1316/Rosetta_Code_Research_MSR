@@ -24,7 +24,6 @@ void MyClass_delete(MyClass* pthis)
 void MyClass_someMethod(MyClass pthis, int i)
 {
   pthis->variable = 1 + i;
- // printf("Variable value is %d\n", &pthis->variable);
 }
 
 

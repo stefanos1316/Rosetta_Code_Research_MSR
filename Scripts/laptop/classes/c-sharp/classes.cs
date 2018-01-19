@@ -15,8 +15,8 @@ class MyClass{
   /**
   * A method
   */
-  public void someMethod(){
-   this.variable = 1;
+  public void someMethod(int i){
+   this.variable = 1 + i;
   }
 
   private static volatile int r = 1;
@@ -24,14 +24,14 @@ class MyClass{
   public static int executeTask(int i) {
 
 	MyClass obj = new MyClass();
-	obj.someMethod();
+	obj.someMethod(i);
 
-	return i + 1;
+	return i;
   }
 
 public static void Main(String[] args){
 
-	for (int i = 0; i < 2000000000; ++i) {
+	for (int i = 0; i < 2100000000; ++i) {
 		r = executeTask(i + r);
 	}
 }

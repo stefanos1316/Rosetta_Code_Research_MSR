@@ -9,17 +9,16 @@ sub new {
 }
 
 sub sample_method {
-    my ($self) = @_;
-  #  print $self->{sample_data}; 
-#    print $self->{more_data};	
+    my ($self, $i) = @_;
+    $i = 1 + $i;
 }
 
 sub executeTask {
 	my ($i) = @_;
 	my $obj = SampleObject->new( sample_data => 'Variable value is ',
                              more_data   => "1\n" );
-	$obj->sample_method();
-	return ($i + 1);
+	$obj->sample_method($i);
+	return ($i );
 }
 my $r = 1;
 
