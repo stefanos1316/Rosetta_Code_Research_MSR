@@ -12,9 +12,8 @@ class Program
 {
     static void Main()
     {
-	
 	for ( int i =0; i < 10000000; i++) {
-	        var people = new Dictionary<string, object> {{"foo", "1"}, {"bar", "10"}};
+	        var people = new Dictionary<string, object> {{"foo", "1"}, {"bar", "10+i"}};
 	  	
 		string output = JsonConvert.SerializeObject(people);
 	}

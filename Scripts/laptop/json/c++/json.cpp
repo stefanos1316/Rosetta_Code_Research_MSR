@@ -23,7 +23,7 @@ int main( int argc, char* argv[] )
 {
 	volatile int r = 0;
 	for (int i = 0; i < 10000000; ++i) {
-		r = executeTask(i + r);	
+		r = executeTask(i);	
 	}
     return 0;
 }

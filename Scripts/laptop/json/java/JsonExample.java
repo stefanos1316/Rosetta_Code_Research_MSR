@@ -23,7 +23,6 @@ public class JsonExample {
 			r = executeTask(i + r);
 		}
 	}
-	
 }
 
 class MyJsonObject {
