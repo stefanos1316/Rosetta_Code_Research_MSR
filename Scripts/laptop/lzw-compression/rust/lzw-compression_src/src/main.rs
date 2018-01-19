@@ -5,7 +5,7 @@ use lzw::{LsbWriter, Encoder, Decoder};
 
 fn main() {
 
-for i in 0..100000 {
+for i in 0..1000000 {
 	let size = 8;
     let data = b"TOBEORNOTTOBEORTOBEORNOT";
     let mut compressed = vec![];

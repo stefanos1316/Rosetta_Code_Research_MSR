@@ -69,6 +69,6 @@ sub executeTask {
 }
 
 # How to use:
-for( $a=0; $a < 100000; $a = $a + 1) {
+for( $a=0; $a < 1000000; $a = $a + 1) {
 	$r = executeTask($a + $r);
 }

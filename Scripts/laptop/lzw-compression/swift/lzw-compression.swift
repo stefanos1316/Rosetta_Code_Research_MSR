@@ -57,7 +57,7 @@ class LZW {
     return result
   }
 }
-for i in 1...100000 {
+for i in 1...1000000 {
 let comp = LZW.compress(uncompressed: "TOBEORNOTTOBEORTOBEORNOT")
  // print(comp) 
 comp

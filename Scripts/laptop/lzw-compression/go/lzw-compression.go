@@ -75,7 +75,7 @@ func executeTask(i int) int {
 
 func main() {
     	r := int(1)
-    	for i := 0; i < 100000; i++ {
-    		r = executeTask(i +r)
+    	for i := 0; i < 1000000; i++ {
+   		r = executeTask(i +r)
 	}
 }

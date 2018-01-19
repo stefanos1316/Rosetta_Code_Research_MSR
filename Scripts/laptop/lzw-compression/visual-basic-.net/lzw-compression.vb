@@ -1,13 +1,13 @@
 Imports System.Collections.Generic
 Imports System.Text
 'Imports Microsoft.VisualBasic.ChrW
-				
+			
 'Public Module Module1
 	
 
 	Public Class Program
 		Public Shared Sub Main(args As String())
-			For i As Integer = 0 To 99999
+			For i As Integer = 0 To 1000000
 				Dim compressed As List(Of Integer) = Compress("TOBEORNOTTOBEORTOBEORNOT")
 				'Console.WriteLine(string.Join(", ", compressed));
 					'Console.WriteLine(decompressed);

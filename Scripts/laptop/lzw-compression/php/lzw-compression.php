@@ -26,6 +26,7 @@ class LZW
         }
         return implode(",",$result);
     }
+ 
     function decompress($com) {
         $com = explode(",",$com);
         $i;$w;$k;$result;
@@ -49,12 +50,14 @@ class LZW
                 }
             }
             $result .= $entry;
-            $dictionary[$dictSize++] = $w + $entry[0];
+            $dictionary[$dictSize++] = $w . $entry[0];
             $w = $entry;
         }
         return $result;
     }
 }
+ 
+
 //How to use
 $r = 1;
 
@@ -69,7 +72,7 @@ function executeTask($i) {
 }
 
 
-for ( $i = 0; $i < 100000; $i++) {
+for ( $i = 0; $i < 1000000; $i++) {
 	$r = executeTask($i + $r);
 }
 ?>

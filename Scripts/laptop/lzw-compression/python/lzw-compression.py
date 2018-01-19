@@ -60,5 +60,5 @@ def executeTask(i):
     return i + 1
 
 # How to use:   
-for i in range(100000):
+for i in range(1000000):
 	r = executeTask(i + r)

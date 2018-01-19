@@ -50,7 +50,7 @@ def decompress(compressed)
     result
 end
 
-for i in 0..100000
+for i in 0..1000000
 # How to use:
 compressed = compress('TOBEORNOTTOBEORTOBEORNOT')
 #p compressed

@@ -74,10 +74,10 @@ int executeTask(int i) {
 }
 
 int main() {
- 
+
   volatile int r = 1;
-  for (int i=0; i<100000; ++i) {
-	r = executeTask(i + r);
+  for (int i=0; i<1000000; ++i) {
+	r = executeTask(i);
   }
   return 0;
 }
