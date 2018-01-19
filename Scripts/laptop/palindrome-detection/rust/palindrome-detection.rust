@@ -8,7 +8,13 @@ macro_rules! test {
 
 fn main() {
 
-for i in 0..1000000000 {
-    test!("saippuakivikauppias");
+for i in 0..2000000000 {
+		let x  = format!("{}", i);
+		let mut owned_string: String = x.to_owned();
+    		let borrowed_string: &str = "saippuakivikauppias";
+
+    		owned_string.push_str(borrowed_string);
+	let s_slice: &str = &owned_string;
+    test!(s_slice);
 }
 }

@@ -5,7 +5,7 @@ my $r = 1;
 sub executeTask {
 	my ($i) = @_;
 
-	my $a = "saippuakivikauppias";
+	my $a = "saippuakivikauppias" + $i;
 	chomp ( $palindrome = $a );
 
 	@palindrome = split( //, $palindrome );
@@ -24,10 +24,10 @@ sub executeTask {
 		}
 		
 	} 
-	return ($i + 1);
+	return ($i);
 }
 
 
 for ( $b=0; $b < 2000000000; $b = $b + 1 ) {
-	$r = executeTask($b + $r);
+	$r = executeTask($b);
 }

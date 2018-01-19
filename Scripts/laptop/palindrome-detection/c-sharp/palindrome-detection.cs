@@ -18,13 +18,13 @@ class Program
 
     public static int executeTask(int i) {
 
-	IsPalindrome("saippuakivikauppias");
-	return i + 1;
+	IsPalindrome("saippuakivikauppias" + i);
+	return i;
     }	
 
     static void Main(string[] args)
     {
 	for (int i = 0; i < 2000000000; ++i)
-    		r = executeTask(i +r);
+    		r = executeTask(i);
     }
 }

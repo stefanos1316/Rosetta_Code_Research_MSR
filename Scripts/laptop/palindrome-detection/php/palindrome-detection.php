@@ -6,11 +6,11 @@ function is_palindrome($string) {
 $r = 1;
 
 function executeTask($i) {
-	$result = is_palindrome("saippuakivikauppias");
-	return $i + 1;
+	$result = is_palindrome("saippuakivikauppias" . $i);
+	return $i;
 }
 
 for ( $i = 0; $i < 2000000000; ++$i ) {
-	$r = executeTask($i + $r);
+	$r = executeTask($i);
 }
 ?>

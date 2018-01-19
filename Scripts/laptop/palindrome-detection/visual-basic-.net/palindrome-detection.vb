@@ -8,9 +8,9 @@ Namespace Rextester
     Public Module Program
         Public Sub Main(args() As string)
             'Your code goes here
+            For values As Integer = 0 To 2000000000
             Dim flag As Boolean
-            Dim value As String = "saippuakivikauppias"
-            For values As Integer = 0 To 1000000000
+            Dim value As String = "saippuakivikauppias"+values.ToString()
                 IsPalindrome(value)
             Next
         End Sub

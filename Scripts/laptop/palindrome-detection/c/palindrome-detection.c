@@ -3,17 +3,17 @@
 int palindrome(const char*);
 
 int executeTask(int i) {
-	char* array = "saippuakivikauppias";
+	char* array = "saippuakivikauppias" + (char)i;
 	palindrome(array);
 
-   return i + 1;
+   return i;
 }
 
 int main() {
 
    	volatile int r = 1;
 	for (int i=0; i<2000000000; ++i) {
-		r = executeTask(i + r);
+		r = executeTask(i);
 	}
 	return 0;
 }

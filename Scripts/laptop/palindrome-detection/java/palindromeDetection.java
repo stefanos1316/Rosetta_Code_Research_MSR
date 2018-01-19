@@ -5,13 +5,13 @@ public class palindromeDetection {
 
 	public static int executeTask(int i) {
 
-		pali("saippuakivikauppias");
-		return i + 1;
+		pali("saippuakivikauppias" + i);
+		return i;
 	}
 
 	public static void main(String[] args) {
 		for (int i = 0; i < 2000000000; ++i) {
-			r = executeTask(i + r);
+			r = executeTask(i);
 		}
 	}
 

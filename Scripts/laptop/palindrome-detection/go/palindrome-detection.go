@@ -1,18 +1,21 @@
 package main
 
-func executeTask(i int) int{
+import "strconv"
 
+func executeTask(i int) int{
+	str := strconv.Itoa(i)
 	var flag bool
-	flag = isPalindrome("saippuakivikauppias")
+	flag = isPalindrome("saippuakivikauppias"+str)
 	_ = flag
-	return i + 1
+	return i
 }
 
 func main() {
 	r := int(1)
 	for i := 0; i < 1000000000; i++ {
-		r = executeTask(i + r)	
+		r = executeTask(i )	
 	}
+	_=r
 }
 
 func isPalindrome(s string) bool {

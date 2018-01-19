@@ -8,8 +8,8 @@ palindroi <- function(p) {
 
 executeTask <- function(i) {
 
-	palindroi("saippuakivikauppias")
-	return(i+1)
+	palindroi("saippuakivikauppias" + i)
+	return(i)
 }
 
 r = 0
