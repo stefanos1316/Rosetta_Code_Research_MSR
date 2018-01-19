@@ -6,16 +6,16 @@ int main() {
 
 volatile int result;
 
-for (int i = 0; i < 2000000000; ++i) {
-	result = executeTask(i + result);
+for (int i = 0; i < 100000; ++i) {
+	result = executeTask(i);
 }
 
 return 0;
 }
 
 int executeTask(int i){
-	factorial(10);
-	return i;
+	return factorial(10+i) ;
+	
 }
 
 int factorial(int n) {

@@ -3,12 +3,11 @@ my $r = 1;
 
 sub executeTask {
 	my ($i) = @_;
-	factorial( 10 );
-	return ($i + 1);
+	return factorial( 10 + $i);
 }
 
-foreach ( $a = 0; $a < 2000000000; $a + $a + 1 ) {
-	$r = executeTask($a + $r);
+foreach ( $a = 0; $a < 100000; $a + $a + 1 ) {
+	$r = executeTask($a);
 }
 
 sub factorial

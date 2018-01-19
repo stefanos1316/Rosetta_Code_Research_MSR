@@ -11,9 +11,9 @@ Namespace Rextester
     Public Module Program
         Public Sub Main(args() As string)
             'Your code goes here
-            For value As Integer = 0 To 1000000000  
+            For value As Integer = 0 To 100000  
             Dim i As Integer  
-	           i = factorial(10)
+	           i = factorial(10 + value)
           
             Next
        		Console.WriteLine("Done")
@@ -26,6 +26,6 @@ Namespace Rextester
                 Return factorial(n - 1) * n
             End If
         End Function
-        
+       
     End Module
 End Namespace

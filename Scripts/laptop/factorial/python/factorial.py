@@ -1,7 +1,6 @@
 
 def executeTask(i):
-	result = factorial(10);
-	return i + 1
+	return factorial(10+i)
 
 def factorial(n):
     z=1
@@ -10,5 +9,5 @@ def factorial(n):
     return z
 
 r = 1
-for i in xrange(2000000000):
-	r = executeTask(i + r)
+for i in xrange(100000):
+	r = executeTask(i)

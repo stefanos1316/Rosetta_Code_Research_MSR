@@ -3,14 +3,14 @@
 int factorial(int);
 
 int executeTask(int i) {
-	return factorial(10)  +i;
+	return factorial(10+i);
 }
 
 int main() {
 
 volatile int r = 1;
-for (int i = 0; i < 2000000000; ++i) {	
-	r =executeTask(i + r);
+for (int i = 0; i < 100000; ++i) {	
+	r =executeTask(i);
 }
 	return 0; 	
 }

@@ -3,18 +3,18 @@ namespace FactorialExample
 {
     class Program
     {
-    	private static volatile int r;
+    	private static volatile float r;
 
-	public static int executeTask(int i) {
+	public static float executeTask(int i) {
 
-           	GetFactorial(10);
-		return i + 1;
+           	return Convert.ToSingle(GetFactorial(10+i));
+		
 	}
 
         static void Main(string[] args)
         {
-		for (int i = 0; i < 2000000000; ++i)
-			r = executeTask(i + r);
+		for (int i = 0; i < 100000; ++i)
+			r =executeTask(i);
         }
 
         private static long GetFactorial(int number)

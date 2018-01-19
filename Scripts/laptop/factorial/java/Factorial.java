@@ -1,16 +1,15 @@
 public class Factorial {
 
-private static volatile int r = 1;
+private static volatile long r = 1;
 
-public static int executeTask(int i) {
-	fact(10);
-	return i  + 1;
+public static long executeTask(int i) {
+	return fact(10+i);
 }
 
 public static void main(String[] args) {
 	
-	for (int i = 0; i < 2000000000; ++i)
-		r = executeTask(i + r);
+	for (int i = 0; i < 100000; ++i)
+		r = executeTask(i);
 }
 
 public static long fact(final int n) {

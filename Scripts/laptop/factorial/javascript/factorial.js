@@ -12,10 +12,10 @@ var r = 1;
 
 function executeTask(i) {
 
-	factorial(num);
-	return i + 1;
+	return factorial(num+i);
+	
 }
- 
-for (var i = 0; i < 2000000000; ++i) { 
-	r = executeTask(i + r);
+
+for (var i = 0; i < 100000; ++i) { 
+	r = executeTask(i);
 }
