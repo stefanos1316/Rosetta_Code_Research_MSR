@@ -53,7 +53,7 @@ double executeTask(int i){
     double_to_double *sin_asin = compose(my_sin, my_asin);
 
   //  printf("%f\n", CALL(sin_asin, 0.5)); /* prints "0.500000" */
-    double result = CALL(sin_asin, 0.5);
+    double result = CALL(sin_asin, (double)i);
     free(sin_asin);
     free(my_sin);
     free(my_asin);

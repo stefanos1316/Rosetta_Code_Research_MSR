@@ -146,7 +146,7 @@ void inttobits(int c, int n, char *s)
 
 const char *test = "this is an example for huffman encoding";
 
-int executeTask(int i) {
+int executeTask(int j) {
   volatile huffcode_t **r;
   volatile int i;
   volatile char strbit[MAXBITSPERCODE];
@@ -169,7 +169,7 @@ int executeTask(int i) {
   free_huffman_codes(r);
 
 
-  return i + 1;
+  return j + 1;
 }
 
 int main()

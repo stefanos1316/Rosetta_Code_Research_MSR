@@ -13,7 +13,7 @@ public class FunctionCompose {
 
 	public static void main(String[] args) {
 	   	for (double i = 0; i < 1000000000; ++i) {
-        		r = executeTask(i + r);
+        		r = executeTask(i);
 		}
     	}
 }

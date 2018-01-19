@@ -23,7 +23,7 @@ $r = 1;
 
 function executeTask($i) {
 
-	$txt = 'this is an example for huffman encoding';
+	$txt = 'this is an example for huffman encoding' . $i;
 	$symb2freq = array_count_values(str_split($txt));
 	$huff = encode($symb2freq);
 	return $i + 1;

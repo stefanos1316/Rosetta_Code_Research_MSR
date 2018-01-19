@@ -298,12 +298,13 @@ namespace Huffman_Encoding
 		
 		return 1 + i;
 	}
-	
-        private const string Example = "this is an example for huffman encoding";
+
+        private static string Example = "this is an example for huffman encoding";
         private static void Main()
         {
 
 		for ( int i = 0; i < 1000000; ++i) {
+			Example += i;	
             		r = executeTask(i + r);
 		}
 	 }

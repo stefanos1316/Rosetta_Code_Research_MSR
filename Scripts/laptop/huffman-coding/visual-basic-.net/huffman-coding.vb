@@ -1,10 +1,10 @@
 Module VBModule
- 
+
     Sub Main()
        ' Console.WriteLine("Stefanos would like to have huffman's coding in VB.NET")
        
         For value As Integer = 0 To 1000000
-            Dim convertThisThing As String = " this is an example for huffman encoding"
+            Dim convertThisThing As String = " this is an example for huffman encoding" + value.ToString()
             Dim CMP() As Byte = HuffmanCoding.CompressByteArray(System.Text.Encoding.Unicode.GetBytes(convertThisThing))
         Next
     End Sub

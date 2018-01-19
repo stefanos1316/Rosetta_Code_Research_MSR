@@ -51,10 +51,10 @@ func getFreqs<S : Sequence where S.Iterator.Element : Hashable>(seq: S) -> [(S.I
   for c in seq {
     freqs[c] = (freqs[c] ?? 0) + 1
   }
-  return Array(freqs)
+ return Array(freqs)
 }
 for i in 0...1000000 {
-let str = "this is an example for huffman encoding"
+let str = "this is an example for huffman encoding" + String(i)
 let charFreqs = getFreqs(seq: str.characters)
 let tree = buildTree(freqs: charFreqs)
 //print("Symbol\tHuffman code")

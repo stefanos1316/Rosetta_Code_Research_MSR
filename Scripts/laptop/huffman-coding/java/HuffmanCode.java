@@ -80,7 +80,7 @@ public class HuffmanCode {
 
     	public static int executeTask(int i) {
 
-	        String test = "this is an example for huffman encoding";
+	        String test = "this is an example for huffman encoding" + i;
         	int[] charFreqs = new int[256];
 
         	for (char c : test.toCharArray())

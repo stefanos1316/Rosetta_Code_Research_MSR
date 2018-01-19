@@ -45,9 +45,9 @@ def decode(encoded, encoding)
   decoded
 end
 
-str = "this is an example for huffman encoding"
 
 (0..1000000).each do |i|
+str = "this is an example for huffman encoding" + i.to_s
 encoding = huffman_encoding(str)
 encoding.to_a.sort.each {|x| p x}
 

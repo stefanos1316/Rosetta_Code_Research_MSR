@@ -13,5 +13,5 @@ function executeTask(i) {
 var r = 1;
 var id2
 for (var i = 0; i < 1000000000; ++i) {
-	r = executeTask(i + r);
+	r = executeTask(i);
 }

@@ -3,6 +3,7 @@ package main
 import (
     "container/heap"
    // "fmt"
+   "strconv"
 )
 
 type coded struct {
@@ -53,9 +54,10 @@ func encode(sym2freq map[rune]int) []coded {
 const txt = "this is an example for huffman encoding"
 
 func executeTask(i int) int {
-
+    str := strconv.Itoa(i)
+    var txt1="this is an example for huffman encoding" + str
     sym2freq := make(map[rune]int)
-    for _, c := range txt {
+    for _, c := range txt1 {
         sym2freq[c]++
     }
     table := encode(sym2freq)

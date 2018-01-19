@@ -52,7 +52,7 @@ my $r = 1;
 sub executeTask {
 	my ($i) = @_;
 
-	my $txt = 'this is an example for huffman encoding';
+	my $txt = 'this is an example for huffman encoding' +$i;
 	my ($h, $rev_h) = mktree($txt);
 	my $enc = encode($txt, $h);
 	decode($enc, $rev_h);
@@ -60,5 +60,5 @@ sub executeTask {
 }
 
 for( $a=0; $a < 1000000; $a = $a + 1) {
-	$r = executeTask($a + $r);
+	$r = executeTask($a);
 }

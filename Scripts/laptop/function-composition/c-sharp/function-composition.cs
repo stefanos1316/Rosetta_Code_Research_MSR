@@ -15,7 +15,7 @@ class Program
     {
         for (float i = 0; i < 1000000000; ++i)
 	{
-		r = executeTask(i + r);
+		r = executeTask(i);
     	}
 	}
   	static float functA(float i) { return (float)Math.Sin(i); }
