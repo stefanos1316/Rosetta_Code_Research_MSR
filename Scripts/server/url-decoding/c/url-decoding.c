@@ -28,18 +28,15 @@ int decode(const char *s, char *dec)
 	return o - dec;
 }
 
-int executeTask(int i) {
-	const char *url = "http%3A%2F%2ffoo+bar%2fabcd";
-	char out[strlen(url) + 1];
-	return decode(url,0) + i;
-}
 
 int main()
 {
 	volatile int r = 1;
 
-  	for ( int i = 0; i < 10000000; ++i) {	
-		r = executeTask( i + r);
+  	for ( int i = 0; i < 100000000; ++i) {	
+		const char *url = "http%3A%2F%2ffoo+bar%2fabcd" + (char)i;
+		char out[strlen(url) + 1];
+		r = decode(url,0) + i;
 	}
 	return 0;
 }

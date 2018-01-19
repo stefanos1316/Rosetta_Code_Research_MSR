@@ -1,0 +1,7 @@
+[package]
+name = "urlEncode"
+version = "0.1.0"
+authors = ["stefanos1316 <stefanos1316@gmail.com>"]
+
+[dependencies]
+urlparse = "0.7.3"
