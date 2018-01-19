@@ -1,17 +1,4 @@
 
-//Code found in https://github.com/alexanderbez/rust-merge-sort
-
-/*
-  Merge sort implementation in Rust!
-  Running complexity: O(nlog(n)) where n is the total number of elements.
-  Space complexity: O(2*n) where n is the total number of elements.
-*/
-
-/*
-  Merges two ordered sub-lists. These ordered sub-lists are differentiated via
-  a start, middle and end index within a primary mutable list, l1. The
-  ordering result is copied to the worker list, l2.
-*/
 fn merge(l1: &mut Vec<i32>, s: usize, m: usize, e: usize, l2: &mut Vec<i32>) {
   let mut ptr1 = s;
   let mut ptr2 = m;
@@ -30,20 +17,12 @@ fn merge(l1: &mut Vec<i32>, s: usize, m: usize, e: usize, l2: &mut Vec<i32>) {
   }
 }
 
-/*
-  Copies all elements from a worker mutable list, l2, to a mutable primary
-  list, l1. The index ranges are regarded to represent an ordered sublist
-  within the worker list, l2.
-*/
+
 fn merge_copy(l1: &mut Vec<i32>, s: usize, e: usize, l2: &mut Vec<i32>) {
   for i in s..e { l1[i] = l2[i]; }
 }
 
-/*
-  Splits a mutable list into two sub-lists. The split is done recursively until
-  only n sub-lists remain where n is the total number of elements in the
-  original list. These sub-lists are then merged together keeping order.
-*/
+
 fn merge_split(l1: &mut Vec<i32>, s: usize, e: usize, l2: &mut Vec<i32>) {
   if (e - s) <= 1 {
     return;
@@ -57,9 +36,7 @@ fn merge_split(l1: &mut Vec<i32>, s: usize, e: usize, l2: &mut Vec<i32>) {
   }
 }
 
-/*
-  Performs merge sort on a mutable vector of i32 elements.
-*/
+
 pub fn sort(l1: &mut Vec<i32>) {
   let size: usize          = l1.len();
   let mut worker: Vec<i32> = vec![0; size];
@@ -69,7 +46,7 @@ pub fn sort(l1: &mut Vec<i32>) {
 
 fn main() {
 for j in 0..1000000 { 
-  let mut example_list: Vec<i32> = vec![16,93,-99,95,-96,-24,-53,-71,96,-66,-21,72,-12,-32,-96,62,-42,-50,49,53,-65,52,-25,-69,88,-43,60,66,-94,-69,53,-71,-17,-58,-30,32,-16,-94,-42,-86,59,-53,94,97,-12,15,65,-35,-12,-82,-82,48,-48,66,-42,-63,33,-49,41,-85,94,66,-60,60,-65,-73,-50,-9,-48,-3,15,-77,81,95,-93,83,-21,34,-78,-61,-22,-58,65,78,41,-7,-59,20,88,-38,-15,-69,42,97,-35,61,8,2,-22,-85];
+  let mut example_list: Vec<i32> = vec![16+j,93,-99,95,-96,-24,-53,-71,96,-66,-21,72,-12,-32,-96,62,-42,-50,49,53,-65,52,-25,-69,88,-43,60,66,-94,-69,53,-71,-17,-58,-30,32,-16,-94,-42,-86,59,-53,94,97,-12,15,65,-35,-12,-82,-82,48,-48,66,-42,-63,33,-49,41,-85,94,66,-60,60,-65,-73,-50,-9,-48,-3,15,-77,81,95,-93,83,-21,34,-78,-61,-22,-58,65,78,41,-7,-59,20,88,-38,-15,-69,42,97,-35,61,8,2,-22,-85];
 
   // Merge the list
   sort(&mut example_list);
