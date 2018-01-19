@@ -101,7 +101,8 @@ public class DefiniteIntegral
 
 public class Program
 {
-    private static int r = 1;
+    private static volatile int r = 1;
+    private static int aVar = 0;
 
     public static int executeTask(int i, DefiniteIntegral integral, int subdomainCount) {
 
@@ -114,16 +115,16 @@ public class Program
 
     private static void TestApproximationMethods(DefiniteIntegral integral, int subdomainCount)
     {
-	for (int i = 0; i < 100; ++i ) {
-		r = executeTask(i + r, integral, subdomainCount);
+	for (aVar= 0; aVar < 100; ++aVar ) {
+		r = executeTask(aVar, integral, subdomainCount);
 	}
     }
  
     public static void Main()
     {
-        TestApproximationMethods(new DefiniteIntegral(x => x * x * x, new Interval(0, 1)), 100);
-        TestApproximationMethods(new DefiniteIntegral(x => 1 / x, new Interval(1, 99)), 1000);
-        TestApproximationMethods(new DefiniteIntegral(x => x, new Interval(0, 5000)), 5000000);
-        TestApproximationMethods(new DefiniteIntegral(x => x, new Interval(0, 6000)), 6000000);
+        TestApproximationMethods(new DefiniteIntegral(x => (x * x * x) + aVar, new Interval(0, 1)), 100);
+        TestApproximationMethods(new DefiniteIntegral(x => 1 / (x + aVar), new Interval(1, 99)), 1000);
+        TestApproximationMethods(new DefiniteIntegral(x => x + aVar, new Interval(0, 5000)), 5000000);
+        TestApproximationMethods(new DefiniteIntegral(x => x + aVar, new Interval(0, 6000)), 6000000);
     }
 }

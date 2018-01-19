@@ -89,18 +89,20 @@ func integral_trapezoid(_ function: String, _ a: Float, _ b: Float, _ n: Float) 
 }
 
 func cube(_ x: Float) -> Float {
-    return x*x*x
+    return x*x*x+Float(aVar)
 }
 
 func reciprocal(_ x: Float) -> Float {
-    return 1/x
+    return 1/(x+Float(aVar))
 }
 
 func identity(_ x: Float) -> Float {
-    return x
+    return (x+Float(aVar))
 }
 
-for i in 0...1000 {
+ var aVar = 0
+
+for aVar in 0...100 {
     integral_rectagle("cube", 0.0, 1.0, 100.0, 0.0)
     integral_rectagle("cube", 0.0, 1.0, 100.0, 0.5)
     integral_rectagle("cube", 0.0, 1.0, 100.0, 1.0)
@@ -124,4 +126,5 @@ for i in 0...1000 {
     integral_rectagle("identity", 0.0, 6000.0, 6000000.0, 1.0)
     integral_trapezoid("identity", 0.0, 6000.0, 6000000.0)
     integral_simpsons("identity", 0.0, 6000.0, 6000000.0)
+_=aVar
 }

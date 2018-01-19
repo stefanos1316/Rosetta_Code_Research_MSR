@@ -5,6 +5,8 @@ import (
     "math"
 )
 
+var aVar float64 = 0
+
 // specification for an integration
 type spec struct {
     lower, upper float64               // bounds for integration
@@ -16,11 +18,11 @@ type spec struct {
 
 // test cases per task description
 var data = []spec{
-    spec{0, 1, 100, .25, "x^3", func(x float64) float64 { return x * x * x }},
+    spec{0, 1, 100, .25, "x^3", func(x float64) float64 { return (x * x * x + aVar) }},
     spec{1, 100, 1000, float64(math.Log(100)), "1/x",
-        func(x float64) float64 { return 1 / x }},
-    spec{0, 5000, 5e5, 12.5e6, "x", func(x float64) float64 { return x }},
-    spec{0, 6000, 6e6, 18e6, "x", func(x float64) float64 { return x }},
+        func(x float64) float64 { return 1 / (x + aVar) }},
+    spec{0, 5000, 5e5, 12.5e6, "x", func(x float64) float64 { return (x + aVar) }},
+    spec{0, 6000, 6e6, 18e6, "x", func(x float64) float64 { return (x + aVar) }},
 }
 
 // object for associating a printable function name with an integration method
@@ -146,7 +148,7 @@ func (a *adder) add(x float64) {
 }
 
 
-func executeTask(i int) int{
+func executeTask(i float64) float64{
 
     for _, t := range data {
 
@@ -158,12 +160,13 @@ func executeTask(i int) int{
             }
         }
     }
-	return i + 1
+	return i 
 }
 
 func main() {
-	r := int(1)
-	for i := 0; i < 100; i++ {
-		r = executeTask(i + r)
+	r := float64(1.0)
+	for aVar = 0; aVar < 100; aVar++ {
+		r = executeTask(aVar)
 	}	
+	_=r
 }

@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+double aVar=0;
+
 template<typename Method, typename F, typename Float>
  double integrate(F f, Float a, Float b, int steps, Method m)
 {
@@ -56,9 +58,9 @@ public:
 };
 
 // sample usage
-double f1(double x) { return x*x*x; }
-double f2(double x) { return 1/x; }
-double f3(double x) { return x; }
+double f1(double x) { return (x*x*x)+aVar; }
+double f2(double x) { return 1/(x+aVar); }
+double f3(double x) { return x+aVar; }
 
 int executeTask(int r) {
 r = integrate(f1, 0.0, 1.0, 100, rectangular(rectangular::left));
@@ -92,8 +94,8 @@ r = integrate(f3, 0.0, 6000.0, 6000000, simpson());
 int main() {
 
 	volatile double r;
-	for ( int i = 0; i < 100; ++i ) {
-		r = executeTask(i + r);
+	for ( aVar = 0; aVar < 100; ++aVar ) {
+		r = executeTask(aVar);
 	}
 
 return 0;

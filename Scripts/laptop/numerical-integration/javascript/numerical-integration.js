@@ -77,15 +77,15 @@ function integrateSimpsons(func, a, b, n) {
 }
 
 function cube(x) {
-	return x*x*x;
+	return (x*x*x+aVar);
 }
 
 function reciprocal(x) {
-	return 1/x;
+	return 1/(x+aVar);
 }
 
 function identity(x) {
-	return x;
+	return x+aVar;
 }
 
 function executeTask(i) {
@@ -113,11 +113,13 @@ integrateRectagle("identity",0,6000,6000000,0.5);
 integrateRectagle("identity",0,6000,6000000,1);
 integrateTrapezoid("identity",0,6000,6000000);
 integrateSimpsons("identity",0,6000,6000000);
-	return i + 1;
+	return i;
 }
 
 var r = 1;
+var aVar = 0;
 
-for ( var i = 0; i < 100; ++i) {
-	r = executeTask(i + r);
+
+for ( aVar = 0; aVar < 100; ++aVar) {
+	r = executeTask(aVar);
 }

@@ -1,5 +1,7 @@
 from fractions import Fraction
 
+aVar=0
+
 def left_rect(f,x,h):
   return f(x)
 
@@ -16,13 +18,13 @@ def simpson(f,x,h):
   return (f(x) + 4*f(x + h/2) + f(x+h))/6.0
 
 def cube(x):
-  return x*x*x
+  return (x*x*x+aVar)
 
 def reciprocal(x):
-  return 1/x
+  return 1/(x+aVar)
 
 def identity(x):
-  return x
+  return x+aVar
 
 def integrate( f, a, b, steps, meth):
    h = (b-a)/steps
@@ -59,5 +61,5 @@ def executeTask(i):
 
   return i + 1
 
-for i in range(100):
-	r = executeTask(i + r)
+for aVar in range(100):
+	r = executeTask(aVar)

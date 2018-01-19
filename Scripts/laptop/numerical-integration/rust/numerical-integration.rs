@@ -48,29 +48,32 @@ fn integral_simpsons<F>(f: F, range: std::ops::Range<f64>, n_steps: u32) -> f64
 fn main() {
 
 for i in 0..1000 {
-    integral_rectagle(|x| x.powi(3), 0.0..1.0, 100, 0.);
-    integral_rectagle(|x| x.powi(3), 0.0..1.0, 100, 0.5);
-    integral_rectagle(|x| x.powi(3), 0.0..1.0, 100, 1.);
-    integral_trapezoid(|x| x.powi(3), 0.0..1.0, 100);
-    integral_simpsons(|x| x.powi(3), 0.0..1.0, 100);
 
-    integral_rectagle(|x| 1.0/x, 1.0..100.0, 1000, 0.);
-    integral_rectagle(|x| 1.0/x, 1.0..100.0, 1000, 0.5);
-    integral_rectagle(|x| 1.0/x, 1.0..100.0, 1000, 1.);
-    integral_trapezoid(|x| 1.0/x, 1.0..100.0, 1000);
-    integral_simpsons(|x| 1.0/x, 1.0..100.0, 1000);
+   let A_Var = i as f64; 	
 
-    integral_rectagle(|x| x, 0.0..5000.0, 5_000_000, 0.);
-    integral_rectagle(|x| x, 0.0..5000.0, 5_000_000,0.5);
-    integral_rectagle(|x| x, 0.0..5000.0, 5_000_000,1.);
-    integral_trapezoid(|x| x, 0.0..5000.0, 5_000_000);
-    integral_simpsons(|x| x, 0.0..5000.0, 5_000_000);
+    integral_rectagle(|x| x.powi(3) + A_Var, 0.0..1.0, 100, 0.);
+    integral_rectagle(|x| x.powi(3) + A_Var, 0.0..1.0, 100, 0.5);
+    integral_rectagle(|x| x.powi(3) + A_Var, 0.0..1.0, 100, 1.);
+    integral_trapezoid(|x| x.powi(3) + A_Var, 0.0..1.0, 100);
+    integral_simpsons(|x| x.powi(3) + A_Var, 0.0..1.0, 100);
 
-    integral_rectagle(|x| x, 0.0..6000.0, 6_000_000, 0.);
-    integral_rectagle(|x| x, 0.0..6000.0, 6_000_000,0.5);
-    integral_rectagle(|x| x, 0.0..6000.0, 6_000_000,1.);
-    integral_trapezoid(|x| x, 0.0..6000.0, 6_000_000);
-    integral_simpsons(|x| x, 0.0..6000.0, 6_000_000);
+    integral_rectagle(|x| 1.0/(x + A_Var), 1.0..100.0, 1000, 0.);
+    integral_rectagle(|x| 1.0/(x + A_Var), 1.0..100.0, 1000, 0.5);
+    integral_rectagle(|x| 1.0/(x + A_Var), 1.0..100.0, 1000, 1.);
+    integral_trapezoid(|x| 1.0/(x + A_Var), 1.0..100.0, 1000);
+    integral_simpsons(|x| 1.0/(x + A_Var), 1.0..100.0, 1000);
+
+    integral_rectagle(|x| x + A_Var, 0.0..5000.0, 5_000_000, 0.);
+    integral_rectagle(|x| x + A_Var, 0.0..5000.0, 5_000_000,0.5);
+    integral_rectagle(|x| x + A_Var, 0.0..5000.0, 5_000_000,1.);
+    integral_trapezoid(|x| x + A_Var, 0.0..5000.0, 5_000_000);
+    integral_simpsons(|x| x + A_Var, 0.0..5000.0, 5_000_000);
+
+    integral_rectagle(|x| x + A_Var, 0.0..6000.0, 6_000_000, 0.);
+    integral_rectagle(|x| x + A_Var, 0.0..6000.0, 6_000_000,0.5);
+    integral_rectagle(|x| x + A_Var, 0.0..6000.0, 6_000_000,1.);
+    integral_trapezoid(|x| x + A_Var, 0.0..6000.0, 6_000_000);
+    integral_simpsons(|x| x + A_Var, 0.0..6000.0, 6_000_000);
     let _ = i;
 }
 

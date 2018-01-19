@@ -1,9 +1,16 @@
 Module VBModule
- 
+   
+      'Public Module GlobalVariables
+    	Public aVar As Double = 0
+     ' End Module
+
     Sub Main()
 
-	For value As Integer = 0 To 1000  
-        integration_rectagle("cube",0.0,1.0,100.0,0.0) 
+	For value As Integer = 0 To 100  
+        	
+		aVar += 1	
+	
+		integration_rectagle("cube",0.0,1.0,100.0,0.0) 
 		integration_rectagle("cube",0.0,1.0,100.0,0.5) 
 		integration_rectagle("cube",0.0,1.0,100.0,1.0) 
 		integration_trapezoid("cube",0.0,1.0,100.0) 
@@ -29,17 +36,17 @@ Module VBModule
 	Next 
 
     End Sub
-    
+   
     Public Function cube(x as Double) As Double
-        return x*x*x
+        return x*x*x+aVar
 	End Function
 
     Public Function reciprocal(x as Double) As Double
-        return 1/x
+        return 1/(x+aVar)
 	End Function
   
      Public Function identity(x as Double) As Double
-        return x
+        return (x+aVar)
 	End Function
 	
 	 Public Function integration_rectagle(func as String, a as Double, b as Double, n as Double, k as Double) as Double
@@ -143,5 +150,5 @@ Module VBModule
         sum *= h/6.0
         return sum
 	End Function
-  
+
 End Module

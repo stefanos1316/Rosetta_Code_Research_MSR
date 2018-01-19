@@ -95,25 +95,28 @@ sub integralSimpsons($$$$) {
 }
 
 
+my $aVar = 0;
+
 sub cube($) {
 	my $x = @_;
-	return ($x*$x*$x);
+	return ($x*$x*$x+$aVar);
 }
 
 sub reciprocal($) {
 	my $x = @_;
-	return (1/$x);
+	return (1/($x+$aVar));
 } 
 
 sub identity($) {
 	my $x = @_;
-	return $x;
+	return $x+$aVar;
 }
 
 my $r = 1;
 
+
 sub executeTask {
-	my ($i) = @_;
+	my ($aVar) = @_;
 
 	integralRect("cube",0,1,100,0);
 	integralRect("cube",0,1,100,0.5);
@@ -138,9 +141,10 @@ sub executeTask {
 	integralRect("identity",0,6000,6000000,1);
 	integralTrapezoid("identity",0,6000,6000000);
 	integralSimpsons("identity",0,6000,6000000);
-	return ($i + 1);
+	return ($aVar);
 }
 
-for (my $i = 0; $i < 100; $i += 1) {
-	$r = executeTask($i + $r);
+
+for ( $aVar = 0; $aVar < 100; $aVar += 1) {
+	$r = executeTask($aVar);
 }

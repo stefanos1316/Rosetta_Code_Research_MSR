@@ -1,6 +1,8 @@
 class NumericalIntegration
 {
 
+  private static double aVar = 0.0;
+
   interface FPFunction
   {
     double eval(double n);
@@ -95,46 +97,46 @@ class NumericalIntegration
     return;
   }
 
-  private static volatile int r = 0;
+  private static volatile double r = 0;
 
-  public static int executeTask(int i) {
+  public static double executeTask(double i) {
 
-    testFunction("x^3", 0.0, 1.0, 100, new FPFunction() {
+    testFunction("(x^3)+aVar", 0.0, 1.0, 100, new FPFunction() {
         public double eval(double n) {
           return n * n * n;
         }
       }
     );
 
-    testFunction("1/x", 1.0, 100.0, 1000, new FPFunction() {
+    testFunction("1/(x+aVar)", 1.0, 100.0, 1000, new FPFunction() {
         public double eval(double n) {
           return 1.0 / n;
         }
       }
     );
 
-    testFunction("x", 0.0, 5000.0, 5000000, new FPFunction() {
+    testFunction("x+aVar", 0.0, 5000.0, 5000000, new FPFunction() {
         public double eval(double n) {
           return n;
         }
       }
     );
 
-    testFunction("x", 0.0, 6000.0, 6000000, new FPFunction() {
+    testFunction("x+aVar", 0.0, 6000.0, 6000000, new FPFunction() {
         public double eval(double n) {
           return n;
         }
       }
     );
-	return i + 1;
+	return i;
   }
 
 
   public static void main(String[] args)
   {
 
-  for (int i = 0; i < 100; i++) {
-	r = executeTask(i + r);
+  for ( aVar = 0; aVar < 100; aVar++) {
+	r = executeTask(aVar);
   }
     return;
   }

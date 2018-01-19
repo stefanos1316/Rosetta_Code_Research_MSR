@@ -89,22 +89,23 @@ def integralSimpsons(func, a, b, n)
       sum *= h/6
 end
 
-
+$aVar=0
 
 
 def cube(x) 
-  return (x*x*x)
+  return (x*x*x+$aVar)
 end
 
 def reciprocal(x)
-  return 1/x
+  return 1/(x+$aVar)
 end
 
 def identity(x)
-  return x
+  return (x+$aVar)
 end
 
-(0..1000).each do |i|
+(0..100).each do |i|
+  $aVar += 1
   integralRect("cube",0.0,1.0,100,0)
   integralRect("cube",0.0,1.0,100,0.5)
   integralRect("cube",0.0,1.0,100,1)

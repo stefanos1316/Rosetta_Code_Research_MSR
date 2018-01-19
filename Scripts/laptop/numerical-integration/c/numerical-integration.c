@@ -3,34 +3,36 @@
 #include <stdlib.h>
 #include <math.h>
 
+double aGoodVariable = 0;
+
 double f3(double x)
 {
-  return x;
+  return x+aGoodVariable;
 }
 
 double f3a(double x)
 {
-  return x*x/2.0;
+  return (x*x+aGoodVariable)/2.0;
 }
 
 double f2(double x)
 {
-  return 1.0/x;
+  return 1.0/(x+aGoodVariable);
 }
 
 double f2a(double x)
 {
-  return log(x);
+  return log(x+aGoodVariable);
 }
 
 double f1(double x)
 {
-  return x*x*x;
+  return (x*x*x)+aGoodVariable;
 }
 
 double f1a(double x)
 {
-  return x*x*x*x/4.0;
+  return (x*x*x*x)+aGoodVariable/4.0;
 }
 
 double int_leftrect(double from, double to, double n, double (*func)())
@@ -93,7 +95,7 @@ typedef double (*rfunc)(double);
 
 #define INTG(F,A,B) (F((B))-F((A)))
 
-int executeTask(int z) {
+double executeTask(int z) {
      int i, j;
      volatile double ic;
 
@@ -123,14 +125,14 @@ int executeTask(int z) {
          	ic = (*f[i])(ivals[2*j], ivals[2*j+1], approx[j], rf[j]);
        	}
      }
-	return z + 1;
+	return z;
 }
 
 int main()
 {
 	volatile int r;
-	for (int i = 0; i < 100; ++i) {
-     		r = executeTask(i);
+	for (aGoodVariable = 0; aGoodVariable < 100; ++aGoodVariable) {
+    		r = executeTask(aGoodVariable);
 	}
 
 }

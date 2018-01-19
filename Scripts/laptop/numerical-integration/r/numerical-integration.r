@@ -1,3 +1,5 @@
+aVar=0
+
 integrate.rect <- function(f, a, b, n, k=0) {
   #k = 0 for left, 1 for right, 0.5 for midpoint
   h <- (b-a)/n
@@ -19,10 +21,10 @@ integrate.simpsons <- function(f, a, b, n) {
   sum(fx[-length(x)] + 4*f(x[-1]-h/2) + fx[-1]) * h/6
 }
 
-f1 <- (function(x) {x^3})
-f2 <- (function(x) {1/x})
-f3 <- (function(x) {x})
-f4 <- (function(x) {x})
+f1 <- (function(x) {(x^3)+aVar})
+f2 <- (function(x) {1/(x+aVar)})
+f3 <- (function(x) {x+aVar})
+f4 <- (function(x) {x+aVar})
 
 executeTask <- function(i) {
 
@@ -54,6 +56,6 @@ executeTask <- function(i) {
 
 r=1
 
-for (i in 0:100) {
-	r = executeTask(i)
+for (aVar in 0:100) {
+	r = executeTask(aVar)
 }

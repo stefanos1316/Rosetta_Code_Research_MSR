@@ -1,5 +1,6 @@
 <?php
 
+$aVar = 0;
 function integralRect($func, $a, $b, $n, $k) {
 
     $h = ($b - $a) / $n;
@@ -89,21 +90,26 @@ function integralSimpsons($func, $a, $b, $n) {
             $sum *= $h/6;
         }
 
+
+
 function cube($x) {
-    return ($x*$x*$x);
+global $aVar;
+    return ($x*$x*$x+$aVar);
 }
 
 function reciprocal($x) {
-    return 1/$x;
+global $aVar;
+    return 1/($x+$aVar);
 }
 
 function identity($x) {
-    return $x;
+global $aVar;
+    return ($x+$aVar);
 }
 
 $r = 1;
 
-function executeTask($i) {
+function executeTask($aVar) {
 	
 	integralRect("cube",0,1,100,0);
 	integralRect("cube",0,1,100,0.5);
@@ -129,11 +135,11 @@ function executeTask($i) {
 	integralTrapezoid("identity",0,6000,6000000);
 	integralSimpsons("identity",0,6000,6000000);
 
-	return $i + 1;
+	return $aVar;
 }
 
 for ($i = 0; $i < 100; $i += 1) {
-	$r = executeTask($i + $r);
+	$r = executeTask($aVar += 1);
 }
 
 ?>
