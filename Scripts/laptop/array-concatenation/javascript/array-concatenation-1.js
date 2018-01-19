@@ -3,12 +3,12 @@ var r = 1;
 
 function executeTask (i)
 {
-	var a = [1,2,3,4,5],
-    	b = [6,7,8,9,10];
+	var a = [1+i,2-i,3+i,4-i,5+i],
+    	b = [6+i,7-i,8+i,9-i,10+i];
     	c = a.concat(b); //=> [1,2,3,4,5,6]
-	return i  + 1;
+	return i;
 }
 
 for ( var i = 0; i < 2000000000; i++) {
-	r = executeTask(i + r);
+	r = executeTask(i);
 }

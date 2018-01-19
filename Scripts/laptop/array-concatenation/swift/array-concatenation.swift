@@ -1,6 +1,14 @@
-let array1 = [1,2,3,4,5]
-let array2 = [6,7,8,9,10]
+func executeTask(i: Int) -> Int {
 
-for i in 1...100000000 {
-	let array3 = array1 + array2
+let array1 = [1+i,2-i,3+i,4-i,5+i]
+let array2 = [6+i,7-i,8+i,9-i,10+i]
+
+let array3 = array1 + array2
+_=array3
+return i
+}
+
+var r = 1
+for i in 1...2000000000 {
+	r = executeTask(i:i)
 }

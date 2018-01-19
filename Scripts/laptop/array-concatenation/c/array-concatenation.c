@@ -14,14 +14,13 @@ void *array_concat(const void *a, size_t an,
   return p;
 }
 
-// testing
-const int a[] = { 1, 2, 3, 4, 5 };
-const int b[] = { 6, 7, 8, 9, 0 };
 
 int executeTask(int i) {
+  int a[] = { 1+i, 2-i, 3+i, 4-i, 5+i };
+  int b[] = { 6+i, 7-i, 8+i, 9-i, 0+i };
   int *c = ARRAY_CONCAT(int, a, 5, b, 5);
   free(c);
-  return i+1;
+  return i;
 }
 
 int main(void)

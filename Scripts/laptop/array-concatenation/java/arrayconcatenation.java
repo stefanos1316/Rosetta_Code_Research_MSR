@@ -2,19 +2,19 @@ public class arrayconcatenation {
 
 	private static volatile Object[] o3 = new Object[10];
 	private static volatile int r = 1;
-	
+
 	public static int executeTask(int i) {
 
-		Object[] o1 = {1,2,3,4,5}, o2 = {6,7,8,9,10};
+		Object[] o1 = {1+i,2-i,3+i,4-i,5+i}, o2 = {6+i,7-i,8+i,9-i,10+i};
 		o3 = objArrayConcat(o1, o2);
-		return i + 1;
+		return i;
 	}
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 	
 		for (int j = 0; j < 2000000000; ++j) {
-			r = executeTask(j + r);
+			r = executeTask(j);
 		}
 	}
 	

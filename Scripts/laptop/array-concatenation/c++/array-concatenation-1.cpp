@@ -23,19 +23,19 @@ int* concatArrays( T1& array_1, T2& array_2) {
 }
  
 int executeTask(int i) {
-  int ary[5] = {1, 2, 3, 4, 5};
-  int anotherAry[5] = {6, 7, 8, 9, 10};
+  int ary[5] = {1+i, 2-i, 3+i, 4-i, 5+i};
+  int anotherAry[5] = {6+i, 7-i, 8+i, 9-i, 10+i};
 
   int *r = concatArrays(ary, anotherAry);
   delete r;
-  return i + 1;
+  return i;
 }
 
 int main() {
 
   volatile int r = 1;
   for ( int j=0; j < 2000000000; ++j) {
-	r = executeTask(j + r);
+	r = executeTask(j);
   }
 
   return 0;
