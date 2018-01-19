@@ -5,8 +5,7 @@ class Numeric
   end
 end
 
-  for i in 0..1000000000 
-	2017.pow(12)
-	19.88.pow(12)
+  for i in 0..2000000000 
+	(2017+i).pow(12) + (19.88+i).pow(12)
   end
 

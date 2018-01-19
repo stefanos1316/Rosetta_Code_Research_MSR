@@ -25,11 +25,9 @@ my $r = 1;
 
 sub executeTask {
 	my ($i) = @_;
-	expon( 2017 , 12 );
-	expon( 19.88 , 12 );
-	return ($i = 1);
+	return expon( 2017 + $i, 12 ) + expon( 19.88 + $i, 12 );
 }
 
-for ( $a=0; $a < 1000000000; $a = $a + 1) {
-	$r = executeTask($a + $r);
+for ( $a=0; $a < 2000000000; $a = $a + 1) {
+	$r = executeTask($a);
 }

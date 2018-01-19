@@ -34,17 +34,14 @@ template<typename Number>
 }
 
 int executeTask(int i) {
-	power(2017,12 );
-	power(19.88,12 );
-
-	return 1 + i;
+	return power(2017+i,12 ) + (int)power(19.88 + (double)i,12 );
 }
 
 int main() {
 
 volatile int r = 1;  
 
-for ( int i = 0; i < 1000000000; ++i ) {
+for ( int i = 0; i < 2000000000; ++i ) {
 	r = executeTask(i + r);
 }
 

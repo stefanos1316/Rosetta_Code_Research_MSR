@@ -1,18 +1,11 @@
 package main
 
-import (
-    "errors"
-)
-
-func expI(b, p int) (int, error) {
-    if p < 0 {
-        return 0, errors.New("negative power not allowed")
-    }
+func expI(b, p int) int {
     r := 1
     for i := 1; i <= p; i++ {
         r *= b
     }
-    return r, nil
+    return r
 }
 
 func expF(b float32, p int) float32 {
@@ -36,18 +29,15 @@ func expF(b float32, p int) float32 {
 
 func executeTask(i int) int {
 
-     expI(2017, 12)
-     expF(19.88, 12)
-
-return i + 1;
+    return  expI(2017+i, 12) +  int(expF(19.88+float32(i), 12));
 }
 
 func main() {
 
 r := int(1);
 
-for i := 0; i < 1000000000; i++ {
-	r = executeTask(i + r)
+for i := 0; i < 2000000000; i++ {
+	r = executeTask(i)
 }
-
+_=r
 }

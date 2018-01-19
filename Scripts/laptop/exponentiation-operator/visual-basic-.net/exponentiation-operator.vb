@@ -13,9 +13,10 @@ Namespace Rextester
            exponentiationNumber= 12
            doubleBase = 19.88
            'Your code goes here
-           For value As Integer = 0 To 1000000000  
-           exp1 = intBase ^ exponentiationNumber 
-           exp2 = doubleBase ^ exponentiationNumber 
+           For value As Integer = 0 To 2000000000  
+            exp1 = (intBase + value) ^ exponentiationNumber 
+	    exp2 = (doubleBase+ value) ^ exponentiationNumber 
+		exp3 = exp1 = exp2
            Next
         End Sub
     

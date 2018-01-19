@@ -3,14 +3,12 @@ public class Exp{
 
   public static int executeTask(int i) {
 
-	pow(2017, 12);
-      	pow(19.88, 12); 
-	return i + 1;
+	return (int)pow(2017 + i, 12) + (int)pow(19.88 + i, 12);
   }
 
   public static void main(String[] args){
-    for (int i = 0; i < 1000000000; ++i ) {
-    	r = executeTask(i + r);
+    for (int i = 0; i < 2000000000; ++i ) {
+    	r = executeTask(i);
     }
    }
 

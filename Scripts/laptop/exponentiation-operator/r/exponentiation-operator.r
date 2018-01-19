@@ -10,12 +10,10 @@ pow <- function(x, y)
 
 executeTask <- function(i) {
 
-	pow(2017, 12)    # 81
-	19.88 %pow% 12  # 6.25
-	return(i+1)
+	return(pow(2017+i, 12)  + (19.88+i) %pow% 12)  
 }
 r =1 
 
-for(i in 0:1000000000) {
-	r = executeTask(i + r)
+for(i in 0:2000000000) {
+	r = executeTask(i)
 }

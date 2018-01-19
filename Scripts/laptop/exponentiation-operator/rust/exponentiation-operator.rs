@@ -25,8 +25,7 @@ fn pow<T>(mut base: T, mut exp: usize) -> T
 }
 
 fn main() {
-
-	pow(2017,12);
-	pow(19.88,12);
-
+    for  _i in 0..1000000 {
+	pow(2017+i,12) + pow(19.88+i,12);
+     }
 }

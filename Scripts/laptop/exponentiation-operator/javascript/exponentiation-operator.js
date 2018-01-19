@@ -13,13 +13,11 @@ function pow(base, exp) {
 
 function executeTask(i) {
 
-	pow(2017,12);
-	pow(19.88,12);
-	return i + 1;
+	return pow(2017+i,12) + pow(19.88+i,12);
 }
 
 var r = 0;
 
-for ( var i = 0; i < 1000000000; ++i) {
-	r = executeTask(i + r);
+for ( var i = 0; i < 2000000000; ++i) {
+	r = executeTask(i);
 }
