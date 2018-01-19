@@ -5,14 +5,8 @@ sub urlencode {
     return $s;
 }
 
-my $r = 1;
 
-sub executeTask {
-	my ($i) = @_;
-	urlencode('http://foo bar/');
-	return ($i + 1);
-}
 
 for ( $b=0; $b < 10000000; $b = $b + 1 ) {
-	$r = executeTask($b + $r);
+	urlencode('http://foo bar/' + i);
 }

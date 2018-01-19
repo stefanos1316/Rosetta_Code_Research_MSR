@@ -17,7 +17,7 @@ int encode(const char *s, char *enc, char *tb)
 }
 
 int executeTask(int j) {
-	const char url[] = "http://foo bar/";
+	const char *url = "http://foo bar/" + (char)j;
 	char enc[(strlen(url) * 3) + 1];
 
 	int i;
@@ -33,9 +33,9 @@ int executeTask(int j) {
 
 int main()
 {
-    	volatile int r = 1;
+    	volatile int r = 0;
     	for (int i = 0; i < 10000000; ++i) {
-		r = executeTask(i +r);
+		r = executeTask(i);
 	}
 	return 0;
 }
