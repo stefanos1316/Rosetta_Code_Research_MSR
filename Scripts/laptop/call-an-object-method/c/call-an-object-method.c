@@ -13,13 +13,13 @@ MyClass  MyClass_new()
 }
 
 
-void MyClass_someMethod(MyClass pthis)
+void MyClass_someMethod(MyClass pthis, int i)
 {
-  int value = pthis->variable;
+  int value = pthis->variable + i;
 }
 
 int executeTask(MyClass obj, int i) {
-	MyClass_someMethod(obj);
+	MyClass_someMethod(obj, i);
 	return i;
 }
 
@@ -27,7 +27,7 @@ int main() {
 	volatile int r = 1;
 	volatile MyClass obj = MyClass_new();
 	for (int i = 0; i < 2000000000; ++i) {
-		r = executeTask(obj, i + r);
+		r = executeTask(obj, i);
 	}
 
 return 0;

@@ -10,8 +10,8 @@ Namespace Rextester
             'Your code goes here
             
              Dim obj As New Line
-            For value As Integer = 0 To 1000000000 
-             obj.someMethod(1)
+            For value As Integer = 0 To 2000000000 
+             obj.someMethod(1, value)
             Next
         End Sub
                 
@@ -22,8 +22,8 @@ Class Line
    End Sub
    Protected Overrides Sub Finalize()  ' destructor   
    End Sub
-   Public Function someMethod(ByVal n As Integer) As Integer
-      variable = n
+   Public Function someMethod(ByVal n As Integer, value As Integer) As Integer
+      variable = n + i
    End Function
    
 End Class

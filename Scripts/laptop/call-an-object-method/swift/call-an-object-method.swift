@@ -13,12 +13,12 @@ class CallAnObjectMethod{
   /**
   * A method
   */
-  func someMethod(a: Int) {
-    self.variable = a
+  func someMethod(a: Int, i: Int) {
+    self.variable = a + i
   }
 }
 
 let value = CallAnObjectMethod()
-for i in 0...1000000000 {
-	value.someMethod(a: 1)
+for i in 0...2000000000 {
+	value.someMethod(a: 1, i: i)
 }

@@ -2,8 +2,8 @@ class CallAnObjectMethod {
 	constructor() {
 	}
 
-	someMethod(a) {
-		var value = a;
+	someMethod(a, i) {
+		var value = a + i;
 	}
 }
 
@@ -12,10 +12,10 @@ const obj = new CallAnObjectMethod();
 
 function executeTask(i) {
 
-	obj.someMethod(1);
-	return i + 1;
+	obj.someMethod(1, i);
+	return i;
 }
 
 for (var i = 0; i < 2000000000; ++i) {
-	r = executeTask(i + r);
+	r = executeTask(i);
 }

@@ -1,6 +1,6 @@
 // Static
 //MyClass.Method(someParameter);
- 
+
 // Instance
 //myInstance.Method(someParameter);
 
@@ -21,8 +21,8 @@ class MyClass{
   /**
   * A method
   */
-  public void someMethod(int value){
-   this.variable = value;
+  public void someMethod(int value, int i){
+   this.variable = value + i;
  }
 
 	private static volatile int r = 1;
@@ -30,14 +30,14 @@ class MyClass{
 	public static int executeTask(int i) {
 
 		MyClass obj = new MyClass();
-		obj.someMethod(1);
-		return 1 + i;
+		obj.someMethod(1, i);
+		return 1 ;
 	}
 
 public static void Main(String[] args){
 
 	for (int i = 0; i < 2000000000; ++i) {
-		r = executeTask(i + r);
+		r = executeTask(i);
 	}
 }
 

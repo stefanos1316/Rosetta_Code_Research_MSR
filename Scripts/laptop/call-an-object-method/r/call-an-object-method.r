@@ -16,9 +16,9 @@ executeTask <- function(i) {
 	object <- list(name="Object")
 	class(object) <- c("Object","CallAnObjectMethod")
 	speak(object)
-	return(i + 1)
+	return(i)
 }
  r = 1
 for ( i in 0:2000000000 ) {
-	r = executeTask(i + r)
+	r = executeTask(i)
 }
