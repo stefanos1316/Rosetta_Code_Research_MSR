@@ -3,8 +3,9 @@
 my $r = 1;
 
 sub executeTask {
-	my ($i) = @_;
-	open my $fh_in, '<', '../input.txt' or die "could not open <input.txt> for reading: $!";
+	my ($i, $fileName) = @_;
+        $newFile = '../test_directory/' . $i;
+	open my $fh_in, '<', $newFile or die "could not open <../test_directory/$i> for reading: $!";
 	open my $fh_out, '>', 'output.txt' or die "could not open <output.txt> for writing: $!";
 	# '>' overwrites file, '>>' appends to file, just like in the shell
 
@@ -14,10 +15,11 @@ sub executeTask {
 
 	close $fh_in;
 	close $fh_out;
-	return ($i + 1);
+	return ($i);
 }
 
 
-for( $a=0; $a < 1000000; $a = $a + 1) {
-	$r = executeTask($a + $r);
+for( $a=1; $a <= 10000; $a = $a + 1) {
+	$fileName = '';
+	$r = executeTask($a,$fileName);
 }

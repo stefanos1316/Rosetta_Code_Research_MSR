@@ -1,6 +1,6 @@
 import Foundation
 
-for i in 0...1000000 {
+for i in 0...10000 {
 
 let file: FileHandle? = FileHandle(forReadingAtPath: "../input.txt")
 

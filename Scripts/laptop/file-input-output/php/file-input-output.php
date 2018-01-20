@@ -4,8 +4,8 @@ $r = 1;
 
 function executeTask($i) {
 
-if (!$in = fopen('../input.txt', 'r')) {
-    die('Could not open input file.');
+if (!$in = fopen('../test_directory/' . $i, 'r')) {
+    die('Could not open input file ../test_directory/$i.');
 }
 
 if (!$out = fopen('output.txt', 'w')) {
@@ -19,10 +19,10 @@ while (!feof($in)) {
 
 fclose($out);
 fclose($in);
-	return $i + 1;
+	return $i;
 }
 
-for ( $i = 0; $i < 1000000; $i++) {
-	$r = executeTask($i + $r);
+for ( $i = 1; $i <= 10000; $i++) {
+	$r = executeTask($i);
 }
 ?>

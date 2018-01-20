@@ -1,13 +1,14 @@
 
 def executeTask(i):
-	infile = open('../input.txt', 'r')
+	s = '../test_directory/' + `i`
+	infile = open(s, 'r')
 	outfile = open('output.txt', 'w')
 	for line in infile:
    		outfile.write(line)
 	outfile.close()
 	infile.close()
-	return i + 1
+	return i
 
 r = 1
-for i in range(1000000):
-	r= executeTask(i + r)
+for i in range(10000):
+	r = executeTask(i+1)

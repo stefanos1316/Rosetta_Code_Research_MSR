@@ -3,11 +3,17 @@ use std::io::{Read, Write};
 
 fn main() {
 
-for i in 0..1000000 { 
-    let mut file = File::open("../input.txt").unwrap();
-    let mut data = Vec::new();
-    file.read_to_end(&mut data).unwrap();
-    let mut file = File::create("output.txt").unwrap();
-    file.write_all(&data).unwrap();
-}
+	for i in 1..10000 { 
+		let mut x: String = format!("{}", i);
+		let new_i: &str = &*x;
+   		let borrowed_string: &str = "../test_directory/";
+		let mut owned_string: String = borrowed_string.to_owned();
+    		owned_string.push_str(new_i);
+
+    		let mut file = File::open(owned_string).unwrap();
+    		let mut data = Vec::new();
+    		file.read_to_end(&mut data).unwrap();
+    		let mut file = File::create("output.txt").unwrap();
+    		file.write_all(&data).unwrap();
+	}
 }

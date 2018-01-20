@@ -1,10 +1,19 @@
 #include <stdio.h>
-
+#include <string.h>
 
 int executeTask(int i, FILE *in, FILE *out, int c){
-  in = fopen("../input.txt", "r");
+
+  char *fileLocation = "../test_directory/";
+  char *str;
+  sprintf(str, "%d", i);
+ 
+  char final[30];
+  strcpy(final, fileLocation);
+  strcat(final, str);  
+
+  in = fopen(final, "r");
   if (!in) {
-    fprintf(stderr, "Error opening input.txt for reading.\n");
+    fprintf(stderr, "Error opening %d for reading.\n",i);
     return 1;
   }
 
@@ -21,7 +30,6 @@ int executeTask(int i, FILE *in, FILE *out, int c){
 
   fclose(out);
   fclose(in);
-
   return i;
 }
 
@@ -30,7 +38,7 @@ int main(int argc, char **argv) {
   volatile int c;
   volatile int r;
 
-for ( int i = 0; i < 1000000; ++i) {
+for ( int i = 1; i <= 10000; ++i) {
 	r = executeTask(i, &in, &out, c);
 }	
   return 0;

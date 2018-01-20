@@ -1,13 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
 int executeTask(int i) {
 
     string line;
-    ifstream input ( "../input.txt" );
+    string s = to_string(i);
+    stringstream ss;
+    ss << "../test_directory/" << s;
+    string fileLocation = ss.str();    
+
+    ifstream input (fileLocation);
     ofstream output ("output.txt");
     if (output.is_open()) {
         if (input.is_open()){
@@ -31,8 +37,8 @@ int executeTask(int i) {
 int main() {
 	
 	volatile int r = 1;
-	for ( int i = 0; i < 1000000; ++i ) {
-		r = executeTask(i + r);
+	for ( int i = 1; i <= 10000; ++i ) {
+		r = executeTask(i);
 	}
     return 0;
 }

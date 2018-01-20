@@ -3,10 +3,13 @@ package main
 import (
     "fmt"
     "io/ioutil"
+    "strconv"
 )
 
 func executeTask(i int) int {
-    b, err := ioutil.ReadFile("../input.txt")
+    str := strconv.Itoa(i)
+    fileLocation := "../test_directory/" + str
+    b, err := ioutil.ReadFile(fileLocation)
     if err != nil {
         fmt.Println(err)
        return 1
@@ -18,8 +21,9 @@ func executeTask(i int) int {
 }
 
 func main() {
-r := int(1)
-for i := 0; i < 1000000; i++ {
-	r = executeTask(i + r) 
-}
+	r := int(1)
+	for i := 1; i <= 10000; i++ {
+		r = executeTask(i) 
+	}
+	_=r
 }

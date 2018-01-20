@@ -3,11 +3,11 @@ var r = 1;
 function executeTask(i) {
 
 	fs = require('fs');
-	var contents = fs.readFileSync('../input.txt', 'utf8');
+	var contents = fs.readFileSync('../test_directory/' + i, 'utf8');
 	fs.writeFileSync('output.txt',contents);
-	return i + 1;
+	return i;
 }
 
-for ( var i = 0; i < 1000000; i++) {
-	r = executeTask(i + r);
+for ( var i = 1; i < 10000; i++) {
+	r = executeTask(i);
 }
