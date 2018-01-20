@@ -32,6 +32,9 @@ then
 	echo "--ipAddress	 Provide IP address for remote host."
 	echo "--optimization	 Type keyword 'optimize' in order to add optimization flags, if not set the script will"
 	echo "	         remove any optimization flag."
+	echo "--temperature      Provide your system's idle temperature, this ensures that the execution of the next"
+        echo "           task will be done under stable conditions (less energy consumption on fan speed and"
+        echo "                 no clock speed reduction from DFVS)"
 	echo " "
 	echo "Note: user are suggested to set up a passwordless ssh between the local and the remote"
 	echo "host"
@@ -57,6 +60,7 @@ sleepTime="0"
 username="0"
 ipAddress="0"
 optimization="0"
+upperBoundTemperature="0"
 
 # echo each element in array  
 # for lQsds
@@ -65,6 +69,7 @@ for (( i=0;i<$ELEMENTS;++i)); do
 	case "${args[${i}]}" in 
 	("--tasksPath") tasksPath=${args[i+1]} ;;
 	("--sleepTime") sleepTime="${args[i+1]}" ;;
+	("--temperature") upperBoundTemperature="${args[i+1]}" ;;
 	("--username") username="${args[i+1]}" ;;
 	("--ipAddress") ipAddress="${args[i+1]}" ;;
 	("--optimization") optimization="${args[i+1]}" ;;
@@ -123,6 +128,27 @@ function getTreeDirectoryFromRemoteHost {
 
 	echo ""
 	echo "Exiting..."
+}
+
+# Function that checks the system's temperature.
+function checkTemperature {
+
+        while true;
+        do
+                currentTemperature=$(sensors | grep "Package id 0" | awk '{print $4}' | awk -F "+" '{print $2}' | awk -F "°" '{print $1}' | awk -F "." '{print $1}')
+                let currentTemperature=currentTemperature+0
+                allowedTemp=$1
+                upperBoundTemp=$((allowedTemp+3))
+                if [ "$currentTemperature" -gt "$upperBoundTemperature" ];
+                then
+                        currentTime=$(date)
+                        echo "[$currentTime] Error: Current temperature is high...trying again in 60 seconds!"
+                        sleep 60
+                else
+                        echo "Temperature is fine!"
+                        break
+                fi
+        done
 }
 
 ############################################################################################################################################
@@ -204,7 +230,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
-						
+						checkTemperature $upperBoundTemperature
 					fi
 				
 				;;
@@ -243,6 +269,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C++" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 					fi
 				;;
 				("java")
@@ -300,6 +327,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Java" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 					fi
 				;;
 				("python")
@@ -334,6 +362,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Python" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 				;;
 				("c-sharp")
 					if [[ $tasksImplementation == *".exe" ]] && [[ ! -d $tasksImplementation ]]; 
@@ -369,6 +398,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C-Sharp" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 					fi
 				;;
 				("visual-basic-.net")
@@ -405,6 +435,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Visual-Basic-.Net" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 					fi
 				;;
 
@@ -440,6 +471,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:JavaScript" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 				;;
 				("php")
 						echo "Executing Php"
@@ -479,6 +511,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:PHP" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 				;;
 				("perl")
 						echo "Executing Perl"
@@ -512,6 +545,7 @@ do
 							echo "Execution			$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Perl" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 				;;
 				("ruby")
 						echo "Executing Ruby" 
@@ -548,6 +582,7 @@ do
 							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Ruby" >> ../Reports/Failed_Execution_Report.txt
 						fi
 						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 				;;
 				("r")
 						echo "Executing R"
@@ -580,7 +615,8 @@ do
                                                         timeStamp=$(date -u)
                                                         echo "Execution         	$timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:R" >> ../Reports/Failed_Execution_Report.txt
                                                 fi
-					sleep $sleepTime
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 				;;
 				("go")
 						echo "Executing Go"
@@ -617,7 +653,8 @@ do
                                                         timeStamp=$(date -u)
                                                         echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Go" >> ../Reports/Failed_Execution_Report.txt
                                                 fi
-					sleep $sleepTime
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 				;;
 				("rust")		
 					if [[ $tasksImplementation != *".rs" ]] && [[ $tasksImplementation != *".rust" ]] && [[ ! -d $tasksImplementation ]]; 
@@ -652,7 +689,8 @@ do
                                                         timeStamp=$(date -u)
                                                         echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Rust" >> ../Reports/Failed_Execution_Report.txt
                                                 fi
-					sleep $sleepTime
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 					fi
 				;;
 				("swift")		
@@ -666,7 +704,7 @@ do
 						#WattsUp has 2 seconds of delay before retrieving results
 						sleep 2
 						
-						(time /home/sgeorgiou/swift-binaries/usr/bin/swift $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/swift.txt &
+						(time /home/sgeorgiou/swift-binaries/usr/bin/swift -suppress-warnings -O  $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/swift.txt &
 
 						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
 						getExecutionPID=$!
@@ -686,7 +724,8 @@ do
                                                         timeStamp=$(date -u)
                                                         echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Swift" >> ../Reports/Failed_Execution_Report.txt
                                                 fi
-					sleep $sleepTime
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
 				;;
 			esac
 		done

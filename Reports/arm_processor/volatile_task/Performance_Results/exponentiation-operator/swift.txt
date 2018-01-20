@@ -1,0 +1,7 @@
+rpi//exponentiation-operator/swift/exponentiation-operator.swift:8:20: warning: result of operator '+' is unused
+        pwrInt(2017+i,12) + pwrDouble(19.88+Double(i),12)
+        ~~~~~~~~~~~~~~~~~ ^ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+real	1m30.993s
+user	1m28.210s
+sys	0m0.340s

@@ -1,2 +1,0 @@
-function-composition: Lowest -> 4.63 Highest -> 11.26 Difference -> 6.63
-regular-expressions: Lowest -> 0.74 Highest -> 9.42 Difference -> 8.68

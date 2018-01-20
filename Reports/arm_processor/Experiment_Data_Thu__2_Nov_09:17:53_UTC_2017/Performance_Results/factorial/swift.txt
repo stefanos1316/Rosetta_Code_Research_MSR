@@ -1,7 +1,0 @@
-rpi/factorial/swift/factorial-2.swift:8:2: warning: result of call to 'factorial' is unused
-        factorial(number)
-        ^        ~~~~~~~~
-
-real	4m7.585s
-user	4m3.680s
-sys	0m0.240s
