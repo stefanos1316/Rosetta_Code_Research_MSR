@@ -1,0 +1,14 @@
+Error in file(fileLocation, "r") : cannot open the connection
+Calls: executeTask -> file
+In addition: There were 50 or more warnings (use warnings() to see the first 50)
+Execution halted
+
+real	0m25.258s
+user	0m22.423s
+sys	0m0.823s
+Error: unexpected input in ""
+Execution halted
+
+real	0m0.097s
+user	0m0.069s
+sys	0m0.022s
