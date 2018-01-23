@@ -1,0 +1,9 @@
+
+real	0m10.951s
+user	0m5.491s
+sys	0m1.888s
+./script.executeTasksRemotely: line 186: ./laptop//file-input-output/c/output.txt: Permission denied
+
+real	0m0.003s
+user	0m0.002s
+sys	0m0.002s

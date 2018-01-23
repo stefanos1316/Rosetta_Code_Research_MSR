@@ -1,0 +1,13 @@
+
+real	0m1.971s
+user	0m1.964s
+sys	0m0.003s
+./script.executeTasksRemotely: line 635: ./laptop//exponentiation-operator/rust/exponentiation-operator: Is a directory
+
+real	0m0.001s
+user	0m0.000s
+sys	0m0.001s
+
+real	2m8.532s
+user	2m8.288s
+sys	0m0.001s

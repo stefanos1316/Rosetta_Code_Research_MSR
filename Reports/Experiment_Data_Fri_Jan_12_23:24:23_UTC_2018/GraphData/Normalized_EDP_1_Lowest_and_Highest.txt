@@ -1,1 +1,0 @@
-function-composition: Lowest -> 3.59 Highest -> 7.18 Difference -> 3.59

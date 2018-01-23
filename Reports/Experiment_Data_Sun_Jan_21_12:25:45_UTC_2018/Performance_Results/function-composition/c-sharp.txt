@@ -1,0 +1,5 @@
+./script.executeTasksRemotely: line 170:  2648 Killed                  mono $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
+
+real	494m11.459s
+user	491m23.984s
+sys	1m10.824s

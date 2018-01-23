@@ -1,1 +1,0 @@
-regular-expressions: Lowest -> 1.48 Highest -> 8.03 Difference -> 6.55

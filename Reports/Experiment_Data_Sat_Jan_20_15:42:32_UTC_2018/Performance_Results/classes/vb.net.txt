@@ -1,0 +1,5 @@
+Error: Garbage collector could not allocate 3534309512 bytes of memory for finalize-ready.
+
+real	48m54.248s
+user	41m9.089s
+sys	2m4.478s
