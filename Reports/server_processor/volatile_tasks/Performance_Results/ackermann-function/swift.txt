@@ -1,0 +1,7 @@
+server//ackermann-function/swift/ackermann-function.swift:14:13: warning: result of call to 'ackerman(m:n:)' is unused
+            ackerman(m:m,n:n)
+            ^       ~~~~~~~~~
+
+real	0m12.468s
+user	0m12.420s
+sys	0m0.020s

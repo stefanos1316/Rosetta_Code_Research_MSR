@@ -4,7 +4,7 @@
 int executeTask(int i, FILE *in, FILE *out, int c){
 
   char *fileLocation = "../test_directory/";
-  char *str;
+  char str[50];
   sprintf(str, "%d", i);
  
   char final[30];

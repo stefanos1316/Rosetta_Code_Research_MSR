@@ -35,8 +35,13 @@ int main()
 
   	for ( int i = 0; i < 100000000; ++i) {	
 		const char *url = "http%3A%2F%2ffoo+bar%2fabcd" + (char)i;
-		char out[strlen(url) + 1];
-		r = decode(url,0) + i;
+		char str[50];
+        	sprintf(str, "%d", i);
+        	char final[80];
+        	strcpy(final, url);
+        	strcat(final, str);
+		char out[strlen(final) + 1];
+		r = decode(final,0) + i;
 	}
 	return 0;
 }

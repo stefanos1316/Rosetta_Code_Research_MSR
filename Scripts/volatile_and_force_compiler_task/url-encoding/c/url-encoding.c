@@ -17,8 +17,13 @@ int encode(const char *s, char *enc, char *tb)
 }
 
 int executeTask(int j) {
-	const char *url = "http://foo bar/" + (char)j;
-	char enc[(strlen(url) * 3) + 1];
+	const char *url = "http://foo bar/";
+	char str[50];
+	sprintf(str, "%d", j);
+	char final[80];
+  	strcpy(final, url);
+  	strcat(final, str);
+	char enc[(strlen(final) * 3) + 1];
 
 	int i;
 	for (i = 0; i < 256; i++) {
@@ -28,7 +33,7 @@ int executeTask(int j) {
 			? i : (i == ' ') ? '+' : 0;
 	}
 
-	return encode(url, enc, rfc3986) + j;
+	return encode(final, enc, rfc3986) + j;
 }
 
 int main()
