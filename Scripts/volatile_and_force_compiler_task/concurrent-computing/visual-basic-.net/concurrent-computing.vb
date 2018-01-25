@@ -12,9 +12,9 @@ Module Module1
        Dim t2 As New Thread(AddressOf Foo)
        Dim t3 As New Thread(AddressOf Foo)
 
-       t1.Start("Enjoy")
-       t2.Start("Rosetta")
-       t3.Start("Code")
+       t1.Start(value.ToString() + "Enjoy")
+       t2.Start(value.ToString() + "Rosetta")
+       t3.Start(value.ToString() + "Code")
 
        t1.Join()
        t2.Join()

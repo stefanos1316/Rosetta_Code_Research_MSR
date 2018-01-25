@@ -14,8 +14,7 @@ return 0;
 }
 
 int executeTask(int i){
-	return factorial(10+i) ;
-	
+		return factorial(i);
 }
 
 int factorial(int n) {

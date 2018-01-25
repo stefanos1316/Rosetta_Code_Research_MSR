@@ -3,7 +3,7 @@ my $r = 1;
 
 sub executeTask {
 	my ($i) = @_;
-	return factorial( 10 + $i);
+	return factorial( $i);
 }
 
 foreach ( $a = 0; $a < 100000; $a + $a + 1 ) {

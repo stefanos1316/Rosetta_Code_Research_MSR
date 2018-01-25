@@ -3,7 +3,7 @@ public class Factorial {
 private static volatile long r = 1;
 
 public static long executeTask(int i) {
-	return fact(10+i);
+	return fact(i);
 }
 
 public static void main(String[] args) {

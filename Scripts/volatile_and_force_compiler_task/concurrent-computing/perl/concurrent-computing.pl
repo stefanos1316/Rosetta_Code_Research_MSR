@@ -9,12 +9,12 @@ sub executeTask {
     $_->join for map {
         threads->create(sub {
             #sleep 1;
-            print shift, "\n";
+            print shift,"\n";
         }, $_)
     } qw(Enjoy Rosetta Code);
-	return ($i + 1);
+	return ($i);
 }
 
 for( $a=0; $a < 1000000; $a = $a + 1) { 
-	$r = executeTask($a + $r);
+	$r = executeTask($a);
 }

@@ -12,20 +12,26 @@ sub ack2 {
 }
 
 sub executeTask {
-	my($i) = @_;
-	
-        for( $m=0; $m <= 3; $m = $m + 1) {
-                for( $n=0; $n <= 3; $n = $n + 1) {
+	my($i, $aVar) = @_;
+
+	if ($i%2 == 0) {
+		$aVar = 1; 
+	} else {
+		$aVar = 2;
+	}
+
+        for( $m=0; $m <= (4 - $aVar); $m = $m + 1) {
+                for( $n=$aVar; $n <= 3; $n = $n + 1) {
                         ack2($m,$n);
                 }
         }
-	return ($i + 1);
+	return ($i);
 }
 
 $r = 1;
-
-for( $a=0; $a < 1000000; $a = $a + 1) {
-	$r = executeTask($a + $r); 
+$aVar = 0;
+for( $a=0; $a < 10000000; $a = $a + 1) {
+	$r = executeTask($a, $aVar); 
 }
 
 #ack2(4,4);

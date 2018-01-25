@@ -7,21 +7,27 @@ private static int r;
 
 public static int executeTask(int i) {
 
-        for (long m = 0; m <= 3; ++m)
+	int aVar = 0;
+	if (i%2 == 0)
+		aVar = 1;
+	else
+		aVar = 2;
+
+        for (long m = 0; m <= 4 - aVar; ++m)
         {
-            for (long n = 0; n <= 3; ++n)
+            for (long n = aVar; n <= 3; ++n)
             {
                 Ackermann(m,n);
             }
         }
-	return i + 1;
+	return i;
 }
 
 
 public static void main(String[] args) {
 
-    for (int i = 0; i < 1000000; ++i) {
-	r = executeTask(i + r);
+    for (int i = 0; i < 10000000; ++i) {
+	r = executeTask(i);
     }
 }
 

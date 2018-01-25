@@ -9,8 +9,8 @@ func factorial(x uint) uint {
 }
 
 func executeTask(i int) uint {
-	 u :=uint(10+i)
-         return factorial(u)
+	u := uint(i)
+	return factorial(u)
 }
 
 func main() {

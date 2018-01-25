@@ -8,10 +8,19 @@ func ackerman(m:Int, n:Int) -> Int {
     }
 }
 
-for i in 0...1000000 {
-    for m in 0...3 {
-        for n in 0...3 {
-           ackerman(m:m,n:n)
+for i in 0...10000000 {
+
+    var aVar = 0;
+    if i % 2 == 0 {
+ 	aVar = 1
+    } else {
+	aVar = 2	
+    }
+
+    for m in 0...(4 - aVar) {
+        for n in aVar...3 {
+           let a = ackerman(m:m,n:n)
+	   _ = a
         }
     }
 }

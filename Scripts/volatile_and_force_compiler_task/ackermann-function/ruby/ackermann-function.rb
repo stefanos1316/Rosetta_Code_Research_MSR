@@ -8,9 +8,18 @@ def ack(m, n)
   end
 end
 
-(0..1000000).each do |i|
-  (0..3).each do |m|
-    (0..3).each do |n|
+aVar = 0
+
+(0..10000000).each do |i|
+  
+  if i % 2 == 0
+	aVar = 1
+  else
+	aVar = 2
+  end
+
+  (0..(4 - aVar)).each do |m|
+    (aVar..3).each do |n|
       ack(m,n)
     end
   end

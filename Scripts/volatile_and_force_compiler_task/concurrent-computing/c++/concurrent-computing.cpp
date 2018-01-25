@@ -13,15 +13,15 @@ int executeTask(int i) {
  
   for(const auto& str: {"Enjoy\n", "Rosetta\n", "Code\n"}) {
     std::chrono::milliseconds duration(dist(eng)); 
- 
+   
     threads.emplace_back([str, duration](){                                                                    
       std::this_thread::sleep_for(duration);
-      std::cout << str;
+      std::cout  << str;
     });
   }
  
   for(auto& t: threads) t.join(); 
-  return i + 1;
+  return i;
 }
 
 int main()

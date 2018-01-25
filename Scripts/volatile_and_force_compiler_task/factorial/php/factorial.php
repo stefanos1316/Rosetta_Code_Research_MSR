@@ -18,7 +18,7 @@ $r = 1;
 
 function executeTask($i) {
 
-	return factorial(10 +$i);
+	return factorial($i);
 }
 
 for ( $i = 0; $i < 100000; $i++) {

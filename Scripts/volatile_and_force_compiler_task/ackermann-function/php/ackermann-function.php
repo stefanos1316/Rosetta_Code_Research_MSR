@@ -16,16 +16,24 @@ $r = 1;
 
 function executeTask( $i) {
 		
-    for ( $m = 0; $m <= 3; $m++) {
-        for ( $n = 0; $n <= 3; $n++) {
+    	$aVar = 0;
+	if ($i%2 == 0) {
+		$aVar = 1;
+	} else {
+		$aVar = 2;
+	}	
+
+
+    for ( $m = 0; $m <= (4 - $aVar); $m++) {
+        for ( $n = $aVar; $n <= 3; $n++) {
             ackermann( $m, $n );
         }
     }
 	return $i + 1;
 }
 
-for ( $i = 0; $i < 1000000; $i++) {
-	$r = executeTask($i + $r);
+for ( $i = 0; $i < 10000000; $i++) {
+	$r = executeTask($i);
 }
 
 ?>

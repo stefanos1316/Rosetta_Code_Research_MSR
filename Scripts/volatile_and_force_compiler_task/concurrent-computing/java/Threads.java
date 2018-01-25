@@ -9,11 +9,13 @@ public class Threads
   {
     private volatile CyclicBarrier barrier;
     private volatile String msg;
+    private volatile int i;
 	
-    public DelayedMessagePrinter(CyclicBarrier barrier, String msg)
+    public DelayedMessagePrinter(CyclicBarrier barrier, String msg, int i)
     {
       this.barrier = barrier;
       this.msg = msg;
+      this.i = i;
     }
 
     public void run()
@@ -22,17 +24,17 @@ public class Threads
       {  barrier.await();  }
       catch (Exception e)
       {  }
-      System.out.println(msg);
+      System.out.println(i + " " + msg);
     }
   }
 
   public static int executeTask(int i ) {
 
         CyclicBarrier barrier = new CyclicBarrier(3);
-	new Thread(new DelayedMessagePrinter(barrier, "Enjoy")).start();
-    	new Thread(new DelayedMessagePrinter(barrier, "Rosetta")).start();
-    	new Thread(new DelayedMessagePrinter(barrier, "Code")).start();
-	return i + 1;
+	new Thread(new DelayedMessagePrinter(barrier, "Enjoy", i)).start();
+    	new Thread(new DelayedMessagePrinter(barrier, "Rosetta", i)).start();
+    	new Thread(new DelayedMessagePrinter(barrier, "Code", i)).start();
+	return i;
   }
 
   public static void main(String[] args)

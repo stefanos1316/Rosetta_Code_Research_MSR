@@ -8,16 +8,21 @@ int ackermann(int m, int n)
 }
 
 int executeTask(int i) {
-	int m, n;
-        for (m = 0; m <= 3; m++)
-                for (n = 0; n <= 3; n++)
+	int m, n, aVar;
+	if (i % 2 ==0 ) 
+		aVar = 1;
+	else
+		aVar = 2; 
+
+        for (m = 0; m <= 4 - aVar; m++)
+                for (n = aVar; n <= 3; n++)
 	        	ackermann(m, n);
 }
 
 int main()
 {
 	volatile int r = 0;
-        for (int i = 0; i < 1000000; ++i) {
+        for (int i = 0; i < 10000000; ++i) {
 		r = executeTask(i) + i;
 	}
         return 0;

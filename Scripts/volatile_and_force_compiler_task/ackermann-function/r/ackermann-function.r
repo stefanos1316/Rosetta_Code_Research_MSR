@@ -9,17 +9,24 @@ ackermann <- function(m, n) {
 }
 
 executeTask <- function(i) {
-  for ( m in 0:3 ) {
-    for ( n in 0:3 ) {
+
+  if ( i %% 2 == 0 ) { 
+	aVar = 1
+  } else {
+	aVar = 2
+  }
+
+  for ( m in 0:(4 - aVar) ) {
+    for ( n in aVar:3 ) {
       ackermann(m, n)
     }
   }
 
-	return(i+1)
+	return(i)
 }
-
+aVar = 0
 r = 1
 
-for ( i in 0:1000000 ) {
-	r = executeTask(i + r)	
+for ( i in 0:10000000 ) {
+	r = executeTask(i)	
 }

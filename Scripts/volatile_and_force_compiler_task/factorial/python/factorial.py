@@ -1,6 +1,8 @@
+import sys
+sys.setrecursionlimit(200000)
 
 def executeTask(i):
-	return factorial(10+i)
+	return factorial(i)
 
 def factorial(n):
     z=1

@@ -4,11 +4,11 @@ fact <- function(n) {
 }
 
 executeTask <- function(i) {
-	return(fact(10+i))
+	return(fact(i))
 }
 
 r = 1
 
 for(i in 0:100000) {
-	r = executeTask(i + r)
+	r = executeTask(i)
 }

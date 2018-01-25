@@ -3,7 +3,7 @@
 int factorial(int);
 
 int executeTask(int i) {
-	return factorial(10+i);
+		return factorial(i);
 }
 
 int main() {

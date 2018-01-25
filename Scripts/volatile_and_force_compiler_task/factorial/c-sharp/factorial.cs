@@ -6,8 +6,7 @@ namespace FactorialExample
     	private static volatile float r;
 
 	public static float executeTask(int i) {
-
-           	return Convert.ToSingle(GetFactorial(10+i));
+			return Convert.ToSingle(GetFactorial(i));
 		
 	}
 

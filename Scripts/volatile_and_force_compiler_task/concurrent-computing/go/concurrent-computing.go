@@ -17,10 +17,10 @@ func executeTask(i int) int {
             q <- w
         }(w)
     }
-    for i := 0; i < len(words); i++ {
-        fmt.Println(<-q)
+    for j := 0; j < len(words); j++ {
+	fmt.Println(i, <-q)
     }
-return i + 1
+return i
 }
 
 func main() {

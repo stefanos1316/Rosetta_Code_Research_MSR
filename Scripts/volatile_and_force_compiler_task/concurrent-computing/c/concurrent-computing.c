@@ -2,11 +2,11 @@
 #include <omp.h>
 
 
-int executeTask(int i){
+int executeTask(int j){
 	const char *str[] = { "Enjoy", "Rosetta", "Code" };
 	for (int i = 0; i < 3; i++)
-		printf("%s\n", str[i]);
-	return i;
+		printf("%d %s \n",j, str[i]);
+	return j;
 }
 
 int main()

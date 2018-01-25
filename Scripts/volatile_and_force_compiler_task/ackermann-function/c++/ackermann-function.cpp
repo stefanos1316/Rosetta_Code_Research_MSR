@@ -7,19 +7,26 @@ unsigned int ackermann(unsigned int m, unsigned int n) {
 }
 
 int executeTask(int i) {
-  for (unsigned int m = 0; m <= 3; ++m) {
-    for (unsigned int n = 0; n <= 3; ++n) {
+
+  int aVar = 0;
+  if (i % 2 == 0)
+	aVar = 1;
+  else
+	aVar = 2;
+
+  for (unsigned int m = 0; m <= 4 - aVar; ++m) {
+    for (unsigned int n = aVar; n <= 3; ++n) {
     	ackermann(m, n);
     }
  }
-  return i + 1;
+  return i;
 }
 
 int main() {
 
   	volatile int r = 1;
-  	for (int i = 0; i < 1000000; ++i) {
-  		r = executeTask(i + r);
+  	for (int i = 0; i < 10000000; ++i) {
+  		r = executeTask(i);
 	}
 
 }

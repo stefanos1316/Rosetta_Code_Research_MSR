@@ -6,7 +6,16 @@ Namespace Rextester
     Public Module Program
         Public Sub Main(args() As string)
 
-            For value As Integer = 0 To 1000000
+           For value As Integer = 0 To 10000000
+		Dim aVar As Integer = 0	
+		If value Mod 2 = 0 Then
+			aVar = 1
+		End If
+
+		If value Mod 2 = 1 Then
+			aVar = 2
+		End If
+
                 For m As Integer = 0 To 3                 
                     For n As Integer = 0 To 3
                          ackermann(m,n)

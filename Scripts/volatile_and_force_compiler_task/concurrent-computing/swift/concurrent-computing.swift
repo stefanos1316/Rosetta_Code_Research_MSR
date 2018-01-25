@@ -7,7 +7,7 @@ for i in 0...1000000 {
     for word in myList {
         myGroup.enter()
         DispatchQueue.main.async {
-            print(word)
+            print(String(i) + " " + word)
             myGroup.leave()
         }
     }

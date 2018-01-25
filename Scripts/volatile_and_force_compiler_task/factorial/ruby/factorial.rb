@@ -4,5 +4,5 @@ def factorial_recursive(n)
 end
 
   for i in 0..100000
- 	 factorial_recursive(10+i)
+ 	 factorial_recursive(i)
  end	

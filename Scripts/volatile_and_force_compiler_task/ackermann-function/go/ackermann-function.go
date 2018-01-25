@@ -1,13 +1,24 @@
 package main
 
 func executeTask(i int) int {
+ 
+	aVar := int(0)
 
-        for m := 0; m <= 3; m++ {
-            for n := 0; n <= 3; n++ {
+	if i%2 == 0 { 
+		aVar = 1
+	} else {
+		aVar = 2
+	}
+	
+
+        for m := 0; m <= 4 - aVar; m++ {
+            for n := aVar; n <= 3; n++ {
                  Ackermann(m, n)
             }
-        }
-	return i + 1;
+	
+       }
+	_ = aVar
+	return i
 }
 
 func Ackermann(m, n int) int {
@@ -22,8 +33,8 @@ func Ackermann(m, n int) int {
 
 func main() {
     r := int(0)
-    for i := 0; i < 1000000; i++ {
-	r = executeTask(i + r);
+    for i := 0; i < 10000000; i++ {
+	r = executeTask(i)
     }
  _ = r
 }

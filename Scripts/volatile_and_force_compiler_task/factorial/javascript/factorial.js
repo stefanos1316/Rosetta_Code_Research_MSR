@@ -12,7 +12,7 @@ var r = 1;
 
 function executeTask(i) {
 
-	return factorial(num+i);
+	return factorial(i);
 	
 }
 

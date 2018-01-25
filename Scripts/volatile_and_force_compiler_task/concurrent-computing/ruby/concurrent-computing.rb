@@ -3,7 +3,7 @@
     %w{Enjoy Rosetta Code}.map do |x|
         Thread.new do
             sleep 0.001
-            puts x
+            puts "#{i} #{x}"
         end
     end.each do |t|
     t.join
