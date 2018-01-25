@@ -1,13 +1,0 @@
-
-real	0m2.609s
-user	0m0.225s
-sys	0m0.545s
-server//file-input-output/ruby/output.txt:1: Invalid char `\x7F' in expression
-server//file-input-output/ruby/output.txt:1: Invalid char `\x1B' in expression
-server//file-input-output/ruby/output.txt:1: syntax error, unexpected tCONSTANT, expecting end-of-input
-7G6?Fä¿Ã´ûÂ¾=JÍşöÚ¨1ÊÄj"ªNÎ
-     ^
-
-real	0m0.042s
-user	0m0.033s
-sys	0m0.007s

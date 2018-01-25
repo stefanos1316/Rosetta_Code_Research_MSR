@@ -1,23 +1,0 @@
-
-real	0m39.545s
-user	0m37.659s
-sys	0m1.706s
-/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/laptop/file-input-output/javascript/output.txt:1
-(function (exports, require, module, __filename, __dirname) { 7G6?F�ô��¾=J�����1��j"�N�j��P$&斬�
-                                                              ^
-
-SyntaxError: Invalid or unexpected token
-    at createScript (vm.js:74:10)
-    at Object.runInThisContext (vm.js:116:10)
-    at Module._compile (module.js:588:28)
-    at Object.Module._extensions..js (module.js:635:10)
-    at Module.load (module.js:545:32)
-    at tryModuleLoad (module.js:508:12)
-    at Function.Module._load (module.js:500:3)
-    at Function.Module.runMain (module.js:665:10)
-    at startup (bootstrap_node.js:201:16)
-    at bootstrap_node.js:626:3
-
-real	0m0.065s
-user	0m0.055s
-sys	0m0.008s

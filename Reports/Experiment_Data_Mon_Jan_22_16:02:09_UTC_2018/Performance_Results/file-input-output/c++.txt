@@ -1,9 +1,0 @@
-
-real	0m2.868s
-user	0m0.255s
-sys	0m0.837s
-./script.executeTasksRemotelyServer: line 225: ./server//file-input-output/c++/output.txt: Permission denied
-
-real	0m0.003s
-user	0m0.002s
-sys	0m0.001s

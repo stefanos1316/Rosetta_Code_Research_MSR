@@ -1,9 +1,0 @@
-
-real	0m4.547s
-user	0m1.160s
-sys	0m1.334s
-Unrecognized character \x7F; marked by <-- HERE after <-- HERE near column 1 at laptop//file-input-output/perl/output.txt line 1.
-
-real	0m0.007s
-user	0m0.001s
-sys	0m0.005s

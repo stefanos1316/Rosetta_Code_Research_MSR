@@ -1,5 +1,0 @@
-./script.executeTasksRemotelyServer: line 170: 11818 Killed                  java -Xint -classpath $path $executable
-
-real	56m42.766s
-user	56m26.368s
-sys	0m0.880s

@@ -1,5 +1,0 @@
-When a task is using all the languages -> C#, C, C++, Go, Javascript, Java, Perl, PHP, Python, R, Ruby, Rust, Swift, VB.NET
-
-concurrent-computing -> C#, C, C++, Go, Java, Perl, PHP, Python, Ruby, Swift
-inheritance-multiple -> C++, JavaScript, Java, Perl, Python, Ruby, Swift
-inheritance-single -> C#, C++, JavaScript, Java, Perl, PHP, Python, R, Ruby, Swift, VB.NET

@@ -1,7 +1,0 @@
-platformTesting//ackermann-function/swift/ackermann-function.swift:14:13: warning: result of call to 'ackerman(m:n:)' is unused
-            ackerman(m:m,n:n)
-            ^       ~~~~~~~~~
-
-real	0m9.945s
-user	0m9.702s
-sys	0m0.055s
