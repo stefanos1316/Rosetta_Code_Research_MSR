@@ -22,7 +22,7 @@ Affiliation: Athens University of Business and Economics
 
 
 # Description
-This reposotory was build for research purpose. 
+This reposotory was build for research purpose on Energy-Delay-Product.
 Our aim is to compare the energy consumption of different tasks writtern in a variety of programming languages. 
 In order to achieve our aim we used a dataset publicly available from [Rosetta Code](http://rosettacode.org/wiki/Rosetta_Code).
 We found all the collected tasks implemented in different langauges from a [Git repo](https://github.com/acmeism/RosettaCodeData). 
