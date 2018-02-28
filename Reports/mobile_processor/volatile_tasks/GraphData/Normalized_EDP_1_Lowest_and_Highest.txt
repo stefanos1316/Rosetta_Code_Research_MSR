@@ -2,7 +2,7 @@ ackermann-function: Lowest -> 2.9 Highest -> 7.78 Difference Ratio-> 4.884577224
 array-concatenation: Lowest -> 3.87 Highest -> 8.29 Difference Ratio-> 4.415708403195962
 call-an-object-method: Lowest -> 1.06 Highest -> 8.22 Difference Ratio-> 7.162453996863404
 classes: Lowest -> 1.31 Highest -> 8.17 Difference Ratio-> 6.8672735736313575
-concurrent-computing: Lowest -> 2.65 Highest -> 8.66 Difference Ratio-> 6.005096338333959
+concurrent-computing: Lowest -> 2.94 Highest -> 8.66 Difference Ratio-> 5.712771119828646
 exponentiation-operator: Lowest -> 2.39 Highest -> 8.2 Difference Ratio-> 5.817731585940027
 factorial: Lowest -> 3.9 Highest -> 8.32 Difference Ratio-> 4.424835108964857
 file-input-output: Lowest -> 2.02 Highest -> 6.47 Difference Ratio-> 4.447888319818703
