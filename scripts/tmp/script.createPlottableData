@@ -1,0 +1,258 @@
+#!/bin/bash
+
+#This script is responsible of creating text files from the collect results in order to plot them
+
+#Command line arguments
+
+if [ "$#" -eq 0 ]; then
+	echo "Invaled number of command line arguments."
+	echo "Using --help option for more information."
+	exit
+fi
+
+if [ "$1" == "--help" ]; then
+	echo ""
+	echo "Usage of script.createPlottableData"
+	echo "==================================="
+	echo ""
+	echo "--absoluteDataPath	Provide the absolute path where all the Experimental Data are located."
+	echo "--languageType		Choose between 'compiled' and 'interpreted' options."
+	echo "--optimization		Select if 'ON' or 'OFF'."
+	echo ""
+	exit
+fi
+
+#Initiallize variables 
+remove=0
+languageType=0
+optimization=0
+
+#Break the array of command line arguments and set the program variables accordingly.
+args=("$@")
+
+#Get number of elements
+ELEMENTS=${#args[@]}
+
+for ((i=0;i<$ELEMENTS;++i)); 
+do  
+	case "${args[${i}]}" in 
+	("--absoluteDataPath") remove=${args[i+1]} ;;
+	("--languageType") languageType="$(echo ${args[i+1]} | tr '[A-Z]' '[a-z]')" ;;
+	("--optimization") optimization="$(echo ${args[i+1]} | tr '[A-Z]' '[a-z]')" ;;
+	esac
+done
+
+if [ "$languageType" != "compiled" ] && [ "$languageType" != "interpreted" ]; then
+	echo "Illegal value for --languageType option."
+	echo "Please try again."
+	exit
+fi
+
+if [ "$optimization" != "on" ] && [ "$optimization" != "off" ]; then
+	echo "Illegal value for --optimization option."
+	echo "Please try again."
+	exit
+fi
+
+fullPath=0
+
+	if [[ "$remove" == */ ]]; then
+		remove2=$(echo ${remove::-1})		
+		fullPath=$remove2
+	else
+		fullPath=$remove
+	fi
+
+	if [[ $remove == *"Energy_Results"* ]]; then
+		if [[ "$remove" == */ ]]; then
+			remove=$(echo ${remove::-1})
+			fullPath=$(echo $remove | awk -F "/" '{$NF=""}1' | tr " " "/")	
+		fi	
+	fi
+
+
+declare -a languagesInSequence=("c-sharp.txt" "c.txt" "c++.txt" "go.txt" "javascript.txt" "java.txt" "perl.txt" "php.txt" "python.txt" "r.txt" "ruby.txt" "rust.txt" "swift.txt" "vb.net.txt")
+
+###############################################################################################################################
+###############################################################################################################################
+
+					#THIS CODE PORTION CREATES DATA FROM ENERGY RESULTS#
+
+###############################################################################################################################
+###############################################################################################################################
+#Now dive in the directories and create the necessary files
+experimentName=$(echo $fullPath | awk -F "/" '{print $NF}')
+pathWithoutEnergyResults=$fullPath
+fullPath=$fullPath"/Energy_Results/"
+
+#array where all the results are stored
+echo ""
+echo "Calculating energy consumption measurements..."
+echo ""
+array=()
+horseLine=0
+for i in `ls $fullPath`
+do
+	horseLine=$i
+	for k in "${languagesInSequence[@]}"; do 
+		#echo $k
+#	for j in `ls $fullPath/$i`
+#	do
+	if [ -f $fullPath/$i/$k ]; then  
+		counter=0
+		toDivideWith=0
+		sum=0
+		while IFS= read -r var
+		do
+			counter=$((counter+1))
+			#if [ $counter -gt 2 ]; then
+				toDivideWith=$((toDivideWith+1))
+				#echo "$j -> $var"
+				sum=$(echo $sum + $var | bc)
+			#fi
+		done < "$fullPath/$i/$k"
+		
+		average=0
+		if [ $toDivideWith -ne 0 ]; then
+			#average=$(echo "scale=2; $sum/$toDivideWith" | bc)
+			average=$sum
+		else
+			average=0
+		fi
+		horseLine=$horseLine"--"$average
+	else
+		horseLine=$horseLine"---1"	
+	fi
+	done
+	echo $horseLine
+	array+=($horseLine)
+	
+done
+
+for each in "${array[@]}"
+do
+ 	echo "$each" >> temp.txt
+done
+
+#When done replace the instances of -- in file 
+sed -i 's/--/\t/g' temp.txt
+graphDataDir=$remove"/GraphData/"
+mkdir -p $graphDataDir
+#If directory no exist then
+if [ ! -d "$graphDatDir"]; then
+	mkdir -p $graphDataDir
+fi
+
+#The lines below were both modified (Total) 
+mv temp.txt Energy_Data_$experimentName.txt
+mv Energy_Data_$experimentName.txt $graphDataDir
+
+#When data is created move them run script to plot graphs
+graphDataLocationEnergy=$graphDataDir"/Energy_Data_"$experimentName.txt
+
+###############################################################################################################################
+###############################################################################################################################
+
+					#THIS CODE PORTION CREATES DATA FROM PERFORMANCE RESULTS#
+
+###############################################################################################################################
+###############################################################################################################################
+echo ""
+echo "Calculating run-time performance measurements..."
+echo ""
+performanceResults=$pathWithoutEnergyResults"/Performance_Results"
+arrayPerf=()
+for i in `ls $performanceResults`
+do 
+	horseLine=$i
+	totalTime=0
+	#Now we see all the tasks
+	for j in "${languagesInSequence[@]}"
+	do
+		#echo $j
+		if [ -f $performanceResults/$i/$j ]; then
+		#echo "Task $i and file $j"
+		getMinutes=$(grep 'real' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $1}')
+		getSeconds=$(grep 'real' $performanceResults/$i/$j | awk '{print $2}' | awk -F "m" '{print $2}' | awk -F "." '{print $1}')
+		getMinutes=$((getMinutes*60))
+		totalTime=$((getMinutes+getSeconds))
+		horseLine=$horseLine"--"$totalTime
+		else	
+			horseLine=$horseLine"--1"
+		fi
+	done	
+	echo $horseLine
+	arrayPerf+=($horseLine)
+done
+
+#Add collected results in Performance_Data.txt
+for each in "${arrayPerf[@]}"
+do
+	echo $each >> Performance_Data_$experimentName.txt
+done
+
+#When done replace the instances of -- in file 
+sed -i 's/--/\t/g' Performance_Data_$experimentName.txt
+#graphDataDir=$pathWithoutEnergyResults"/GraphData/"
+
+#If directory no exist then
+if [ ! -d "$graphDatDir"]; then
+	mkdir -p $graphDataDir
+fi
+
+
+#Moving Performance_Data.txt
+mv Performance_Data_$experimentName.txt $graphDataDir
+
+#When data is created move them run script to plot graphs
+graphDataLocationPerformance=$graphDataDir"/Performance_Data_"$experimentName.txt
+
+echo""
+echo "Energy and Performance data files created and transferred to $graphDataDir"
+
+
+
+###############################################################################################################################
+###############################################################################################################################
+
+						#Merge Files to create EDP results#
+
+###############################################################################################################################
+###############################################################################################################################
+
+echo "Creating Energy Delay Product (EDP) results..."
+fileEnergy=$graphDataLocationEnergy
+filePerformance=$graphDataLocationPerformance
+
+getNumberOfTasks=$(cat $graphDataLocationPerformance | wc -l)
+getNumberOfLanguages=$(awk '{print NF; exit}' $graphDataLocationPerformance)
+getNumberOfLanguages=$((getNumberOfLanguages - 1))
+getTasksNames=$(awk '{print $1}' ORS=',' $graphDataLocationPerformance)
+
+java -jar createEnergyDelayProductFiles_and_Normalized_Them_Plus_Log_10_Function.jar $fileEnergy $filePerformance $getNumberOfTasks $getNumberOfLanguages
+mv EnergyDelayProduct_Weight_* $graphDataDir
+mv Normalized_EDP_* $graphDataDir
+mv Only_EDP.txt $graphDataDir
+echo "Files Created: "
+echo "EnergyDelayProduct_Weight_1.txt"
+echo "EnergyDelayProduct_Weight_2.txt"
+echo "EnergyDelayProduct_Weight_3.txt"
+echo "EnergyDelayProduct files transferred to $graphDataDir..."
+echo "Normalized Energy Delay Product results are transferred to $graphDataDir..."
+echo ""
+echo ""
+echo "Plotting heatmaps for Normalized data with weight of 1,2, and 3..."
+
+myvar=1 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_1_HeatMap_Logarithmic_Function.pdf created!"
+myvar=2 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_2_HeatMap_Logarithmic_Function.pdf created!"
+myvar=3 noTasks=$getNumberOfTasks noLanguages=$getNumberOfLanguages allTasksNames=$getTasksNames fileLocation=$graphDataDir runipy MakingHeatMap.ipynb 
+echo "HeatMaps Normalized_Results_EDP_3_HeatMap_Logarithmic_Function.pdf created!"
+echo ""
+echo "Moving HeatMaps under $graphDataDir..."
+mv Normalized_Results_EDP_*_HeatMap_Logarithmic_Function.pdf $graphDataDir
+
+mail -a $graphDataDir/Normalized_Results_EDP_1_*_HeatMap_Logarithmic_Function.pdf -a $graphDataDir/Normalized_Results_EDP_2_*_HeatMap_Logarithmic_Function.pdf -a $graphDataDir/Normalized_Results_EDP_3_*_HeatMap_Logarithmic_Function.pdf -s "[Rosetta Code Research] Execution Done" sgeorgiou@aueb.gr < mails/execution_done.txt 
+echo "Sending all results to sgeorgiou@aueb.gr..."
+exit

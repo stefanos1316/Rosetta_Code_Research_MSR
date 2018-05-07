@@ -1,0 +1,16 @@
+Subject: [Rosetta Code Research] Node is not responding
+
+Dear Researcher, 
+
+I am a Bot responsible to inform you upon error detection.
+There is a script sending frequently ping messages to ensure that your execution 
+node is alive.
+It seems your exection node (responsible for executing the tasks) is unreachable. 
+
+Possible reasons:
+This might occured due to a system crash or a network error. 
+Please check the node's status upon seeing this message.
+
+Kind regards,
+
+Rosetta Code Research Bot

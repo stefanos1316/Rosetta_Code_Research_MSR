@@ -1,0 +1,123 @@
+#!/bin/bash
+
+#Necessary command line argument is the path of the Task's directory
+
+#C's compilation flags
+#C_FLAGS="-pthread -L/home/yourname/gsl/lib -lgsl -lgslcblas -lm polifitgsl.c -lyajl -std=c99 -fopenmp"
+#C_PLUS_PLUS_FLAGS="-std=c++11 -D_GLIBCXX_USE_NANOSLEEP -lpthread"
+#C_SHARP_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+#VB_DOT_NET_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+
+for containesTasks in `ls $1`;
+do
+        #For all the programming languages enter and compile the content
+        for containesLanguages in `ls $1/$containesTasks`;
+        do
+                #For all the tasks compile them based on the language
+		for tasksImplementation in `ls $1/$containesTasks/$containesLanguages`;
+                do
+                        case "$containesLanguages" in 
+                        ("c")
+				if [[ $tasksImplementation == *".c" ]];
+				then
+					sourceFile=$1"/"$containesTasks"/"$containesLanguages"/"$tasksImplementation
+					objectFile=$(echo $sourceFile | awk -F "." '{print $1}')
+					eval=$(gcc $C_FLAGS -o $objectFile $sourceFile)
+					if [ $? -eq 0 ];
+					then
+                                       			echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                		else
+                                                	echo "$1/$containesTasks/$containesLanguages/$tasksImplementation:C" >> Reports/Java_Failed_Report.txt
+  	                        	fi
+				fi
+			;;
+                        ("c++")
+				if [[ $tasksImplementation == *".cpp"  ]]; 
+				then
+					sourceFile=$1"/"$containesTasks"/"$containesLanguages"/"$tasksImplementation
+                                	objectFile=$(echo $sourceFile | awk -F "." '{print $1}')
+                                	eval=$(g++ $C_PLUS_PLUS_FLAGS -o $objectFile $sourceFile)
+                                	if [ $? -eq 0 ];
+                                	then
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation:C++" >> Reports/Java_Failed_Report.txt
+                                	fi
+				fi
+			;;
+			("java")
+				if [[ $tasksImplementation == *".java"  ]];
+				then
+                                	eval=$(javac $1/$containesTasks/$containesLanguages/$tasksImplementation)
+                                
+
+					if [ $? -eq 0 ];
+                                	then
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation:Java" >> Reports/Java_Failed_Report.txt
+                                	fi
+				fi
+                        ;;
+			("c-sharp")
+				if [[ $tasksImplementation == *".cs"  ]];
+				then
+                                	eval=$(mcs $C_SHARP_FLAGS $1/$containesTasks/$containesLanguages/$tasksImplementation)
+                         
+					if [ $? -eq 0 ];
+                                	then
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation:C-Sharp" >> Reports/Java_Failed_Report.txt
+                                	fi
+				fi
+                        ;;
+			("visual-basic-.net")
+				if [[ $tasksImplementation == *".visual" ]];
+				then
+                                	eval=$(vbnc $VB_DOT_NET_FLAGS $1/$containesTasks/$containesLanguages/$tasksImplementation)
+                              
+					if [ $? -eq 0 ];
+                                	then
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation:C-Sharp" >> Reports/Java_Failed_Report.txt
+                                	fi
+				fi
+                        ;;
+                        ("switf")
+				if [[ $tasksImplementation == *".swift" ]];
+				then 
+                                	eval=$(swift $1/$containesTasks/$containesLanguages/$tasksImplementation)
+                                fi
+
+				if [ $? -eq 0 ];
+                                then
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation:Swift" >> Reports/Java_Failed_Report.txt
+                                fi
+                        ;;
+                        ("rust")
+				if [[ $tasksImplementation == *".rust" ]];
+				then 
+                                	eval=$(rustc $1/$containesTasks/$containesLanguages/$tasksImplementation)
+                                
+					if [ $? -eq 0 ];
+                                	then
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "$1/$containesTasks/$containesLanguages/$tasksImplementation:Swift" >> Reports/Java_Failed_Report.txt
+                                	fi
+				fi
+                        ;;
+
+                        esac
+                done
+        done
+done
+
+exit
+done
+
+exit	

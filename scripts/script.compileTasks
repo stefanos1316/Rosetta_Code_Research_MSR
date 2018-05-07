@@ -1,0 +1,161 @@
+#!/bin/bash
+
+#Necessary command line argument is the path of the Task's directory
+
+#C's compilation flags
+#C_FLAGS="-pthread -L/home/yourname/gsl/lib -lgsl -lgslcblas -lm polifitgsl.c -lyajl -std=c99 -fopenmp"
+#C_SHARP_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+#VB_DOT_NET_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+
+# Compilation flags
+C_FLAGS="-lm -pthread -fopenmp -std=c99"
+C_PLUS_PLUS_FLAGS="-std=c++11 -D_GLIBCXX_USE_NANOSLEEP -lpthread"
+
+if [ "$1" == "-h" -o "$1" == "--help" ]; then
+	echo
+	echo "-d | --directory"
+	echo "	provide directory name where the files for compilation are located"
+	echo
+	echo "-h | --help"
+	echo "	print help message and exit"
+	echo
+	exit
+fi
+
+# Initiallize global variables
+DIRECTORY=false
+DIRECTORY_PATH=""
+
+# If there is no : after a letter it means the specific letter has no argument, if it has :: it means the particular has optional, and a : has required argument.
+OPTIONS=`getopt -o d: --long directory: -n 'script.compileTasks' -- "$@"`
+eval set -- "$OPTIONS"
+while true; do
+	case "$1" in 
+		-d|--directory) DIRECTORY=true ;
+			case $2 in 
+				*/*) DIRECTORY_PATH=$2 ; shift 2 ;;
+				*) >&2 echo "[Error] Directory path was not provided." ; shift 2 ;;
+			esac ;;
+		--) shift ; break ;;
+		*) >&2 echo "Wrong command line argument, please try again." ; exit 1 ;;
+	esac
+done
+
+# Cleaning Failed_Reports file from ../Reports
+echo "Cleaing Failed Report file from ../Reports"
+rm ../Reports/Failed_Report.txt
+
+
+for containesTasks in `ls ${DIRECTORY_PATH}`;
+do
+        #For all the programming languages enter and compile the content
+        for containesLanguages in `ls ${DIRECTORY_PATH}/$containesTasks`;
+        do
+                #For all the tasks compile them based on the language
+		for tasksImplementation in `ls ${DIRECTORY_PATH}/$containesTasks/$containesLanguages`;
+                do
+                        case "$containesLanguages" in 
+                        ("c")
+				if [[ $tasksImplementation == *".c" ]];
+				then
+					sourceFile=${DIRECTORY_PATH}"/"$containesTasks"/"$containesLanguages"/"$tasksImplementation
+					objectFile=$(echo $sourceFile | awk -F "." '{print $1}')
+					eval=$(gcc ${C_FLAGS} -o $objectFile $sourceFile)
+					if [ $? -eq 0 ];
+					then
+                                       			echo "${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                		else
+                                                	echo "[C] $tasksImplementation" >> ../Reports/Failed_Report.txt
+  	                        	fi
+				fi
+			;;
+                        ("c++")
+				if [[ $tasksImplementation == *".cpp"  ]]; 
+				then
+					sourceFile=${DIRECTORY_PATH}"/"$containesTasks"/"$containesLanguages"/"$tasksImplementation
+                                	objectFile=$(echo $sourceFile | awk -F "." '{print $1}')
+                                	eval=$(g++ ${C_PLUS_PLUS_FLAGS} -o $objectFile $sourceFile)
+                                	if [ $? -eq 0 ];
+                                	then
+                                                echo "${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "[C++] $tasksImplementation" >> ../Reports/Failed_Report.txt
+                                	fi
+				fi
+			;;
+			("java")
+				if [[ $tasksImplementation == *".java"  ]];
+				then
+                                	eval=$(javac ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
+                                
+
+					if [ $? -eq 0 ];
+                                	then
+                                                echo "${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "[Java] $tasksImplementation" >> ../Reports/Failed_Report.txt
+                                	fi
+				fi
+                        ;;
+			("c-sharp")
+				if [[ $tasksImplementation == *".cs"  ]];
+				then
+                                	eval=$(mcs $C_SHARP_FLAGS ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
+                         
+					if [ $? -eq 0 ];
+                                	then
+                                                echo "${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "[C#] $tasksImplementation " >> ../Reports/Failed_Report.txt
+                                	fi
+				fi
+                        ;;
+			("visual-basic-.net")
+				if [[ $tasksImplementation == *".visual" ]];
+				then
+                                	eval=$(vbnc $VB_DOT_NET_FLAGS ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
+                              
+					if [ $? -eq 0 ];
+                                	then
+                                                echo "${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "[VB.NET] $tasksImplementation" >> ../Reports/Failed_Report.txt
+                                	fi
+				fi
+                        ;;
+                        ("switf")
+				if [[ $tasksImplementation == *".swift" ]];
+				then 
+                                	eval=$(swift ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
+                                fi
+
+				if [ $? -eq 0 ];
+                                then
+                                                echo "${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "[Swift] $tasksImplementation" >> ../Reports/Failed_Report.txt
+                                fi
+                        ;;
+                        ("rust")
+				if [[ $tasksImplementation == *".rust" ]];
+				then 
+                                	eval=$(rustc ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
+                                
+					if [ $? -eq 0 ];
+                                	then
+                                                echo "${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation successfully compiled"
+                                        else
+                                                echo "[Rust] $tasksImplementation" >> ../Reports/Failed_Report.txt
+                                	fi
+				fi
+                        ;;
+
+                        esac
+                done
+        done
+done
+
+exit
+done
+
+exit	

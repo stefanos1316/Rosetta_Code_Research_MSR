@@ -1,0 +1,2 @@
+In general for issues such as failed to fetch from git use this command 
+	$ export ENV SSL_CERT_FILE=/etc/ssl/certs/ca-bundle.crt

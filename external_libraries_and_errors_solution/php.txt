@@ -1,0 +1,6 @@
+Concurrent-computing:  	Error occured while running the freshly implemented script such as zts while installing the pthreads.
+			Suggestions online say to re-install the php while enabling the zts configuraiton. 
+			To avoid such a mess, I used this link to overcome this issue: 
+			https://io.ofbeaton.com/2015/02/pthreads-phpzts-rpms-centos/
+			and interpreted my script using the zts-php command.	
+			Also, change the memory_limit form 128M to 512M (edit php.ini found in /etc/)

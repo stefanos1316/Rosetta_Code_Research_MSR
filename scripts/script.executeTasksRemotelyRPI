@@ -1,0 +1,744 @@
+#!/bin/bash
+
+#Author: Stefanos Georgiou from Athens University of Business and Economics
+#This work is done for the purpose of comparing power consumption of different languages
+
+#This script file receives as a command-line parameter a file (that has a number of tasks which is an output of compileTasks and shows the successfully compiled files) and executes the languages given to it (again as command-line arguments)
+
+#The specific script uses ssh to connect with a remote host (Raspberry Pi 3b in our case) that retrieves energy-related measurements via Watts Up Pro.
+#Watts Up pro makes use of USB interfaces and retrieves energy measurements and stores them on the remote host
+
+if [ "$#" -eq 0 ] ;
+then
+	echo ""
+	echo "Illegal number of command line arguments!"
+	echo "Use --help for more information."
+	echo ""
+	exit
+fi
+
+if [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--help" ] || [ "$1" == "--h" ]; 
+then
+	echo ""
+	echo "Script for Executing Tasks"
+	echo "=========================="
+	echo ""
+	echo "--tasksPath	 Full path of the file where all the tasks are located."
+	echo "--sleepTime	 The sleep time between tasks execution in different programming languages,"
+	echo "  	   	 e.g., 1s for one second 2m for two minutes 3h for three hours."
+	echo "      		 This parameter acts as a safe guard to reduce noise among the executions."
+	echo "--username	 Provide username for remote host (this parameter can be used if a wattsup power"
+	echo "      		 analyzer is attached to the remote host  to retrieve energy measurements)"
+	echo "--ipAddress	 Provide IP address for remote host."
+	echo "--optimization	 Type keyword 'optimize' in order to add optimization flags, if not set the script will"
+	echo "	         remove any optimization flag."
+	echo "--temperature      Provide your system's idle temperature, this ensures that the execution of the next"
+        echo "           task will be done under stable conditions (less energy consumption on fan speed and"
+        echo "                 no clock speed reduction from DFVS)"
+	echo " "
+	echo "Note: user are suggested to set up a passwordless ssh between the local and the remote"
+	echo "host"
+	echo " "
+	exit
+fi
+
+
+if [ "$#" -lt 8 ]; then
+	echo "Illegal number of command line arguments"
+	exit
+fi
+
+#Get all arguments
+args=("$@") 
+
+#Get number of elements 
+ELEMENTS=${#args[@]} 
+
+#Initiallize parameters
+tasksPath="0"
+sleepTime="0"
+username="0"
+ipAddress="0"
+optimization="0"
+upperBoundTemperature="0"
+
+# echo each element in array  
+# for lQsds
+for (( i=0;i<$ELEMENTS;++i)); do  
+
+	case "${args[${i}]}" in 
+	("--tasksPath") tasksPath=${args[i+1]} ;;
+	("--sleepTime") sleepTime="${args[i+1]}" ;;
+	("--temperature") upperBoundTemperature="${args[i+1]}" ;;
+	("--username") username="${args[i+1]}" ;;
+	("--ipAddress") ipAddress="${args[i+1]}" ;;
+	("--optimization") optimization="${args[i+1]}" ;;
+	esac
+done
+
+#################################################################################################################################################################################################################### 													FUNCTIONS												#################################################################################################################################################################################################################
+#Function that checks if the executable is still running, if not it terminates the wattsup process.
+function killWattsUpProcess {
+
+	#While $1 (which is the executable) is still running sleep
+	while  ps -p $1 > /dev/null ;
+	do
+		sleep 1
+	done
+	
+	#If it's outside the loop it means the $1 is not running, then kill $2
+	kill -9 $2
+}
+
+#Check via if the give host is running
+function checkRemoteHostSSH {
+
+	#Check if nmap exist on the host, otherwise recommend to install it
+	if nmap --version | grep "command not found"; then
+		echo "Nmap not found in local host."
+		echo "Please install nmap before procceding any further."
+		echo "Exiting..."
+		exit
+	fi
+
+	if nmap -p22 $2 -oG - | grep -q 22/open; then 
+    		echo "Remote Host's $2 SSH is active"
+		echo "Procceding normally..."
+		echo " "
+	else 
+    		echo "Remote Host's $2 SSH is not running..."
+		echo "Please make sure that is active and try again."
+		exit
+	fi
+}
+
+#Get files from remote server using scp
+function getTreeDirectoryFromRemoteHost {
+
+	#\$1 is the remote host's username
+	#\$2 is the remote host's IP address
+	#\$3 is the location of remote host the directory
+	#\$4 is the location of the host for storing the energy-related data
+
+	echo "Retrieving data from remote host:$2 please wait..."
+	remoteHost=$1@$2
+	# Get till Energy_Results
+	scp -r $remoteHost:$3 $4
+	echo "[Success] Transfer done!"
+
+	echo ""
+	echo "Exiting..."
+}
+
+# Function that retrieves the AMD processor's temperature 
+function checkTemperature {
+
+        while true;
+        do
+                currentTemperature=$(/opt/vc/bin/vcgencmd measure_temp | awk -F "=" '{print $2}')
+                let currentTemperature=currentTemperature+0
+                allowedTemp=$1
+                upperBoundTemp=$((allowedTemp+3))
+                if [ "$currentTemperature" -gt "$upperBoundTemp" ];
+                then
+                        currentTime=$(date)
+                        echo "[$currentTime] Error: Current temperature is high...trying again in 60 seconds!"
+                        sleep 60
+                else
+                        echo "Temperature is fine!"
+                        break
+                fi
+        done
+}
+
+
+
+############################################################################################################################################
+
+#Create parameters for the directory names
+EnergyPerformanceLogDataDate=$(date -u | sed -e 's/ /_/g')
+EnergyPerformanceLogDirName="Experiment_Data_"$EnergyPerformanceLogDataDate
+
+#Before creating directories check if the remote host is acticvated and SSH is running
+	checkRemoteHostSSH $username $ipAddress
+
+	#if the script is still running it means ssh connection is fine.
+	mkdir -p ../Reports/$EnergyPerformanceLogDirName
+	mkdir -p ../Reports/$EnergyPerformanceLogDirName/Energy_Results
+	remoteHost=$username"@"$ipAddress
+	SSH_AUTH_SOCK=0 ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName
+	SSH_AUTH_SOCK=0 ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results
+	if [ $? -eq 0 ];
+       	then
+		echo "Directories created normally."
+	else
+		echo "Failed to create directories."
+		echo "Please check remote host's permissions."
+		exit
+	fi
+
+#Create Performance locally since the execution is done here.
+mkdir -p ../Reports/$EnergyPerformanceLogDirName/Performance_Results
+
+#At this point we have a file that includes all the Tasks we successfully compiled
+for containesTasks in `ls $tasksPath`;
+do
+	#At this point we create a directory to store the energy and performance results
+	#If a remove host is given, then create the energy results there
+	SSH_AUTH_SOCK=0 ssh $remoteHost mkdir -p GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks
+	mkdir -p ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks
+
+	#For all the programming languages enter and compile the content
+        for containesLanguages in `ls $tasksPath/$containesTasks`;
+        do
+                #For all the tasks compile them based on the language
+		for tasksImplementation in `ls $tasksPath/$containesTasks/$containesLanguages`;
+                do
+			
+			case "$containesLanguages" in
+				("c") 
+					if [[ $tasksImplementation != *".c" ]] && [[ ! -d $tasksImplementation ]];
+					then
+						echo "Executing C"
+						#A second of delay since the wattsup has it as a startup delay
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c.txt
+
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c.txt' &" &
+						
+						#Watts Up utility has 2 seconds of delay before start capturing measurements, thus we delay the execution system too				
+						sleep 2
+
+						executable=$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
+						(time ./$executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c.txt &
+						
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+							
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature				
+					fi
+				
+				;;
+				("c++")
+					if [[ $tasksImplementation != *".cpp" ]] && [[ ! -d $tasksImplementation ]];
+					then
+						echo "Executing C++"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c++.txt
+
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c++.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						executable=$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
+						(time ./$executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c++.txt &
+						
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+		
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+						
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C++" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+					fi
+				;;
+				("java")
+					#Here we have to make sure that our script will execute the bytecode that has the main class
+					getMain="0"
+					getByteCodeWithMainFunciton="0"
+					if [[ $tasksImplementation == *".class" ]] && [[ ! -d $tasksImplementation ]];
+					then
+						getMain=$(echo $tasksImplementation | awk -F "." '{print $1}')
+						getMainFromJavaFile=$tasksPath/$containesTasks/$containesLanguages/$getMain".java"
+					
+						if grep "public static void main" "$getMainFromJavaFile" ;
+						then
+							getByteCodeWithMainFunction=$(echo $tasksImplementation | awk -F "." '{print $1}')
+						fi
+					fi
+
+					if [[ $tasksImplementation != *".java" ]] && [[ "$tasksImplementation" == "$getByteCodeWithMainFunction"* ]];
+					then
+						echo "Executing Java"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/java.txt
+
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/java.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+
+						path=$tasksPath/$containesTasks/$containesLanguages/
+						executable=$(echo "$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation" | awk -F "/" '{print $NF}' | awk -F "." '{print $1}') 
+						
+						if [ "$optimization" == "optmize" ]; then
+						(time java -classpath $path $executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/java.txt &
+						else			
+						(time java -Xint -classpath $path $executable) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/java.txt &
+						fi
+						
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+		
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+						
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Java" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+					fi
+				;;
+				("python")
+						echo "Executing Python"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/python.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/python.txt
+					
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/python.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						(time python $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/python.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+		
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+						
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Python" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+				;;
+				("c-sharp")
+					if [[ $tasksImplementation == *".exe" ]] && [[ ! -d $tasksImplementation ]]; 
+					then
+						echo "Executing C#"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c-sharp.txt
+					
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/c-sharp.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						(time mono $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/c-sharp.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+	
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+		
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:C-Sharp" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+					fi
+				;;
+				("visual-basic-.net")
+					if [[ $tasksImplementation == *".exe" ]] && [[ ! -d $tasksImplementation ]];
+					then
+						echo "Executing VB.NET"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/vb.net.txt
+					
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/vb.net.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						(time mono $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/vb.net.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Visual-Basic-.Net" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+					fi
+				;;
+
+				("javascript")
+						echo "Executing JavaScript"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/javascript.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/javascript.txt
+				
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/javascript.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						(time node  $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/javascript.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+	
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:JavaScript" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+				;;
+				("php")
+						echo "Executing Php"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/php.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt
+				
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/php.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						#In some occusions we like the concurrent programming we have to use the zts-php to interpret the code
+						if grep "Thread" $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation
+						then
+							(time zts-php $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt &
+						else
+							(time php $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/php.txt &
+						fi
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:PHP" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+				;;
+				("perl")
+						echo "Executing Perl"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/perl.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/perl.txt
+				
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/perl.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						(time perl $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/perl.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+	
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution			$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Perl" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+				;;
+				("ruby")
+						echo "Executing Ruby" 
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/ruby.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/ruby.txt
+				
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/ruby.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						(time ruby $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/ruby.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+					
+						if [ $? -eq 0 ];
+						then
+							timeStamp=$(date -u)
+							echo "Execution		$timeStamp	$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Ruby" >> ../Reports/Failed_Execution_Report.txt
+						fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+				;;
+				("r")
+						echo "Executing R"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/r.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/r.txt
+				
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/r.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						(time Rscript $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/r.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+  
+                                                if [ $? -eq 0 ];
+                                                then
+                                                        timeStamp=$(date -u)
+                                                        echo "Execution         	$timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:R" >> ../Reports/Failed_Execution_Report.txt
+                                                fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+				;;
+				("go")
+						echo "Executing Go"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/go.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt
+				
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/go.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						if [ "$optimization" == "optimize" ]; then
+						(time go run $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt &
+						else
+						(time go run -gcflags -N $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/go.txt &
+						fi
+	
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+                         
+			                        if [ $? -eq 0 ];
+                                                then
+                                                        timeStamp=$(date -u)
+                                                        echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Go" >> ../Reports/Failed_Execution_Report.txt
+                                                fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+				;;
+				("rust")		
+					if [[ $tasksImplementation != *".rs" ]] && [[ $tasksImplementation != *".rust" ]] && [[ ! -d $tasksImplementation ]]; 
+					then
+						echo "Executing Rust"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/rust.txt
+				
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/rust.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+						
+						(time ./$tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/rust.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+                                                
+						if [ $? -eq 0 ];
+                                                then
+                                                        timeStamp=$(date -u)
+                                                        echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Rust" >> ../Reports/Failed_Execution_Report.txt
+                                                fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+					fi
+				;;
+				("swift")		
+						echo "Executing Swift"
+						SSH_AUTH_SOCK=0 ssh $remoteHost touch GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/swift.txt
+						touch  ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/swift.txt
+				
+						#Run the wattsup in the background
+						SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts >> GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results/$containesTasks/swift.txt' &" &
+						
+						#WattsUp has 2 seconds of delay before retrieving results
+						sleep 2
+					
+						(time /home/pi/swift_binaries/bin/swift -suppress-warnings -O $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation) 2>> ../Reports/$EnergyPerformanceLogDirName/Performance_Results/$containesTasks/swift.txt &
+
+						#Get executions PID, when this process is not runnung, kill the wattsUpPro process
+						getExecutionPID=$!
+
+						#While our tasks is still running sleep a second and start again
+						while  ps -p $getExecutionPID > /dev/null ;
+						do
+							sleep 1
+						done
+	
+						#If it's outside the loop it means the task's execution is finished, then stop remote host 
+						#from retrieving power measurements
+						SSH_AUTH_SOCK=0 ssh $remoteHost sudo pkill  wattsup						
+                                                
+						if [ $? -eq 0 ];
+                                                then
+                                                        timeStamp=$(date -u)
+                                                        echo "Execution         $timeStamp      $tasksPath/$containesTasks/$containesLanguages/$tasksImplementation:Swift" >> ../Reports/Failed_Execution_Report.txt
+                                                fi
+						sleep $sleepTime
+						checkTemperature $upperBoundTemperature
+				;;
+			esac
+		done
+	done
+done
+
+#Testing transferring
+getTreeDirectoryFromRemoteHost $username $ipAddress GitHub/Rosetta-Code-Research/Reports/$EnergyPerformanceLogDirName/Energy_Results ../Reports/$EnergyPerformanceLogDirName/
+
+echo ""
+
+echo "Creating plottable text files..."
+./script.createPlottableData --absoluteDataPath ../Reports/$EnergyPerformanceLogDirName/ --languageType compiled --optimization ON
+./script.createPlottableData --absoluteDataPath ../Reports/$EnergyPerformanceLogDirName/ --languageType interpreted 
+
+
+exit

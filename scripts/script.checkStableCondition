@@ -1,0 +1,168 @@
+#!/bin/bash
+
+#This script's main purpose is to act as a safety mechanism before executing our tests.
+#Here we check the following facts: 
+# * If execution node is alive (it might crash from the tests)
+# * Temperature of the workstation's CPU if it is stable (28 +/- 3 Celsius in our case)
+# * Idle power consumption (5.8 +/- 1 watt per second in our case)
+
+# Note: Please ensure that a passwordless SSH exists between the nodes
+
+# Command-line arguments 
+# ======================
+#
+# $2 -> remote host's IP address
+# $3 -> idle temperature of the node (in Celsius)
+# $4 -> idle power consumption of the node (in watts per sec.)
+
+if [ "$#" -eq 0 ] ;
+then
+	echo ""
+	echo "Illegal number of command line arguments!"
+	echo "Use --help for more information."
+	echo ""
+	exit
+fi
+
+if [ "$1" == "-h" ] || [ "$1" == "-help" ] || [ "$1" == "--help" ] || [ "$1" == "--h" ]; 
+then
+	echo ""
+	echo "Script for ensuring the Stable Condition"
+	echo "========================================"
+	echo ""
+	echo "--username <str>	Provide user name  for the remote host."
+	echo "--ipAddress <str>	Provide IP address for the remote host."
+	echo "--checkTime <n>	   	Provide time (in seconds) that will send ping messages"
+	echo "			to check the availability of the node."
+	echo "--temperature <n>	Provide the idle temperature of the node in Celsius."
+	echo "--power <n>		Provide the idle power usage of the node in watts per second."
+	echo " "
+	echo "Note: Users are suggested to set up a passwordless ssh between the local and the remote"
+	echo "host. In addition, the idle tempeture and the power are ranging  +/- 3 and 1, repsectivily."
+	echo " "
+	exit
+fi
+
+if [ "$#" -lt 10 ]; then
+	echo "Illegal number of command line arguments"
+	exit
+fi
+
+#Get all arguments
+args=("$@") 
+
+#Get number of elements 
+ELEMENTS=${#args[@]} 
+
+#Initiallize parameters
+username="0"
+ipAddress="0"
+checkTime="0"
+idleTemperature=0
+idlePower=0
+
+# echo each element in array  
+# for lQsds
+for (( i=0;i<$ELEMENTS;++i)); do  
+
+	case "${args[${i}]}" in 
+	("--username") username="${args[i+1]}" ;;
+	("--ipAddress") ipAddress="${args[i+1]}" ;;
+ 	("--temperature") idleTemperature="${args[i+1]}" ;;
+ 	("--power") idlePower="${args[i+1]}" ;;
+ 	("--checkTime") checkTime="${args[i+1]}" ;;
+	esac
+done
+
+#################################################################################################################################
+##						FUNCTIONS							 	       ##
+#################################################################################################################################
+
+function nodeStatus {
+
+while true;
+do
+
+	# echo "$username  $ipAddress  $idleTemperature  $idlePower"
+	isAlive=$(ping -c 1 $1 | grep "packet loss" | awk '{print $4}')
+
+	if [ "$isAlive" == "1" ]; 
+	then
+		echo "Node $ipAddress is still alive"
+	else
+		count=1
+		while [ "$count" -ne  "11" ];
+		do
+			sleep 1
+			if [ "$isAlive" == "0" ];
+			then
+				count=$((count+1))
+			else
+				break;
+			fi
+		done
+	
+		if [ "$count" -eq "11" ];
+			then
+			ssmtp stefanos1316@gmail.com < mails/node_not_responding.txt
+			echo "Exiting..."
+			exit
+		fi
+	fi
+
+	#If the node is alive sleep and check it's status again.
+	sleep $2
+done
+}
+
+function checkTemperature {
+
+	while true;
+	do
+		currentTemperature=$(sensors | grep "Package id 0" | awk '{print $4}' | awk -F "+" '{print $2}' | awk -F "°" '{print $1}' | awk -F "." '{print $1}')
+		let currentTemperature=currentTemperature+0
+		allowedTemp=$1
+		upperBoundTemp=$((allowedTemp+3))
+		if [ "$currentTemperature" -gt "$upperBoundTemp" ];
+		then
+			currentTime=$(date)
+			echo "[$currentTime] Error: Current temperature is high...trying again in 60 seconds!"
+			sleep 60
+		else
+			echo "Temperature is fine!"
+			break
+		fi
+	done
+}
+
+
+function checkPower {
+
+	remoteHost=$1@$2
+
+	while true;
+	do
+		currentConsumption=$(SSH_AUTH_SOCK=0 ssh $remoteHost "sh -c 'sudo ./GitHub/Rosetta-Code-Research/watts-up/wattsup ttyUSB0 -s watts -c 1'")
+		let currentConsumption=${currentConsumption%%.*}+0
+		allowedConsumption=$3
+		upperBoundConsumption=$((allowedConsumption+1))
+		if [ "$currentConsumption" -gt "$upperBoundConsumption" ];
+		then
+			currentTime=$(date)
+			echo "[$currentTime] Error: Current power consumption is high...trying again in 60 seconds!"
+			sleep 60
+		else
+			echo "Power consumption's condition stable!"
+			break
+		fi
+	done
+}
+
+#################################################################################################################################
+
+#Calling function responsible on check the availability of the node each X seconds|minutes|hours and so on.
+nodeStatus $ipAddress $checkTime &
+checkTemperature $idleTemperature
+checkPower $username $ipAddress $idlePower
+
+exit

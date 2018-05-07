@@ -1,0 +1,1 @@
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/laptop/exponentiation-operator/rust/exponentiation-operator/target/release/exponentiation-operator: /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/laptop/exponentiation-operator/rust/exponentiation-operator/src/main.rs
