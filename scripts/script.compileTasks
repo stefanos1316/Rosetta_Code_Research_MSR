@@ -150,7 +150,7 @@ do
                         ("rust")
 				if [[ $tasksImplementation == *".rust" ]];
 				then 
-                                	eval=$(rustc -O -Awarnings ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
+                                	eval=$(~/.cargo/bin/rustc -O -Awarnings ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
                                 
 					if [ $? -eq 0 ];
                                 	then
