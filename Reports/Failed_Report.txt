@@ -1,3 +1,0 @@
-[C#] ackermann-function.cs 
-[Rust] ackermann-function.rust
-[C#] numerical-integration.cs 

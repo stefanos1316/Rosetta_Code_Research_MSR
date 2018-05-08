@@ -1,0 +1,20 @@
+fn is_palindrome(string: &str) -> bool {
+    string.chars().zip(string.chars().rev()).all(|(x, y)| x == y)
+}
+
+macro_rules! test {
+    ( $( $x:tt ),* ) => { $( is_palindrome($x); )* };
+}
+
+fn main() {
+
+for i in 0..2000000000 {
+		let x  = format!("{}", i);
+		let mut owned_string: String = x.to_owned();
+    		let borrowed_string: &str = "saippuakivikauppias";
+
+    		owned_string.push_str(borrowed_string);
+	let s_slice: &str = &owned_string;
+    test!(s_slice);
+}
+}

@@ -11,17 +11,16 @@ fn ack(m: isize, n: isize) -> isize {
 fn main() {
     for  _i in 0..10000000 {
         	
-	let mut aVar = 0;
-	
+	let mut _a_var = 0;
+
 	if _i%2 == 0 {
-		aVar = 1;
+		_a_var = 1;
 	} else {
-		aVar = 2;
+		_a_var = 2;
 	}
 		
-
-	for  m in 0..(4 - aVar) {
-            for  n in aVar..3 {        
+	for  m in 0..(4 - _a_var) {
+            for  n in _a_var..3 {        
                 let _a = ack(m, n);
             }
         }

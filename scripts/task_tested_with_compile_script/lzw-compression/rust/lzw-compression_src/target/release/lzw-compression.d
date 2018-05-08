@@ -1,0 +1,1 @@
+/home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/laptop/lzw-compression/rust/lzw-compression_src/target/release/lzw-compression: /home/sgeorgiou/GitHub/Rosetta_Code_Research_MSR/Scripts/laptop/lzw-compression/rust/lzw-compression_src/src/main.rs
