@@ -1,12 +1,13 @@
 /*
-  libco.amd64 (2016-09-14)
+  libco.amd64 (2015-06-19)
   author: byuu
   license: public domain
 */
 
 #define LIBCO_C
 #include "libco.h"
-#include "settings.h"
+
+//#define LIBCO_AMD64_NO_FPU
 
 #include <assert.h>
 #include <stdlib.h>
@@ -19,14 +20,9 @@ static thread_local long long co_active_buffer[64];
 static thread_local cothread_t co_active_handle = 0;
 static void (*co_swap)(cothread_t, cothread_t) = 0;
 
-#ifdef LIBCO_MPROTECT
-  alignas(4096)
-#else
-  section(text)
-#endif
 #ifdef _WIN32
   /* ABI: Win64 */
-  static const unsigned char co_swap_function[4096] = {
+  static unsigned char co_swap_function[] = {
     0x48, 0x89, 0x22,              /* mov [rdx],rsp          */
     0x48, 0x8b, 0x21,              /* mov rsp,[rcx]          */
     0x58,                          /* pop rax                */
@@ -38,7 +34,7 @@ static void (*co_swap)(cothread_t, cothread_t) = 0;
     0x4c, 0x89, 0x6a, 0x30,        /* mov [rdx+48],r13       */
     0x4c, 0x89, 0x72, 0x38,        /* mov [rdx+56],r14       */
     0x4c, 0x89, 0x7a, 0x40,        /* mov [rdx+64],r15       */
-  #if !defined(LIBCO_NO_SSE)
+  #if !defined(LIBCO_AMD64_NO_FPU)
     0x0f, 0x29, 0x72, 0x50,        /* movaps [rdx+ 80],xmm6  */
     0x0f, 0x29, 0x7a, 0x60,        /* movaps [rdx+ 96],xmm7  */
     0x44, 0x0f, 0x29, 0x42, 0x70,  /* movaps [rdx+112],xmm8  */
@@ -59,7 +55,7 @@ static void (*co_swap)(cothread_t, cothread_t) = 0;
     0x4c, 0x8b, 0x69, 0x30,        /* mov r13,[rcx+48]       */
     0x4c, 0x8b, 0x71, 0x38,        /* mov r14,[rcx+56]       */
     0x4c, 0x8b, 0x79, 0x40,        /* mov r15,[rcx+64]       */
-  #if !defined(LIBCO_NO_SSE)
+  #if !defined(LIBCO_AMD64_NO_FPU)
     0x0f, 0x28, 0x71, 0x50,        /* movaps xmm6, [rcx+ 80] */
     0x0f, 0x28, 0x79, 0x60,        /* movaps xmm7, [rcx+ 96] */
     0x44, 0x0f, 0x28, 0x41, 0x70,  /* movaps xmm8, [rcx+112] */
@@ -77,15 +73,13 @@ static void (*co_swap)(cothread_t, cothread_t) = 0;
 
   #include <windows.h>
 
-  static void co_init() {
-    #ifdef LIBCO_MPROTECT
+  void co_init() {
     DWORD old_privileges;
-    VirtualProtect((void*)co_swap_function, sizeof co_swap_function, PAGE_EXECUTE_READ, &old_privileges);
-    #endif
+    VirtualProtect(co_swap_function, sizeof co_swap_function, PAGE_EXECUTE_READWRITE, &old_privileges);
   }
 #else
   /* ABI: SystemV */
-  static const unsigned char co_swap_function[4096] = {
+  static unsigned char co_swap_function[] = {
     0x48, 0x89, 0x26,        /* mov [rsi],rsp    */
     0x48, 0x8b, 0x27,        /* mov rsp,[rdi]    */
     0x58,                    /* pop rax          */
@@ -107,13 +101,11 @@ static void (*co_swap)(cothread_t, cothread_t) = 0;
   #include <unistd.h>
   #include <sys/mman.h>
 
-  static void co_init() {
-    #ifdef LIBCO_MPROTECT
+  void co_init() {
     unsigned long long addr = (unsigned long long)co_swap_function;
     unsigned long long base = addr - (addr % sysconf(_SC_PAGESIZE));
     unsigned long long size = (addr - base) + sizeof co_swap_function;
-    mprotect((void*)base, size, PROT_READ | PROT_EXEC);
-    #endif
+    mprotect((void*)base, size, PROT_READ | PROT_WRITE | PROT_EXEC);
   }
 #endif
 

@@ -5,9 +5,11 @@
 */
 
 /*
-  note this was designed for UNIX systems. Based on ideas expressed in a paper by Ralf Engelschall.
-  for SJLJ on other systems, one would want to rewrite springboard() and co_create() and hack the jmb_buf stack pointer.
-*/
+ * Note this was designed for UNIX systems. Based on ideas expressed in a paper
+ * by Ralf Engelschall.
+ * For SJLJ on other systems, one would want to rewrite springboard() and
+ * co_create() and hack the jmb_buf stack pointer.
+ */
 
 #define LIBCO_C
 #include "libco.h"
@@ -23,12 +25,11 @@ extern "C" {
 typedef struct {
   sigjmp_buf context;
   void (*coentry)(void);
-  void* stack;
+  void *stack;
 } cothread_struct;
 
 static thread_local cothread_struct co_primary;
-static thread_local cothread_struct* creating;
-static thread_local cothread_struct* co_running = 0;
+static thread_local cothread_struct *creating, *co_running = 0;
 
 static void springboard(int ignored) {
   if(sigsetjmp(creating->context, 0)) {

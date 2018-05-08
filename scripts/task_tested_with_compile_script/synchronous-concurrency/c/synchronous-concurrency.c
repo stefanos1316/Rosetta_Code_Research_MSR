@@ -1,7 +1,7 @@
 #include <stdlib.h>	/* malloc(), realloc(), free() */
 #include <stdio.h>	/* fopen(), fgetc(), fwrite(), printf() */
 
-#include "libco.h"	/* co_create(), co_switch() */
+#include <libco.h>	/* co_create(), co_switch() */
 
 void
 fail(const char *message) {

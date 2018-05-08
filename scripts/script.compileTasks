@@ -6,8 +6,10 @@ redlabel=$(tput setab 1)
 default=$(tput sgr0)
 
 # Compilation flags
-C_FLAGS="-lm -pthread -fopenmp -std=c99 -w"
+C_FLAGS="-lm -pthread -fopenmp -std=c99 -w -lyajl"
 C_PLUS_PLUS_FLAGS="-std=c++11 -D_GLIBCXX_USE_NANOSLEEP -lpthread"
+C_SHARP_FLAGS=" -r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
+VB_DOT_NET_FLAGS="-r:/usr/lib/mono/newtonsoft-json/Newtonsoft.Json.dll"
 
 if [ "$1" == "-h" -o "$1" == "--help" ]; then
 	echo
@@ -56,7 +58,15 @@ do
 				then
 					sourceFile=${DIRECTORY_PATH}"/"$containesTasks"/"$containesLanguages"/"$tasksImplementation
 					objectFile=$(echo $sourceFile | awk -F "." '{print $1}')
-					eval=$(gcc ${C_FLAGS} -o $objectFile $sourceFile -O3)
+
+					if [ "$containesTasks" = "synchronous-concurrency" ]; then 
+						if [ "$tasksImplementation" = "synchronous-concurrency.c" ]; then
+							eval=$(gcc -o $objectFile $sourceFile -O3 ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/libco.c)
+						fi
+					else
+						eval=$(gcc ${C_FLAGS} -o $objectFile $sourceFile -O3)
+					fi
+		
 					if [ $? -eq 0 ];
 					then
                                        			echo "[C] $tasksImplementation successfully compiled"
@@ -82,8 +92,13 @@ do
 			("java")
 				if [[ $tasksImplementation == *".java"  ]];
 				then
-                                	eval=$(javac ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
-                                
+					# if it the json task behave differently
+                                	if [ "$containesTasks" = "json" ]; then	
+						eval=$(javac -cp ./${DIRECTORY_PATH}/$containesTasks/$containesLanguages/ ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
+						#javac -cp ./json/java json/java/JsonExample.java
+					else
+						eval=$(javac ${DIRECTORY_PATH}/$containesTasks/$containesLanguages/$tasksImplementation)
+                                	fi
 
 					if [ $? -eq 0 ];
                                 	then
